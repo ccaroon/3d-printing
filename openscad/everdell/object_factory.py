@@ -14,11 +14,33 @@ class EverdellObjectFactory:
     BOWL_TOP_DIA = 2.85 * units.cm
     BOWL_HEIGHT = 3.0 * units.cm
 
+    # [T]wig [R]ack [B]ack
+    TRB_LEN = 8 * units.cm
+    TRB_THICKNESS = 1.75 * units.mm
+    TRB_WIDTH = 0.75 * units.cm
+    TRB_XBAR_ANGLE = 20
+
     # Twig & Twig Rack
     TWIG_DIA = 8 * units.mm
     TWIG_LEN = 22 * units.mm
     TWIG_OVLP = 0.50 * units.mm
-    TWIG_RACK_WIDTH = TWIG_LEN + 4
+    TWIG_RACK_WIDTH = TWIG_LEN + TRB_THICKNESS + 4
+
+
+    @classmethod
+    def __twig_rack_back(cls):
+        top_bar = cube([cls.TRB_LEN, cls.TRB_WIDTH, cls.TRB_THICKNESS])
+        xbar1 = cube([cls.TRB_LEN, cls.TRB_WIDTH, cls.TRB_THICKNESS])
+        xbar2 = cube([cls.TRB_LEN, cls.TRB_WIDTH, cls.TRB_THICKNESS])
+
+        back = (
+            top_bar.forward(cls.TWIG_DIA*3.75).right(1) +
+            xbar1.rotate(a=cls.TRB_XBAR_ANGLE, v=[0,0,1]).right(5) +
+            xbar2.rotate(a=-cls.TRB_XBAR_ANGLE, v=[0,0,1]).forward(27)
+        )
+
+        return back
+
 
     # TODO:
     # [x] Insert 1 more log to length (total 11)
@@ -61,6 +83,8 @@ class EverdellObjectFactory:
                         )
             layers.append(layer)
 
+        back = cls.__twig_rack_back()
+
         # build rack
         rack = layers.pop(0)
         for idx, layer in enumerate(layers):
@@ -68,7 +92,8 @@ class EverdellObjectFactory:
                 (cls.TWIG_DIA - cls.TWIG_OVLP) * (idx + 1)
             )
 
-        return rack
+        return back.right(0.75).forward(0.5) + rack
+        # return back
 
 
     @classmethod
