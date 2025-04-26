@@ -11,4 +11,4 @@ box = boxes.compartment_box(
     rounding=3
 )
 
-box.save_as_scad("metal-cube-box.scad")
+box.save_as_scad("./models/metal-cube-box.scad")

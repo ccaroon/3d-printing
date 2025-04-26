@@ -20,4 +20,4 @@ model = model - hole.translate([0, 0, -1])
 model = model - hole.translate([width, 0, -1])
 
 # model = side1 + side2
-model.save_as_scad("led-matrix-bracket.scad")
+model.save_as_scad("./models/led-matrix-bracket.scad")
