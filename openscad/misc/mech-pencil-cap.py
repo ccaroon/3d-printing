@@ -4,8 +4,8 @@ from solid2 import *
 from lib import units
 
 CAP_DIA = 7.75 * units.mm
-CAP_HOLE_DIA = 6.75 * units.mm
-CAP_HEIGHT = 1.25 * units.cm
+CAP_HOLE_DIA = 6.55 * units.mm
+CAP_HEIGHT = 1.15 * units.cm
 
 def mech_pencil_cap():
     cap = cylinder(d=CAP_DIA, h=CAP_HEIGHT)
