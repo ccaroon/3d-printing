@@ -1,7 +1,12 @@
 $fn = 150;
 
 union() {
-	cylinder(d = 30.0, h = 3.75);
+	difference() {
+		cylinder(d = 28.0, h = 3.75);
+		translate(v = [0, 0, -1]) {
+			cylinder(d = 15.5, h = 3.3);
+		}
+	}
 	translate(v = [0, 0, 3.75]) {
 		rotate_extrude($fn = 250, angle = 360) {
 			import(file = "./images/king/King-Profile.dxf", origin = [0, 0]);
@@ -24,14 +29,22 @@ union() {
 					}
 				}
 			}
-			translate(v = [0, 0, 7.75]) {
+			translate(v = [0, 0, 8.0]) {
 				sphere(d = 11);
 			}
-			translate(v = [0, 0, 17]) {
+			translate(v = [0, 0, 12.0]) {
 				union() {
-					cube(center = true, size = [2.75, 2.75, 11]);
-					translate(v = [0, 0, 1.75]) {
-						cube(center = true, size = [9, 2.75, 2.75]);
+					translate(v = [0, -1.375, 0]) {
+						translate(v = [-1.375, 0, 0]) {
+							cube(size = [2.75, 2.75, 11]);
+						}
+					}
+					translate(v = [0, 0, 5.5]) {
+						translate(v = [0, -1.375, 0]) {
+							translate(v = [-4.5, 0, 0]) {
+								cube(size = [9, 2.75, 2.75]);
+							}
+						}
 					}
 				}
 			}

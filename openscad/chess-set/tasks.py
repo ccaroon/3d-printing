@@ -1,11 +1,11 @@
 from invoke import task
 from solid2 import *
-from units import *
 
+import common
 import king
 import pawn
 import queen
-import tiles
+import tile
 
 
 @task
@@ -20,16 +20,20 @@ def build(ctx, piece):
     model = None
     # --- Pawns ---
     if piece == "pawn":
-        model = pawn.pawn()
+        model = pawn.build()
     # --- Queen ---
     elif piece == "queen":
-        model = queen.queen()
+        model = queen.build()
     # --- King ---
     elif piece == "king":
-        model = king.king()
+        model = king.build()
     # --- Tiles ---
-    elif piece == "tiles":
-        model = tiles.tile(base_width,1)
+    elif piece == "tile":
+        model = tile.build()
+    elif piece == "common":
+        model = common.build()
+    else:
+        print(f"Unknown piece: '{piece}'")
 
     if model:
         file_name = f"./{piece}.scad"

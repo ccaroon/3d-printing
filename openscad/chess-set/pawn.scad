@@ -1,7 +1,12 @@
 $fn = 150;
 
 union() {
-	cylinder(d = 26.0, h = 3.75);
+	difference() {
+		cylinder(d = 26.0, h = 3.75);
+		translate(v = [0, 0, -1]) {
+			cylinder(d = 15.5, h = 3.25);
+		}
+	}
 	translate(v = [0, 0, 3.75]) {
 		union() {
 			cube(center = true, size = [15.6, 15.6, 5]);

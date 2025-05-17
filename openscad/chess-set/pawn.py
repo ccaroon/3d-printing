@@ -1,23 +1,24 @@
 from solid2 import *
 
-import units
+import common
+from units import base, pawn
 
-def pawn():
-    base = cylinder(d=units.pawn_base_width, h=units.base_height)
+def build():
+    bottom = common.pawn_base()
 
-    x = units.pawn_base_width*.60
+    x = pawn.base_dia * 0.60
     middle1 = cube([x,x,5], center=True)
     middle2 = cylinder(
-        d1=units.pawn_base_width*.5,
-        d2=units.pawn_base_width*.25,
-        h=units.pawn_height
+        d1=pawn.base_dia*.5,
+        d2=pawn.base_dia*.25,
+        h=pawn.height
     )
     middle = middle1 + middle2
 
-    top = sphere(d=units.base_width/2)
+    top = sphere(d=base.dia/2)
 
-    piece = base                         + \
-            middle.up(units.base_height) + \
-            top.up(units.base_height + units.pawn_height)
+    piece = bottom              + \
+            middle.up(base.thk) + \
+            top.up(base.thk + pawn.height)
 
     return piece
