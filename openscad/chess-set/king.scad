@@ -2,12 +2,12 @@ $fn = 150;
 
 union() {
 	difference() {
-		cylinder(d = 28.0, h = 3.75);
+		cylinder(d = 30.0, h = 3.8);
 		translate(v = [0, 0, -1]) {
 			cylinder(d = 15.5, h = 3.3);
 		}
 	}
-	translate(v = [0, 0, 3.75]) {
+	translate(v = [0, 0, 3.8]) {
 		rotate_extrude($fn = 250, angle = 360) {
 			import(file = "./images/king/King-Profile.dxf", origin = [0, 0]);
 		}
@@ -20,7 +20,7 @@ union() {
 				}
 			}
 			difference() {
-				cylinder($fn = 5, d1 = 16.5, d2 = 21.0, h = 10);
+				cylinder($fn = 5, d1 = 17.5, d2 = 22.0, h = 10);
 				translate(v = [0, 0, 10.5]) {
 					rotate_extrude(angle = 360) {
 						translate(v = [-8.5, 0, 0]) {

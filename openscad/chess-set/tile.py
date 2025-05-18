@@ -1,11 +1,11 @@
 from solid2 import *
 
-from units import magnet,tile
+from units import Magnet,Tile
 
 def build():
-    model = cube(tile.size, tile.size, tile.thk)
-    model = model.translate(-tile.size/2, -tile.size/2, 0)
+    model = cube(Tile.size, Tile.size, Tile.thk)
+    model = model.translate(-Tile.size/2, -Tile.size/2, 0)
 
-    cut_out = cylinder(d=magnet.dia, h=magnet.thk + 1)
+    cut_out = cylinder(d=Magnet.dia, h=Magnet.thk + 1)
 
-    return model - cut_out.up(tile.thk - magnet.thk)
+    return model - cut_out.up(Tile.thk - Magnet.thk)

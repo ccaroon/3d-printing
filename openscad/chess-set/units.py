@@ -2,47 +2,81 @@ from collections import namedtuple
 
 # NOTE: All measurements in millimeters (mm)
 
-# Piece Base
-Base = namedtuple("Base", ["dia", "thk"])
-base = Base(30.0, 3.75)
+def __constant(name, **kwargs):
+    const_class = namedtuple(f"{name}Const", kwargs.keys())
+    return const_class(**kwargs)
+
+
+# Base Dims
+Base = __constant(
+    "Base",
+    dia=32.0,
+    thk=3.80
+)
 
 #  Piece Middle
-Middle = namedtuple("Middle", "height")
-middle = Middle(48.7)
-
-# Piece Top
-# Top = namedtuple("Top", [])
-# top = Top()
+Middle = __constant(
+    "Middle",
+    height=48.7
+)
 
 # Court pieces
-Court = namedtuple("Court",
-    ["base_dia", "base_thk", "height"]
+Court = __constant(
+    "Court",
+    base_dia=Base.dia - 2,
+    base_thk=Base.thk,
+    height=Middle.height * 0.75
 )
-court = Court(base.dia - 2, base.thk, middle.height * 0.75)
 
 # Pawn pieces
-Pawn = namedtuple("Pawn", ["base_dia", "base_thk", "height"])
-pawn = Pawn(base.dia - 4, base.thk, middle.height * 0.5)
+Pawn = __constant(
+    "Pawn",
+    base_dia=Base.dia - 4,
+    base_thk=Base.thk,
+    height=Middle.height * 0.5
+)
 
 # Board tiles
-Tile = namedtuple("Tile", ["size", "thk"])
-tile = Tile(38.0, 3.25)
+Tile = __constant(
+    "Tile",
+    size=38.0,
+    thk=3.25
+)
 
 # Magnet dimensions
 # Used to generate "cutouts" for a magnet to fit into
-Magnet = namedtuple("Magnet", ["dia", "thk"])
-magnet = Magnet(15.5, 2.30)
+Magnet = __constant(
+    "Magnet",
+    dia=15.5,
+    thk=2.30
+)
+
+Crown = __constant(
+    "Crown",
+    base_dia=11, base_thk=2,
+    dia1=(Base.dia / 2) + 1.5,
+    dia2=(Base.dia / 2) + 6.0,
+    height=10,
+    dome_dia=11
+)
 
 # Invididual Pieces
-King = namedtuple("King", [
-    "base_dia", "base_thk", "height",
-    "crown_base_dia", "crown_base_thk",
-    "crown_dia1", "crown_dia2", "crown_height",
-    "crown_dome_dia"
-])
-king = King(
-    court.base_dia, court.base_thk, court.height,
-    11, 2,
-    (base.dia / 2) + 1.5, (base.dia / 2) + 6.0, 10,
-    11
+King = __constant(
+    "King",
+    base_dia=Court.base_dia,
+    base_thk=Court.base_thk,
+    height=Court.height
 )
+
+Queen = __constant(
+    "Queen",
+    base_dia=Court.base_dia,
+    base_thk=Court.base_thk,
+    height=Court.height,
+    pom_dia=4
+)
+
+
+
+
+#
