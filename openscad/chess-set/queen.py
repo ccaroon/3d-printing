@@ -7,7 +7,8 @@ from units import Crown, Middle, Queen
 
 def crown():
     c1 = circle(d=Crown.base_thk)
-    bottom = c1.left(Crown.base_dia).rotate_extrude(angle=360)
+    # NOTE: Tweak crown base dia a bit
+    bottom = c1.left(Crown.base_dia - 0.5).rotate_extrude(angle=360)
 
     mid_outer = cylinder(
         d1=Crown.dia1,

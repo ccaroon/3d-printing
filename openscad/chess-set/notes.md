@@ -17,5 +17,15 @@
 
 
 ## Notes
-### Assembly
-* REMEMBER...to make sure the magnets are on the correct side
+...
+
+
+## Materials
+* [ ] Gorilla Super Glue Gel
+* [ ] Magnets
+* [x] Felt with sticky back
+* [ ] Stiff card stock. 12" x 12"
+
+
+## Assembly
+REMEMBER...to make sure the magnets are on the correct side

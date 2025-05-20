@@ -11,7 +11,7 @@ def __constant(name, **kwargs):
 Base = __constant(
     "Base",
     dia=32.0,
-    thk=3.80
+    thk=3.90
 )
 
 #  Piece Middle
@@ -36,20 +36,21 @@ Pawn = __constant(
     height=Middle.height * 0.5
 )
 
-# Board tiles
-Tile = __constant(
-    "Tile",
-    size=38.0,
-    thk=3.25
-)
-
 # Magnet dimensions
 # Used to generate "cutouts" for a magnet to fit into
 Magnet = __constant(
     "Magnet",
     dia=15.5,
-    thk=2.30
+    thk=2.50
 )
+
+# Board tiles
+Tile = __constant(
+    "Tile",
+    size=38.0,
+    thk=Magnet.thk + 1
+)
+
 
 Crown = __constant(
     "Crown",
