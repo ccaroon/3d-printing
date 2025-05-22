@@ -2,18 +2,23 @@ $fn = 150;
 
 union() {
 	difference() {
-		cylinder(d = 28.0, h = 3.8);
+		cylinder(d = 28.0, h = 3.9);
 		translate(v = [0, 0, -1]) {
-			cylinder(d = 15.5, h = 3.3);
+			cylinder(d = 15.5, h = 3.5);
 		}
 	}
-	translate(v = [0, 0, 3.8]) {
+	translate(v = [0, 0, 3.9]) {
+		cylinder($fn = 10, d1 = 18.48, d2 = 9.24, h = 24.35);
+	}
+	translate(v = [0, 0, 28.25]) {
 		union() {
-			cube(center = true, size = [16.8, 16.8, 5]);
-			cylinder(d1 = 14.0, d2 = 7.0, h = 24.35);
+			translate(v = [0, 0, 7.0]) {
+				sphere(d = 14.0);
+			}
+			minkowski() {
+				sphere(d = 2.0);
+				cylinder(d = 14.0, h = 0.5);
+			}
 		}
-	}
-	translate(v = [0, 0, 28.150000000000002]) {
-		sphere(d = 16.0);
 	}
 }
