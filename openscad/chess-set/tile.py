@@ -1,6 +1,6 @@
 from solid2 import *
 
-from units import Magnet,Tile
+from units import Magnet, Tile
 
 def build():
     model = cube(Tile.size, Tile.size, Tile.thk)

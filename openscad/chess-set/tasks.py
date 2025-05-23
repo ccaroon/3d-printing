@@ -1,42 +1,42 @@
 from invoke import task
 from solid2 import *
 
-import common
 import king
+import knight
 import pawn
 import queen
+import test
 import tile
 
-
 @task
-def build(ctx, piece):
+def build(ctx, piece, opt=None):
     """
     Build the named chess piece.
 
     :param piece: The name of the chess piece to build.
+    :param opt: Piece specific option.
     """
     set_global_fn(150)
 
     model = None
-    # --- Pawns ---
-    if piece == "pawn":
-        model = pawn.build()
-    # --- Queen ---
-    elif piece == "queen":
-        model = queen.build()
-    # --- King ---
-    elif piece == "king":
-        model = king.build()
-    # --- Tiles ---
-    elif piece == "tile":
-        model = tile.build()
-    elif piece == "common":
-        model = common.build()
-    else:
-        print(f"Unknown piece: '{piece}'")
+    match piece:
+        case "pawn":
+            model = pawn.build()
+        case "queen":
+            model = queen.build()
+        case "king":
+            model = king.build()
+        case "knight":
+            model = knight.build()
+        case "tile":
+            model = tile.build()
+        case "test":
+            model = test.build(opt)
+        case _:
+            print(f"Unknown piece: '{piece}'")
 
     if model:
-        file_name = f"./{piece}.scad"
+        file_name = f"./chess-{piece}.scad"
         model.save_as_scad(file_name)
         print(f"=> {file_name}")
 

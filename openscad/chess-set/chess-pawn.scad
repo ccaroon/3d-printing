@@ -8,7 +8,7 @@ union() {
 		}
 	}
 	translate(v = [0, 0, 3.9]) {
-		cylinder($fn = 10, d1 = 18.48, d2 = 9.24, h = 24.35);
+		cylinder($fn = 10, d1 = 19.88, d2 = 9.24, h = 24.35);
 	}
 	translate(v = [0, 0, 28.25]) {
 		union() {

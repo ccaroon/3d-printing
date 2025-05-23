@@ -19,7 +19,7 @@ def __build_middle():
 
     center = cylinder(
         _fn=10,
-        d1=Pawn.base_dia * 0.66,
+        d1=Pawn.base_dia * 0.71,
         d2=Pawn.base_dia * 0.33,
         h=Pawn.height
     )

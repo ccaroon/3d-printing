@@ -77,6 +77,12 @@ Queen = __constant(
     pom_dia=4
 )
 
+Knight = __constant(
+    "Knight",
+    base_dia=Court.base_dia,
+    base_thk=Court.base_thk,
+    height = Court.height
+)
 
 
 

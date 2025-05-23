@@ -16,10 +16,3 @@ def court_base():
     cut_out = cylinder(d=Magnet.dia, h=Magnet.thk + 1)
 
     return bottom - cut_out.down(1)
-
-
-def build():
-    model = court_base()
-    # model = pawn_base()
-
-    return model
