@@ -1,7 +1,7 @@
 from solid2 import *
 
 import common
-from units import Base, Pawn
+from units import Pawn
 
 
 def __build_top():
@@ -35,8 +35,8 @@ def build():
     top = __build_top()
 
     piece = bottom              + \
-            middle.up(Base.thk) + \
-            top.up(Base.thk + Pawn.height)
+            middle.up(Pawn.base_thk) + \
+            top.up(Pawn.base_thk + Pawn.height)
     # piece = top
 
     return piece

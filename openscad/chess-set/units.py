@@ -84,6 +84,13 @@ Knight = __constant(
     height = Court.height
 )
 
+Bishop = __constant(
+    "Bishop",
+    base_dia=Court.base_dia,
+    base_thk=Court.base_thk,
+    height = Court.height
+)
+
 
 
 #
