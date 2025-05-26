@@ -16,8 +16,11 @@ def __build_top():
 
     cut = cylinder(d=head_size, h=1).rotate([0, -50, 0])
 
-    return head.up(head_size * 0.25) - cut.translate(3 ,0, 3) + pom.up(head_size - pom_size / 2)
-    # return head - cut.translate(3 ,0, 3)
+    return (
+        head.up(head_size * 0.25) - cut.translate(3, 0, 5) +
+        pom.up(head_size - pom_size * 0.33)
+
+    )
 
 
 def __build_middle():
@@ -31,18 +34,37 @@ def __build_middle():
         # scale=[1,1.33]
     )
 
+    collar_h = 2
+    collar1 = cylinder(
+        d1=Bishop.base_dia * 0.40,
+        d2=Bishop.base_dia * 0.66,
+        h=collar_h
+    )
+    collar2 = cylinder(
+        d1=Bishop.base_dia * 0.66,
+        d2=Bishop.base_dia * 0.48,
+        h=collar_h
+    )
+
+    collar = collar1 + collar2.up(collar_h)
+
     footer1 = minkowski()(
         sphere(d=2.0),
         cylinder(d=Bishop.base_dia * 0.75, h=1)
     )
 
-    footer2 = minkowski()(
-        sphere(d=2.0),
-        cylinder(d=Bishop.base_dia * 0.66, h=1)
+    # footer2 = minkowski()(
+    #     sphere(d=2.0),
+    #     cylinder(d=Bishop.base_dia * 0.66, h=1)
+    # )
+    footer2 = cylinder(
+        d1=Bishop.base_dia * 0.66,
+        d2=Bishop.base_dia * 0.50,
+        h=Bishop.height * 0.25
     )
 
     # part = center.rotate([0, 180, 0]).up(Bishop.height)
-    part = center + footer1 + footer2.up(1)
+    part = center + collar.up(Bishop.height *.90) + footer1 + footer2.up(1)
 
     return part
 
