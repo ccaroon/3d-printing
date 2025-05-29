@@ -12,12 +12,17 @@ union() {
 	}
 	translate(v = [0, 0, 28.25]) {
 		union() {
-			translate(v = [0, 0, 7.0]) {
-				sphere(d = 14.0);
+			cylinder(d1 = 9.24, d2 = 14.0, h = 2);
+			translate(v = [0, 0, 2.75]) {
+				minkowski() {
+					sphere(d = 1.5);
+					cylinder(d = 14.0, h = 0.5);
+				}
 			}
-			minkowski() {
-				sphere(d = 2.0);
-				cylinder(d = 14.0, h = 0.5);
+			translate(v = [0, 0, 2.5]) {
+				translate(v = [0, 0, 7.0]) {
+					sphere(d = 14.0);
+				}
 			}
 		}
 	}
