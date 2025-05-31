@@ -48,8 +48,8 @@ Magnet15 = __constant(
 # 20mm x 1mm
 Magnet20 = __constant(
     "Magnet",
-    dia=20.5,
-    thk=1.5
+    dia=20.60,
+    thk=1.75
 )
 
 Magnet = Magnet20
@@ -98,7 +98,7 @@ Bishop = __constant(
     "Bishop",
     base_dia=Court.base_dia,
     base_thk=Court.base_thk,
-    height = 45
+    height = 40
 )
 
 

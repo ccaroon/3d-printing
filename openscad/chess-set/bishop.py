@@ -5,13 +5,13 @@ from units import Bishop
 
 
 def __build_top():
-    head_size = Bishop.base_dia * 0.60
+    head_size = Bishop.base_dia * 0.50
     pom_size = head_size * 0.25
 
     pom = sphere(d=pom_size).resize([pom_size * 1.5, pom_size * 1.5, 0])
 
     head = sphere(d=head_size).resize(
-        [0, 0, Bishop.base_dia * 0.75]
+        [0, 0, Bishop.base_dia * 0.66]
     )
 
     cut = cylinder(d=head_size, h=1).rotate([0, -50, 0])
