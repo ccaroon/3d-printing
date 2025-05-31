@@ -4,8 +4,7 @@
 2. Long-press object in photo to create a Sticker
 3. Upload sticker image from phone to computer
 4. Open sticker image in GIMP and clean up as necessary.
-5. At this point the sticker image should only the object you want to model with NO 
-   background, i.e. transparent background.
+5. At this point the sticker image should only the object you want to model with NO  background, i.e. transparent background.
 6. Launch Inkscape
 7. File -> Import -> Select Image
    - Embed
@@ -28,4 +27,4 @@
 15. Save As...
     - Enter new file name
     - Save
-16. SVG can now be imported into OpenSCAD and extruded to a 3D model. 
+16. SVG can now be imported into OpenSCAD and extruded to a 3D model.

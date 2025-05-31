@@ -5,13 +5,13 @@ from units import Bishop
 
 
 def __build_top():
-    head_size = Bishop.base_dia * 0.50
+    head_size = Bishop.base_dia * 0.60
     pom_size = head_size * 0.25
 
     pom = sphere(d=pom_size).resize([pom_size * 1.5, pom_size * 1.5, 0])
 
     head = sphere(d=head_size).resize(
-        [0, 0, Bishop.base_dia * 0.66]
+        [0, 0, Bishop.base_dia * 0.75]
     )
 
     cut = cylinder(d=head_size, h=1).rotate([0, -50, 0])
@@ -23,7 +23,7 @@ def __build_top():
     )
 
 
-def __build_middle():
+def __build_middle_twist():
     center = circle(
         d=Bishop.base_dia * 0.50,
         _fn=5
@@ -69,14 +69,21 @@ def __build_middle():
     return part
 
 
+def __build_middle_profile():
+    profile = import_dxf("./images/bishop/Bishop-Profile.dxf")
+    middle_part = profile.rotate_extrude(angle=360, _fn=250)
+
+    return middle_part
+
+
 def build():
     bottom = common.court_base()
-    middle = __build_middle()
+    middle = __build_middle_profile()
     top = __build_top()
 
-    piece = bottom              + \
+    piece = bottom                     + \
             middle.up(Bishop.base_thk) + \
-            top.up(Bishop.base_thk + Bishop.height)
-    # piece = top
+            top.up(Bishop.base_thk + Bishop.height - 1)
+    # piece = middle
 
     return piece

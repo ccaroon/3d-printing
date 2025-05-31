@@ -38,11 +38,21 @@ Pawn = __constant(
 
 # Magnet dimensions
 # Used to generate "cutouts" for a magnet to fit into
-Magnet = __constant(
+# 15mm x 2mm
+Magnet15 = __constant(
     "Magnet",
     dia=15.5,
     thk=2.50
 )
+
+# 20mm x 1mm
+Magnet20 = __constant(
+    "Magnet",
+    dia=20.5,
+    thk=1.5
+)
+
+Magnet = Magnet20
 
 # Board tiles
 Tile = __constant(
@@ -88,7 +98,7 @@ Bishop = __constant(
     "Bishop",
     base_dia=Court.base_dia,
     base_thk=Court.base_thk,
-    height = Court.height
+    height = 45
 )
 
 
