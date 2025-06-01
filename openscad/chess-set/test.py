@@ -38,6 +38,12 @@ def rook_middle():
     return center
 
 
+def profile():
+    profile = import_dxf("./images/bishop/test.dxf")
+    middle_part = profile.rotate_extrude(angle=360, _fn=250)
+
+    return middle_part
+
 
 def collar():
     collar_h = 2
@@ -78,6 +84,8 @@ def build(opt):
             model = rook_middle()
         case "collar":
             model = collar()
+        case "profile":
+            model = profile()
         case _:
             raise ValueError(f"Unknown option: '{opt}'")
 
