@@ -5,10 +5,10 @@
 ### Pieces
 * [x] King
 * [ ] Queen
-* [ ] Bishop
+* [x] Bishop
 * [ ] Knight
 * [ ] Rook
-* [ ] Pawn
+* [x] Pawn
 * [x] Board Tile
 
 ### General
@@ -26,11 +26,10 @@ N/A
 N/A
 
 ### Bishop
-N/A
+* [x] Use N8's profile
 
 ### Pawn
-* [ ] Better collar
-* [ ] Use N8's profile
+* [x] Better collar
 
 ## Clean Up
 * General
@@ -40,7 +39,7 @@ N/A
     - Cross
 
 ## Materials
-* [ ] Gorilla Super Glue Gel
+* [x] Gorilla Super Glue Gel
 * [ ] Magnets
 * [x] Felt with sticky back
 * [x] Stiff card stock. 12" x 12"
