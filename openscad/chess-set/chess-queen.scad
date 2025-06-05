@@ -12,11 +12,13 @@ union() {
 			import(file = "./images/queen/Queen-Profile.dxf", origin = [0, 0]);
 		}
 	}
-	translate(v = [0, 0, 50.7]) {
+	translate(v = [0, 0, 50.8]) {
 		union() {
-			rotate_extrude(angle = 360) {
-				translate(v = [-10.5, 0, 0]) {
-					circle(d = 2);
+			translate(v = [0, 0, 0.25]) {
+				rotate_extrude(angle = 360) {
+					translate(v = [-9, 0, 0]) {
+						circle(d = 3);
+					}
 				}
 			}
 			difference() {

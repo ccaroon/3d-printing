@@ -14,18 +14,11 @@ Base = __constant(
     thk=3.90
 )
 
-#  Piece Middle
-Middle = __constant(
-    "Middle",
-    height=48.7
-)
-
 # Court pieces
 Court = __constant(
     "Court",
     base_dia=Base.dia - 2,
     base_thk=Base.thk,
-    height=Middle.height * 0.75
 )
 
 # Pawn pieces
@@ -33,7 +26,7 @@ Pawn = __constant(
     "Pawn",
     base_dia=Base.dia - 4,
     base_thk=Base.thk,
-    height=Middle.height * 0.5
+    height=24.35
 )
 
 # Magnet dimensions
@@ -61,10 +54,9 @@ Tile = __constant(
     thk=Magnet.thk + 1
 )
 
-
 Crown = __constant(
     "Crown",
-    base_dia=11, base_thk=2,
+    base_dia=11, base_thk=3,
     dia1=(Base.dia / 2) + 1.5,
     dia2=(Base.dia / 2) + 6.0,
     height=10,
@@ -76,14 +68,17 @@ King = __constant(
     "King",
     base_dia=Court.base_dia,
     base_thk=Court.base_thk,
-    height=Court.height
+    # height of just profile, exclude base and crown
+    height=43.4
 )
 
 Queen = __constant(
     "Queen",
     base_dia=Court.base_dia,
     base_thk=Court.base_thk,
-    height=Court.height,
+    # height of just profile, exclude base and crown
+    dia=23.3,
+    height=46.9,
     pom_dia=4
 )
 
@@ -91,7 +86,7 @@ Knight = __constant(
     "Knight",
     base_dia=Court.base_dia,
     base_thk=Court.base_thk,
-    height = Court.height
+    height = 0
 )
 
 Bishop = __constant(
