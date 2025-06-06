@@ -56,7 +56,7 @@ Tile = __constant(
 
 Crown = __constant(
     "Crown",
-    base_dia=11, base_thk=3,
+    base_dia=9.5, base_thk=2,
     dia1=(Base.dia / 2) + 1.5,
     dia2=(Base.dia / 2) + 6.0,
     height=10,
@@ -96,6 +96,18 @@ Bishop = __constant(
     height = 40
 )
 
+Brick = __constant(
+    "Brick",
+    length=7.625,
+    width=3.625,
+    height=2.25
+)
 
+Rook = __constant(
+    "Rook",
+    base_dia=Court.base_dia,
+    base_thk=Court.base_thk,
+    height=0.0
+)
 
 #

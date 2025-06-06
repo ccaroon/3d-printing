@@ -16,8 +16,8 @@ union() {
 		union() {
 			translate(v = [0, 0, 0.25]) {
 				rotate_extrude(angle = 360) {
-					translate(v = [-9, 0, 0]) {
-						circle(d = 3);
+					translate(v = [-10.0, 0, 0]) {
+						circle(d = 2);
 					}
 				}
 			}

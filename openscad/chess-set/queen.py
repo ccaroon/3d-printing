@@ -5,7 +5,7 @@ from units import Crown, Queen
 
 def crown():
     c1 = circle(d=Crown.base_thk)
-    left_shift = Crown.base_dia - (Crown.base_thk - 1)
+    left_shift = Crown.base_dia + .5
     bottom = c1.left(left_shift).rotate_extrude(angle=360)
 
     mid_outer = cylinder(
@@ -24,7 +24,7 @@ def crown():
     pom_offset = top_offset + Crown.dome_dia / 2
 
     return bottom.up(0.25) + middle + top.up(top_offset) + pom.up(pom_offset)
-    # return bottom.color("red").up(0.25)
+    # return bottom.up(0.25)
 
 
 def build():
@@ -38,5 +38,6 @@ def build():
     piece =  bottom + middle_part.up(Queen.base_thk) + top.up(Queen.base_thk + Queen.height)
 
     # block = cube([40,40,Queen.height * 1.00]).down(2).left(20).back(20)
+    # return piece - block
 
     return piece

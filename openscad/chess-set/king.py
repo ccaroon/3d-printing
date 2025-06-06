@@ -1,7 +1,7 @@
 from solid2 import *
 
 import common
-from units import Crown, King, Middle
+from units import Crown, King
 
 # ------------------------------------------------------------------------------
 # TODO:
@@ -20,7 +20,7 @@ def cross():
 
 def crown():
     c1 = circle(d=Crown.base_thk)
-    bottom = c1.left(Crown.base_dia).rotate_extrude(angle=360)
+    bottom = c1.left(Crown.base_dia + 1.25).rotate_extrude(angle=360)
 
     mid_outer = cylinder(
         d1=Crown.dia1,
@@ -39,6 +39,7 @@ def crown():
     pom_offset = Crown.height * 1.20
 
     return bottom + middle + top.up(top_offset) + pom.up(pom_offset)
+    # return bottom + middle + top.up(top_offset)
 
 
 def build():
@@ -49,6 +50,9 @@ def build():
 
     bottom = common.court_base()
 
-    piece = bottom + middle_part.up(King.base_thk) + top.up(Middle.height - 1)
+    piece = bottom + middle_part.up(King.base_thk) + top.up(King.base_thk + King.height)
+
+    # block = cube([40,40,King.height * .95]).down(2).left(20).back(20)
+    # return piece - block
 
     return piece
