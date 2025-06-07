@@ -6,6 +6,7 @@ import king
 import knight
 import pawn
 import queen
+import rook
 import test
 import tile
 
@@ -31,6 +32,8 @@ def build(ctx, piece, opt=None):
             model = knight.build()
         case "bishop":
             model = bishop.build()
+        case "rook":
+            model = rook.build()
         case "tile":
             model = tile.build()
         case "test":

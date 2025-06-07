@@ -93,7 +93,7 @@ Bishop = __constant(
     "Bishop",
     base_dia=Court.base_dia,
     base_thk=Court.base_thk,
-    height = 40
+    height=40.0
 )
 
 Brick = __constant(
@@ -107,7 +107,7 @@ Rook = __constant(
     "Rook",
     base_dia=Court.base_dia,
     base_thk=Court.base_thk,
-    height=0.0
+    height=40.0
 )
 
 #
