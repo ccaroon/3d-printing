@@ -7,6 +7,18 @@ def __constant(name, **kwargs):
     return const_class(**kwargs)
 
 
+
+# Standard Measurements
+Standard = __constant(
+    "Standard",
+    mm=1,
+    cm=10,
+    dm=100,
+    m=1000,
+    inch=25.4
+)
+
+
 # Base Dims
 Base = __constant(
     "Base",
@@ -107,7 +119,8 @@ Rook = __constant(
     "Rook",
     base_dia=Court.base_dia,
     base_thk=Court.base_thk,
-    height=40.0
+    height=47.0
+    # height=20
 )
 
 #

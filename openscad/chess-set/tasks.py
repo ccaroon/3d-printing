@@ -9,9 +9,10 @@ import queen
 import rook
 import test
 import tile
+import tools
 
-@task
-def build(ctx, piece, opt=None):
+@task(iterable=['opts'])
+def build(ctx, piece, opts=None):
     """
     Build the named chess piece.
 
@@ -36,13 +37,20 @@ def build(ctx, piece, opt=None):
             model = rook.build()
         case "tile":
             model = tile.build()
+        case "tool":
+            model = tools.build(*opts)
         case "test":
-            model = test.build(opt)
+            model = test.build(opts)
         case _:
             print(f"Unknown piece: '{piece}'")
 
     if model:
-        file_name = f"./chess-{piece}.scad"
+        base_name = f"chess-{piece}"
+        if opts:
+            opts_sfx = "-".join(opts)
+            base_name += f"-{opts_sfx}"
+
+        file_name = f"./{base_name}.scad"
         model.save_as_scad(file_name)
         print(f"=> {file_name}")
 

@@ -11,15 +11,9 @@ def circle1():
     return cylinder(d=1.5 * units.inch, h=1 * units.mm)
 
 
-def ruler18x3():
-    """ Ruler 1/8in by 3in """
-    return cube([3 * units.inch, 0.125 * units.inch, 2 * units.mm])
-
-
 MODELS = {
     "square1": square1,
     "circle1": circle1,
-    "ruler18x3": ruler18x3
 }
 
 def build(model):

@@ -57,8 +57,6 @@ def __build_top():
         slice.translate([-slice_w/2, (-lip_dia/2) - (slice_l/2), lip_h + (parapet_h * .25)]).rotateZ(-90)
     )
 
-    # return lip + slice.translate([-slice_w/2, lip_dia/2 - slice_l/2, lip_h])
-
 
 def __build_middle():
     num_layers = int(Rook.height // Brick.height)
