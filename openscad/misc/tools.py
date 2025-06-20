@@ -2,18 +2,26 @@
 from solid2 import *
 import lib.units as units
 
+
 def square1():
     """ Cube: 1.5in x 1.5in """
     return cube([1.5 * units.inch, 1.5 * units.inch, 1 * units.mm])
+
 
 def circle1():
     """ Circle: 1.5in x 1mm """
     return cylinder(d=1.5 * units.inch, h=1 * units.mm)
 
 
+def can():
+    """ Cylinder to help test Z-Seam modes """
+    return cylinder(d=1.5 * units.cm, h=2.5 * units.cm)
+
+
 MODELS = {
     "square1": square1,
     "circle1": circle1,
+    "can": can
 }
 
 def build(model):
