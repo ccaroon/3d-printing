@@ -13,15 +13,15 @@ def circle1():
     return cylinder(d=1.5 * units.inch, h=1 * units.mm)
 
 
-def can():
+def barrel():
     """ Cylinder to help test Z-Seam modes """
-    return cylinder(d=1.5 * units.cm, h=2.5 * units.cm)
+    return cylinder(d=1.5 * units.cm, h=2.0 * units.cm)
 
 
 MODELS = {
     "square1": square1,
     "circle1": circle1,
-    "can": can
+    "barrel": barrel
 }
 
 def build(model):
