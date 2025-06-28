@@ -119,7 +119,7 @@ Rook = __constant(
     "Rook",
     base_dia=Court.base_dia,
     base_thk=Court.base_thk,
-    height=47.0
+    height=47.0 - 5.0
     # height=20
 )
 

@@ -18,10 +18,16 @@ def barrel():
     return cylinder(d=1.5 * units.cm, h=2.0 * units.cm)
 
 
+def rod():
+    """ Long Cylinder to help test Z-Seam modes """
+    return cylinder(d=1.0 * units.cm, h=5.0 * units.cm)
+
+
 MODELS = {
     "square1": square1,
     "circle1": circle1,
-    "barrel": barrel
+    "barrel": barrel,
+    "rod": rod
 }
 
 def build(model):
