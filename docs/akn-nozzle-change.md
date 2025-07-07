@@ -3,25 +3,31 @@
 ## Tools
 * 2.5mm hex wrench
 * 7mm socket wrench
-* Pliers
+* Adjustable wrench
 
 ## Steps
-0. Print should cold
-1. Raise the Print Head (Z) to around 200mm
-2. Using the 2.5mm hex wrench, remove the two top screws from the back of the print head. This will allow you to remove the blue, plastic cover.
-3. Remove the blue, plastic cover by grabbing it from the front, lower part and pinching inward sliglty.
-4. Remove blue, silicone cover
-5. Menu -> Prepare -> Prehead PLA -> wait till temp is reached
-6. Pull back filament clip, push filamnet down and pull up to remove the filament
-7. Use pliers to grab the aluminum block so that it will not rotate as you unscrew the nozzle
-8. Use the 7mm socket wrench to unscrew the old nozzle and remove it
-   - it **will** be hot
-9. Put the new nozzle into the 7mm socket, insert & thread it into the print head
-   - **Do not overtighten**
-10. Put the blue, silicon cover back on the aluminum block
-11. Clean the fan while the cover is off
-12. Reinstall the blue, plastic cover
-13. Replace the 2 hex screws
-14. Reload filament
-15. Auto-Level
-16. Print a test object
+0. Printer should cold
+1. Home all Axes (X,Y,Z)
+2. Center the Print Bed (Y-axis)
+3. Center the Print Head (X-axis) over the bed
+4. Raise the Print Head (Z) to around 200mm
+5. Using the 2.5mm hex wrench, remove the two top screws from the back of the print head. This will allow you to remove the blue, plastic cover.
+6. Remove the blue, plastic cover by grabbing it from the front, lower part and pinching inward sliglty.
+7. Remove blue, silicone cover
+8. Menu -> Prepare -> Prehead PLA -> wait till temp is reached
+9. Pull back filament clip, push filament down slightly, then pull up to remove the filament
+10. Use wrench to grab the aluminum block so that it will not rotate as you unscrew the nozzle
+11. Use the 7mm socket wrench to unscrew the old nozzle and remove it
+   - Nozzle **WILL** be **HOT**
+12. Clean the block / hot end & silicone cover if necessary
+13. Put the new nozzle into the 7mm socket, insert & thread it into the print head
+   - Hand thread it to get it started, the use the 7mm socket
+   - **DO NOT OVERTIGHTEN**
+14. Put the blue, silicon cover back on the aluminum block
+15. Clean the fan while the cover is off
+16. Turn the bed and nozzle temp. back to zero
+17. Reinstall the blue, plastic cover
+18. Replace the 2 hex screws
+19. Reload filament
+20. Auto-Level & Adjust Z-offset
+21. Print a test object
