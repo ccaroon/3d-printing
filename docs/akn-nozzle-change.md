@@ -1,4 +1,5 @@
 # Anycubic Kobra Neo - Nozzle Change
+https://www.youtube.com/watch?v=JBjIIE1B60k
 
 ## Tools
 * 2.5mm hex wrench
