@@ -70,7 +70,7 @@ def __build_middle_twist():
 
 
 def __build_middle_profile():
-    profile = import_dxf("./images/bishop/Bishop-Profile.dxf")
+    profile = import_dxf("../images/bishop/Bishop-Profile.dxf")
     middle_part = profile.rotate_extrude(angle=360, _fn=250)
 
     return middle_part

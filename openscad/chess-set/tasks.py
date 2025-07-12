@@ -50,7 +50,7 @@ def build(ctx, piece, opts=None):
             opts_sfx = "-".join(opts)
             base_name += f"-{opts_sfx}"
 
-        file_name = f"./{base_name}.scad"
+        file_name = f"./models/{base_name}.scad"
         model.save_as_scad(file_name)
         print(f"=> {file_name}")
 

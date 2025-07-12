@@ -30,7 +30,7 @@ def crown():
 def build():
     top = crown()
 
-    queen_prf = import_dxf("./images/queen/Queen-Profile.dxf")
+    queen_prf = import_dxf("../images/queen/Queen-Profile.dxf")
     middle_part = queen_prf.rotate_extrude(angle=360, _fn=250)
 
     bottom = common.court_base()

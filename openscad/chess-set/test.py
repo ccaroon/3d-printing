@@ -39,7 +39,7 @@ def rook_middle():
 
 
 def profile():
-    profile = import_dxf("./images/bishop/test.dxf")
+    profile = import_dxf("../images/bishop/test.dxf")
     middle_part = profile.rotate_extrude(angle=360, _fn=250)
 
     return middle_part
