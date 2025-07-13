@@ -30,7 +30,7 @@ def build(ctx, piece, opts=None):
         case "king":
             model = king.build()
         case "knight":
-            model = knight.build()
+            model = knight.build(opts)
         case "bishop":
             model = bishop.build()
         case "rook":

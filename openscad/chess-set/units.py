@@ -98,7 +98,12 @@ Knight = __constant(
     "Knight",
     base_dia=Court.base_dia,
     base_thk=Court.base_thk,
-    height = 0
+    head_w=33.0,
+    head_h=33.8,
+    head_thk=4,
+    mid_height = 22.3,
+    mid_dia1 = 25,
+    mid_dia2 = 15
 )
 
 Bishop = __constant(
