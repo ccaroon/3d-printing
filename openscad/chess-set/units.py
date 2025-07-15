@@ -100,11 +100,11 @@ Knight = __constant(
     base_thk=Court.base_thk,
     # head_w=33.0,
     # head_h=33.8,
-    head_w=33.0 * .85,
-    head_h=33.8 * .85,
+    head_w=33.0 * 0.75,
+    head_h=35.5 * 0.75,
     head_thk=4,
     # mid_height = 22.3,
-    mid_height = 34,
+    mid_height = 31,
     mid_dia1 = 25,
     mid_dia2 = 15
 )

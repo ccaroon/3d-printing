@@ -108,10 +108,10 @@ def __test():
 
 def __build_middle():
     return __cylinder_stack(
-        Knight.mid_height, 10,
+        Knight.mid_height, 7,
         Knight.mid_dia1, Knight.mid_dia2,
         offset=True,
-        sides=6,
+        sides=8,
         scale=[1.0, .75]
     )
 
@@ -122,11 +122,11 @@ def __build_piece():
     head = __build_head()
 
     head_pos = [
-        5,
+        3.0,
         0,
-        Knight.base_thk + Knight.mid_height - 10
+        Knight.base_thk + Knight.mid_height - 1.5 #2.65
     ]
-    piece = base + middle.up(Knight.base_thk) + head.translate(head_pos)
+    piece = base + middle.up(Knight.base_thk) - head.translate(head_pos)
 
     return piece
 
