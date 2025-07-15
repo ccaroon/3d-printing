@@ -4,7 +4,7 @@ import common
 from units import Knight
 
 # Head (left+right) in an upright position
-def __build_head():
+def __build_head_stack():
     head =  import_(
         file="../images/knight/piper-profile-fill.svg"
         ).linear_extrude(
@@ -34,12 +34,34 @@ def __build_head():
     return part
 
 
+# Phat Head in an upright position
+def __build_head_fat():
+    head =  import_(
+        file="../images/knight/piper-profile-fill.svg"
+        ).linear_extrude(
+            height=Knight.head_thk
+        )
+    head = head.resize([Knight.head_w, Knight.head_h, 0])
+
+    collar = cylinder(d=18, h=2).rotateX(90).translate([18,1,5])
+
+    # head += collar
+
+    part = head.rotateX(90).translate(
+        [-Knight.head_w / 1.5, Knight.head_thk / 2, 0]
+    )
+    # part = head
+
+    return part
+
+
 def __build_half_head(mirror=False):
     head =  import_(
         file="../images/knight/piper-profile-fill.svg"
         ).linear_extrude(
             height=Knight.head_thk
         )
+    head = head.resize([Knight.head_w, Knight.head_h, 0])
 
     for data in ((0.8, "grey"), (0.7, "black")):
         scale = data[0]
@@ -93,19 +115,6 @@ def __cylinder_stack(height, count, dia1, dia2, **kwargs):
     return stack
 
 
-def __test():
-    part1 = cylinder(
-        h=Knight.mid_height,
-        d1=Knight.mid_dia1,
-        d2=Knight.mid_dia2
-    )
-
-    part2 = cube([Knight.mid_dia2, Knight.head_thk, Knight.mid_height])
-
-    return part1 + part2.translate(
-        [-Knight.mid_dia2 / 2.5, -Knight.mid_dia2 / 2, 0])
-
-
 def __build_middle():
     return __cylinder_stack(
         Knight.mid_height, 7,
@@ -119,14 +128,15 @@ def __build_middle():
 def __build_piece():
     base = common.court_base()
     middle = __build_middle()
-    head = __build_head()
+    head = __build_head_fat()
 
     head_pos = [
-        3.0,
+        2.45,
         0,
-        Knight.base_thk + Knight.mid_height - 1.5 #2.65
+        Knight.base_thk + Knight.mid_height - 1.5 #1.5 #2.65
     ]
-    piece = base + middle.up(Knight.base_thk) - head.translate(head_pos)
+    piece = base + middle.up(Knight.base_thk) + head.translate(head_pos)
+    # piece = head
 
     return piece
 
