@@ -56,11 +56,17 @@ union() {
 			}
 		}
 	}
-	translate(v = [2.45, 0, 33.4]) {
-		translate(v = [-16.5, 5.0, 0]) {
+	translate(v = [4, 0, 33.9]) {
+		minkowski() {
+			cylinder(d = 17.75, h = 0.5);
+			sphere(d = 2);
+		}
+	}
+	translate(v = [3, 0, 34.4]) {
+		translate(v = [-16.5, 6.0, 0]) {
 			rotate(a = [90, 0, 0]) {
-				resize(newsize = [24.75, 26.625, 0]) {
-					linear_extrude(height = 10) {
+				resize(newsize = [24.75, 25.125, 0]) {
+					linear_extrude(height = 12) {
 						import(file = "../images/knight/piper-profile-fill.svg", origin = [0, 0]);
 					}
 				}

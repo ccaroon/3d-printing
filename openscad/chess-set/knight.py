@@ -34,6 +34,19 @@ def __build_head_stack():
     return part
 
 
+def __build_head_bevel():
+    head =  surface(
+        file="../images/knight/piper-profile-grad.png",
+        invert=False
+        ).scale([1,1,.05])
+        # .linear_extrude(
+        #     height=Knight.head_thk
+        # )
+    head = head.resize([Knight.head_w, Knight.head_h, 0])
+
+    return head
+
+
 # Phat Head in an upright position
 def __build_head_fat():
     head =  import_(
@@ -42,10 +55,6 @@ def __build_head_fat():
             height=Knight.head_thk
         )
     head = head.resize([Knight.head_w, Knight.head_h, 0])
-
-    collar = cylinder(d=18, h=2).rotateX(90).translate([18,1,5])
-
-    # head += collar
 
     part = head.rotateX(90).translate(
         [-Knight.head_w / 1.5, Knight.head_thk / 2, 0]
@@ -130,12 +139,28 @@ def __build_piece():
     middle = __build_middle()
     head = __build_head_fat()
 
+    collar = cylinder(d=17.75, h=.5)
+    collar = minkowski()(
+        collar,
+        sphere(d=2)
+    )
+
     head_pos = [
-        2.45,
+        3,
         0,
-        Knight.base_thk + Knight.mid_height - 1.5 #1.5 #2.65
+        Knight.base_thk + Knight.mid_height - .5 #1.5 #2.65
     ]
-    piece = base + middle.up(Knight.base_thk) + head.translate(head_pos)
+    collar_pos = [
+        4,
+        0,
+        Knight.base_thk + Knight.mid_height - 1
+    ]
+    piece = (
+        base +
+        middle.up(Knight.base_thk) +
+        collar.translate(collar_pos) +
+        head.translate(head_pos)
+    )
     # piece = head
 
     return piece
