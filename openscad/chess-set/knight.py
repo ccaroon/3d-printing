@@ -3,94 +3,6 @@ from solid2 import *
 import common
 from units import Knight
 
-# Head (left+right) in an upright position
-def __build_head_stack():
-    head =  import_(
-        file="../images/knight/piper-profile-fill.svg"
-        ).linear_extrude(
-            height=Knight.head_thk
-        )
-    head = head.resize([Knight.head_w, Knight.head_h, 0])
-
-    for data in ((0.8, "grey"), (0.7, "black")):
-        scale = data[0]
-        tx = (Knight.head_w - (Knight.head_w * scale)) / 2
-        ty = (Knight.head_h - (Knight.head_h * scale)) / 2
-
-        left = head.scale([scale,scale,scale]
-            ).translate([tx,ty,Knight.head_thk]
-            ).color(data[1])
-
-        right = head.scale([scale,scale,scale]
-            ).translate([tx,ty,-Knight.head_thk * scale]
-            ).color(data[1])
-
-        head = head + left + right
-
-    part = head.rotateX(90).translate(
-        [-Knight.head_w / 1.5, Knight.head_thk / 2, 0]
-    )
-
-    return part
-
-
-def __build_head_bevel():
-    head =  surface(
-        file="../images/knight/piper-profile-grad.png",
-        invert=False
-        ).scale([1,1,.05])
-        # .linear_extrude(
-        #     height=Knight.head_thk
-        # )
-    head = head.resize([Knight.head_w, Knight.head_h, 0])
-
-    return head
-
-
-# Phat Head in an upright position
-def __build_head_fat(**kwargs):
-    head =  import_(
-        file="../images/knight/piper-profile-fill.svg"
-        ).linear_extrude(
-            height=Knight.head_thk
-        )
-    head = head.resize([Knight.head_w, Knight.head_h, 0])
-
-    if kwargs.get("upright", False):
-        part = head.rotateX(90).translate(
-            [-Knight.head_w / 1.5, Knight.head_thk / 2, 0]
-        )
-    else:
-        part = head
-
-    return part
-
-
-def __build_half_head(mirror=False):
-    head =  import_(
-        file="../images/knight/piper-profile-fill.svg"
-        ).linear_extrude(
-            height=Knight.head_thk
-        )
-    head = head.resize([Knight.head_w, Knight.head_h, 0])
-
-    for data in ((0.8, "grey"), (0.7, "black")):
-        scale = data[0]
-        tx = (Knight.head_w - (Knight.head_w * scale)) / 2
-        ty = (Knight.head_h - (Knight.head_h * scale)) / 2
-
-        head += head.scale([scale,scale,scale]
-            ).translate([tx,ty,Knight.head_thk]
-            ).color(data[1])
-
-    if mirror:
-        part = head.mirrorX()
-    else:
-        part = head
-
-    return part
-
-
 def __cylinder_stack(height, count, dia1, dia2, **kwargs):
     """
     height - Height of stack
@@ -108,12 +20,30 @@ def __cylinder_stack(height, count, dia1, dia2, **kwargs):
     thk = height / count
     dia_delta = (dia1 - dia2) / count
 
-    stack = cylinder(d=dia1, h=thk, _fn=sides)
+    stack_info = {
+        "count": count,
+        "thickness": thk,
+        "slices": [],
+        "scale": scale,
+        "model": None
+    }
+
+    count -= kwargs.get("truncate", 0)
+
+    # First slice
+    dims = {"d": dia1, "h": thk, "_fn": sides}
+    stack_info["slices"].append(dims)
+    stack = cylinder(**dims)
     if scale:
         stack = stack.scale(scale)
 
+    # Rest of slices
     for i in range(1, count):
-        slice = cylinder(d=dia1 - (dia_delta * i), h=thk, _fn=sides).up(thk * i)
+        dims = {
+            "d": dia1 - (dia_delta * i), "h": thk, "_fn": sides
+        }
+        stack_info["slices"].append(dims)
+        slice = cylinder(**dims).up(thk * i)
 
         if scale:
             slice = slice.scale(scale)
@@ -123,38 +53,93 @@ def __cylinder_stack(height, count, dia1, dia2, **kwargs):
         else:
             stack += slice
 
-    return stack
+    stack_info["model"] = stack
+    return stack_info
 
 
-def __build_middle():
-    return __cylinder_stack(
+# Phat Head in an upright position
+def __build_head(**kwargs):
+    head =  import_(
+        file="../images/knight/piper-profile-fill.svg"
+        ).linear_extrude(
+            height=Knight.head_thk
+        )
+    head = head.resize([Knight.head_w, Knight.head_h, 0])
+
+    eye1 = sphere(d=2)
+    head += eye1.translate([7, 10.5, Knight.head_thk-.5])
+
+    if kwargs.get("upright", False):
+        part = head.rotateX(90).translate(
+            [-Knight.head_w / 1.5, Knight.head_thk / 2, 0]
+        )
+    else:
+        part = head
+
+    return part
+
+
+def __build_neck(bottom, scale):
+    """
+    bottom - Slice data from the body stack
+    scale - Scaling of given `bottom` slice
+    """
+    # top - part that connects to the head
+    top_w = 14.5
+    top_l = Knight.head_thk
+
+    # bottom - part that connects to the body
+    neck = hull()(
+        cube([top_w, top_l, .25]).translate([
+            -Knight.head_thk / 2,
+            -Knight.head_thk / 2,
+            Knight.neck_h
+        ]),
+        cylinder(d=bottom["d"], h=.25, _fn=bottom["_fn"]).scale(scale)
+    )
+
+    return neck
+
+def __build_body():
+    stack_data = __cylinder_stack(
         Knight.mid_height, 7,
         Knight.mid_dia1, Knight.mid_dia2,
         offset=True,
         sides=8,
-        scale=[1.0, .75]
+        scale=[1.0, .75],
+        truncate=0
     )
 
-def __build_piece(**kwargs):
-    base = common.court_base()
-    middle = __build_middle()
-    head = __build_head_fat(upright=True)
+    return stack_data
 
-    collar = cylinder(d=17.75, h=.5)
-    collar = minkowski()(
-        collar,
-        sphere(d=2)
+
+def __build_piece(**kwargs):
+    # base
+    base = common.court_base()
+
+    # body
+    body_data = __build_body()
+    body = body_data["model"]
+
+    # head
+    head = __build_head(upright=True)
+
+    # neck
+    body_slice_count = body_data["count"]
+    neck = __build_neck(
+        body_data["slices"][body_slice_count - 2],
+        body_data["scale"]
     )
 
     head_pos = [
-        3,
+        4.85,
         0,
-        Knight.base_thk + Knight.mid_height - .5 #1.5 #2.65
+        Knight.base_thk + Knight.mid_height + Knight.neck_h - body_data["thickness"]
     ]
-    collar_pos = [
-        4,
+    neck_pos = [
+        3.57,
         0,
-        Knight.base_thk + Knight.mid_height - 1
+        Knight.base_thk + Knight.mid_height - body_data["thickness"]
     ]
 
     part_to_build = kwargs.get("part")
@@ -162,22 +147,18 @@ def __build_piece(**kwargs):
         case "base":
             piece = (
                 base +
-                middle.up(Knight.base_thk)
+                body.up(Knight.base_thk)
             )
-        case "collar":
-            piece = collar.translate(collar_pos) - head.translate(head_pos)
-            piece -= base + middle.up(Knight.base_thk)
-            piece = piece.translate([0,0,0])
+        case "head":
+            pass
         case _:
-            # Everything
             piece = (
                 base +
-                middle.up(Knight.base_thk) +
-                collar.translate(collar_pos) +
+                body.up(Knight.base_thk) +
+                neck.translate(neck_pos) +
                 head.translate(head_pos)
             )
 
-    # piece = head
     return piece
 
 
@@ -190,19 +171,8 @@ def build(opts):
 
     piece = None
     match part_name:
-        case "collar":
-            piece = __build_piece(part="collar")
         case "head":
-            # hleft = __build_half_head(False)
-            # hright = __build_half_head(True)
-            # piece  = hleft + hright.translate(
-            #     [Knight.head_w,Knight.head_h + 2, 0])
-            piece = __build_head_fat()
-        case "head-left":
-            piece = __build_half_head(False)
-        case "head-right":
-            piece = __build_half_head(True)
-            piece = piece.translateX(Knight.head_w)
+            piece = __build_head()
         case "base":
             piece = __build_piece(part="base")
         case "entire-piece":
