@@ -131,6 +131,15 @@ def __build_piece(**kwargs):
         body_data["scale"]
     )
 
+    peg_dia = 5
+    peg_h = 4
+    peg_dist = 6
+    peg = cylinder(d=peg_dia, h=peg_h)
+    pegs =  peg + peg.translateX(peg_dist)
+
+    peg_hole = cylinder(d=peg_dia + .5, h=peg_h+1)
+    peg_holes = peg_hole + peg_hole.translateX(peg_dist)
+
     head_pos = [
         4.85,
         0,
@@ -147,10 +156,16 @@ def __build_piece(**kwargs):
         case "base":
             piece = (
                 base +
-                body.up(Knight.base_thk)
+                body.up(Knight.base_thk) +
+                neck.translate(neck_pos) +
+                pegs.translate(neck_pos).translateZ(Knight.neck_h)
+                # + head.translate(head_pos)
             )
         case "head":
-            pass
+            piece = (
+                head.translate(head_pos) -
+                peg_holes.translate(neck_pos).translateZ(Knight.neck_h-1)
+            )
         case _:
             piece = (
                 base +
@@ -172,7 +187,7 @@ def build(opts):
     piece = None
     match part_name:
         case "head":
-            piece = __build_head()
+            piece = __build_piece(part="head")
         case "base":
             piece = __build_piece(part="base")
         case "entire-piece":
