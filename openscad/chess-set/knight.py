@@ -48,7 +48,7 @@ def __build_head_bevel():
 
 
 # Phat Head in an upright position
-def __build_head_fat():
+def __build_head_fat(**kwargs):
     head =  import_(
         file="../images/knight/piper-profile-fill.svg"
         ).linear_extrude(
@@ -56,10 +56,12 @@ def __build_head_fat():
         )
     head = head.resize([Knight.head_w, Knight.head_h, 0])
 
-    part = head.rotateX(90).translate(
-        [-Knight.head_w / 1.5, Knight.head_thk / 2, 0]
-    )
-    # part = head
+    if kwargs.get("upright", False):
+        part = head.rotateX(90).translate(
+            [-Knight.head_w / 1.5, Knight.head_thk / 2, 0]
+        )
+    else:
+        part = head
 
     return part
 
@@ -133,11 +135,10 @@ def __build_middle():
         scale=[1.0, .75]
     )
 
-
-def __build_piece():
+def __build_piece(**kwargs):
     base = common.court_base()
     middle = __build_middle()
-    head = __build_head_fat()
+    head = __build_head_fat(upright=True)
 
     collar = cylinder(d=17.75, h=.5)
     collar = minkowski()(
@@ -155,14 +156,28 @@ def __build_piece():
         0,
         Knight.base_thk + Knight.mid_height - 1
     ]
-    piece = (
-        base +
-        middle.up(Knight.base_thk) +
-        collar.translate(collar_pos) +
-        head.translate(head_pos)
-    )
-    # piece = head
 
+    part_to_build = kwargs.get("part")
+    match part_to_build:
+        case "base":
+            piece = (
+                base +
+                middle.up(Knight.base_thk)
+            )
+        case "collar":
+            piece = collar.translate(collar_pos) - head.translate(head_pos)
+            piece -= base + middle.up(Knight.base_thk)
+            piece = piece.translate([0,0,0])
+        case _:
+            # Everything
+            piece = (
+                base +
+                middle.up(Knight.base_thk) +
+                collar.translate(collar_pos) +
+                head.translate(head_pos)
+            )
+
+    # piece = head
     return piece
 
 
@@ -175,20 +190,21 @@ def build(opts):
 
     piece = None
     match part_name:
+        case "collar":
+            piece = __build_piece(part="collar")
         case "head":
-            hleft = __build_half_head(False)
-            hright = __build_half_head(True)
-            piece  = hleft + hright.translate(
-                [Knight.head_w,Knight.head_h + 2, 0])
+            # hleft = __build_half_head(False)
+            # hright = __build_half_head(True)
+            # piece  = hleft + hright.translate(
+            #     [Knight.head_w,Knight.head_h + 2, 0])
+            piece = __build_head_fat()
         case "head-left":
             piece = __build_half_head(False)
         case "head-right":
             piece = __build_half_head(True)
             piece = piece.translateX(Knight.head_w)
         case "base":
-            base = common.court_base()
-            middle = __build_middle()
-            piece = base + middle.up(Knight.base_thk)
+            piece = __build_piece(part="base")
         case "entire-piece":
             piece = __build_piece()
         case _:
