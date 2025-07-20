@@ -66,9 +66,6 @@ def __build_head(**kwargs):
         )
     head = head.resize([Knight.head_w, Knight.head_h, 0])
 
-    eye1 = sphere(d=2)
-    head += eye1.translate([7, 10.5, Knight.head_thk-.5])
-
     if kwargs.get("upright", False):
         part = head.rotateX(90).translate(
             [-Knight.head_w / 1.5, Knight.head_thk / 2, 0]
@@ -102,8 +99,8 @@ def __build_neck(bottom, scale):
 
 def __build_body():
     stack_data = __cylinder_stack(
-        Knight.mid_height, 7,
-        Knight.mid_dia1, Knight.mid_dia2,
+        Knight.body_height, 7,
+        Knight.body_dia1, Knight.body_dia2,
         offset=True,
         sides=8,
         scale=[1.0, .75],
@@ -132,28 +129,28 @@ def __build_piece(**kwargs):
     )
 
     peg_dia = 5
-    peg_h = 4
+    peg_h = 3
     peg_dist = 6
-    peg = cylinder(d=peg_dia, h=peg_h)
+    peg = cylinder(d=peg_dia, h=peg_h).translateX(-0.5)
     pegs =  peg + peg.translateX(peg_dist)
 
-    peg_hole = cylinder(d=peg_dia + .5, h=peg_h+1)
+    peg_hole = cylinder(d=peg_dia + .5, h=peg_h+1.5).translateX(-0.5)
     peg_holes = peg_hole + peg_hole.translateX(peg_dist)
 
     head_pos = [
         4.85,
         0,
-        Knight.base_thk + Knight.mid_height + Knight.neck_h - body_data["thickness"]
+        Knight.base_thk + Knight.body_height + Knight.neck_h - body_data["thickness"]
     ]
     neck_pos = [
         3.57,
         0,
-        Knight.base_thk + Knight.mid_height - body_data["thickness"]
+        Knight.base_thk + Knight.body_height - body_data["thickness"]
     ]
 
     part_to_build = kwargs.get("part")
     match part_to_build:
-        case "base":
+        case "body":
             piece = (
                 base +
                 body.up(Knight.base_thk) +
@@ -163,9 +160,11 @@ def __build_piece(**kwargs):
             )
         case "head":
             piece = (
-                head.translate(head_pos) -
-                peg_holes.translate(neck_pos).translateZ(Knight.neck_h-1)
+                head.translateX(head_pos[0]) -
+                peg_holes.translate(neck_pos[0], 0, -1)
             )
+            # Rotate head onto ear and back of neck for printing
+            # piece = piece.rotateY(101.75)
         case _:
             piece = (
                 base +
@@ -188,12 +187,12 @@ def build(opts):
     match part_name:
         case "head":
             piece = __build_piece(part="head")
-        case "base":
-            piece = __build_piece(part="base")
+        case "body":
+            piece = __build_piece(part="body")
         case "entire-piece":
             piece = __build_piece()
         case _:
-            raise ValueError(f"Unknown part `{opts[0]}`. Valid: head | head-left | head-right | base | entire_piece (default)")
+            raise ValueError(f"Unknown part `{opts[0]}`. Valid: head | body | entire_piece (default)")
 
 
     return piece
