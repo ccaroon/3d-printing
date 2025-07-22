@@ -95,7 +95,17 @@ def __build_neck(bottom, scale):
         cylinder(d=bottom["d"], h=.25, _fn=bottom["_fn"]).scale(scale)
     )
 
-    return neck
+    neck_topper = hull()(
+        cube([top_w, top_l, .25]).translate([
+            -Knight.head_thk / 2,
+            -Knight.head_thk / 2,
+            Knight.neck_h
+        ]),
+        cylinder(d=bottom["d"], h=.25, _fn=3).scale(scale).translateZ(-1)
+    )
+
+    return neck + neck_topper.mirror([0,0,1]).up(Knight.neck_h * 2 + .5).rotateZ(180).right(4.50)
+
 
 def __build_body():
     stack_data = __cylinder_stack(

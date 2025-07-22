@@ -57,12 +57,32 @@ union() {
 		}
 	}
 	translate(v = [3.57, 0, 28.757142857142856]) {
-		hull() {
-			translate(v = [-5.0, -5.0, 5]) {
-				cube(size = [14.5, 10, 0.25]);
+		union() {
+			hull() {
+				translate(v = [-5.0, -5.0, 5]) {
+					cube(size = [14.5, 10, 0.25]);
+				}
+				scale(v = [1.0, 0.75]) {
+					cylinder($fn = 8, d = 17.857142857142858, h = 0.25);
+				}
 			}
-			scale(v = [1.0, 0.75]) {
-				cylinder($fn = 8, d = 17.857142857142858, h = 0.25);
+			translate(v = [4.5, 0, 0]) {
+				rotate(a = [0, 0, 180]) {
+					translate(v = [0, 0, 10.5]) {
+						mirror(v = [0, 0, 1]) {
+							hull() {
+								translate(v = [-5.0, -5.0, 5]) {
+									cube(size = [14.5, 10, 0.25]);
+								}
+								translate(v = [0, 0, -1]) {
+									scale(v = [1.0, 0.75]) {
+										cylinder($fn = 3, d = 17.857142857142858, h = 0.25);
+									}
+								}
+							}
+						}
+					}
+				}
 			}
 		}
 	}
