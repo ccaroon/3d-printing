@@ -30,6 +30,10 @@ def blank_die(size):
     return die
 
 
+def solid_cube(size):
+    return cube(size,size,size)
+
+
 def hollow_cube(size, wall=1):
     outer_cube = cube([size,size,size])
     inner_cube = cube([
