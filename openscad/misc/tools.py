@@ -23,11 +23,26 @@ def rod():
     return cylinder(d=1.0 * units.cm, h=5.0 * units.cm)
 
 
+def star():
+    """
+    Large star shop for testing printing on varios parts of the build plate
+    """
+    center = cylinder(d=2.0 * units.cm, h=1.0 * units.mm, center=True)
+    arm = cube([10.0*units.cm, .5*units.cm, 1.0*units.mm], center=True)
+
+    arms = arm
+    for count in range(1,4):
+        arms += arm.rotateZ(count * 45)
+
+    return center + arms
+
+
 MODELS = {
     "square1": square1,
     "circle1": circle1,
     "barrel": barrel,
-    "rod": rod
+    "rod": rod,
+    "star": star
 }
 
 def build(model):
