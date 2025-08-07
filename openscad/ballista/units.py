@@ -24,11 +24,11 @@ PartA = __constant(
     length   = 10 * Standard.unit,
     width    = 2.5 * Standard.unit,
     height   = Standard.thickness,
-    hole_dia = 1 * Standard.unit,
-    hole_h   = Standard.thickness + 2, # 2 b/c 1 above, 1 below
-    hole_x   = 2 * Standard.unit,
-    hole_y   = 1.25 * Standard.unit,
-    hole_z   = -1
+    hole_dia    = 1 * Standard.unit,
+    hole_depth  = Standard.thickness + 2, # 2 b/c 1 above, 1 below
+    hole_x      = 2 * Standard.unit,
+    hole_y      = 1.25 * Standard.unit,
+    hole_z      = -1
 )
 
 PartB = __constant(
@@ -39,14 +39,27 @@ PartB = __constant(
 )
 
 PartC = __constant(
-    "PartC"
+    "PartC",
+    length = 1.5 * Standard.unit,
+    width  = 3 * Standard.unit,
+    height = Standard.thickness
 )
 
 PartD = __constant(
     "PartD",
     length = 24.5 * Standard.unit,
-    width = 1.5 * Standard.unit,
+    width  = 1.5 * Standard.unit,
     height = Standard.thickness
+)
+
+PartE = __constant(
+    "PartE",
+    length   = 3.5 * Standard.unit,
+    width    = 3.0 * Standard.unit,
+    height   = Standard.thickness,
+    hole_dia   = 0.25 * Standard.unit,
+    hole_depth = 0.25 * Standard.unit,
+
 )
 
 
