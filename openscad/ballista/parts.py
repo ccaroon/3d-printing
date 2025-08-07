@@ -45,9 +45,7 @@ def part_C(opts=None):
     # bnd_box = cube([PartC.length, PartC.width, PartC.height]).debug()
     # return part + bnd_box
 
-    # TODO: rotate for better printing of the rounded edge
-
-    return part
+    return part.rotateX(90)
 
 
 
