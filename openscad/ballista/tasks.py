@@ -10,9 +10,10 @@ def build(ctx, name, opts=None):
     :param name: The name of the part.
     :param opt: Part specific options.
     """
-    model = parts.build(name, opts)
+    part_name = name.upper()
+    model = parts.build(part_name, opts)
     if model:
-        base_name = f"ballista-p{name}"
+        base_name = f"ballista-p{part_name}"
         if opts:
             opts_sfx = "-".join(opts)
             base_name += f"-{opts_sfx}"
