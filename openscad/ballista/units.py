@@ -30,3 +30,32 @@ PartA = __constant(
     hole_y   = 1.25 * Standard.unit,
     hole_z   = -1
 )
+
+PartB = __constant(
+    "PartB",
+    length = 2.5 * Standard.unit,
+    width  = 3 * Standard.unit,
+    height = Standard.thickness
+)
+
+PartC = __constant(
+    "PartC"
+)
+
+PartD = __constant(
+    "PartD",
+    length = 24.5 * Standard.unit,
+    width = 1.5 * Standard.unit,
+    height = Standard.thickness
+)
+
+
+
+
+
+
+
+
+
+
+#

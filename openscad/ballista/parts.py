@@ -1,6 +1,6 @@
 from solid2 import *
 
-from units import Standard, PartA
+from units import Standard, PartA, PartB, PartD
 
 set_global_fn(150)
 
@@ -25,11 +25,19 @@ def part_A(opts=None):
     return part
 
 
+def part_B(opts=None):
+    return cube([PartB.length, PartB.width, PartB.height])
+
+
+def part_D(opts=None):
+    return cube([PartD.length, PartD.width, PartD.height])
+
+
 # ------------------------------------------------------------------------------
 PART_LIST = {
-    "A": {
-        "builder": part_A
-    }
+    "A": { "builder": part_A },
+    "B": { "builder": part_B },
+    "D": { "builder": part_D }
 }
 # ------------------------------------------------------------------------------
 def build(part_name, opts=None):
