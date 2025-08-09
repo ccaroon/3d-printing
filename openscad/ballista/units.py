@@ -61,8 +61,26 @@ PartEF = __constant(
     hole_depth = 0.25 * Standard.unit,
 )
 
+PartG = __constant(
+    "PartG",
+    length     = 5.00 * Standard.unit,
+    width      = 0.75 * Standard.unit,
+    height     = Standard.thickness,
+    hole_dia   = 0.25 * Standard.unit,
+    hole_depth = Standard.thickness + 2,
+    hole_z     = -1
+)
 
-
+PartJ = __constant(
+    "PartJ",
+    length     = 2.5 * Standard.unit,
+    width      = 2.5 * Standard.unit,
+    height     = Standard.thickness,
+    hole_dia   = 0.25 * Standard.unit,
+    hole_depth = Standard.thickness + 2,
+    hole_z     = -1,
+    radius     = 1.25 * Standard.unit
+)
 
 
 

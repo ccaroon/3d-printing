@@ -1,6 +1,6 @@
 from solid2 import *
 
-from units import Standard, PartA, PartB, PartC, PartD, PartEF
+from units import Standard, PartA, PartB, PartC, PartD, PartEF, PartG, PartJ
 
 set_global_fn(150)
 
@@ -113,6 +113,53 @@ def part_F(opts=None):
     return part
 
 
+def part_G(opts=None):
+    piece = polygon([
+        [0, 0],
+        [0, 0.5 * Standard.unit],
+        [0.5 * Standard.unit, PartG.width],
+        [PartG.length - 0.5 * Standard.unit, PartG.width],
+        [PartG.length, 0.5 * Standard.unit],
+        [PartG.length, 0]
+    ]).linear_extrude(height=PartG.height)
+
+    hole = cylinder(d=PartG.hole_dia, h=PartG.hole_depth)
+
+    part = (
+        piece
+        - hole.translate([
+            PartG.length - 1.5 * Standard.unit,
+            0.375 * Standard.unit,
+            PartG.hole_z
+        ])
+    )
+
+    return part
+
+
+def part_J(opts=None):
+    piece1 = cube([PartJ.length, PartJ.radius, PartJ.height])
+    piece2 = cylinder(d=PartJ.radius * 2, h=PartJ.height)
+
+    hole = cylinder(d=PartJ.hole_dia, h=PartJ.hole_depth)
+
+    part = (
+        piece1
+        + piece2.translate([
+            PartJ.radius,
+            PartJ.radius,
+            0
+        ])
+        - hole.translate(
+            PartJ.radius,
+            0.5 * Standard.unit,
+            PartJ.hole_z
+        )
+    )
+
+    return part
+
+
 # ------------------------------------------------------------------------------
 PART_LIST = {
     "A": { "builder": part_A },
@@ -120,7 +167,9 @@ PART_LIST = {
     "C": { "builder": part_C },
     "D": { "builder": part_D },
     "E": { "builder": part_E },
-    "F": { "builder": part_F }
+    "F": { "builder": part_F },
+    "G": { "builder": part_G },
+    "J": { "builder": part_J }
 }
 # ------------------------------------------------------------------------------
 def build(part_name, opts=None):
