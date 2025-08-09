@@ -52,14 +52,13 @@ PartD = __constant(
     height = Standard.thickness
 )
 
-PartE = __constant(
-    "PartE",
+PartEF = __constant(
+    "PartEF",
     length   = 3.5 * Standard.unit,
     width    = 3.0 * Standard.unit,
     height   = Standard.thickness,
     hole_dia   = 0.25 * Standard.unit,
     hole_depth = 0.25 * Standard.unit,
-
 )
 
 

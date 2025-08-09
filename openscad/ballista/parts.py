@@ -1,6 +1,6 @@
 from solid2 import *
 
-from units import Standard, PartA, PartB, PartC, PartD, PartE
+from units import Standard, PartA, PartB, PartC, PartD, PartEF
 
 set_global_fn(150)
 
@@ -53,29 +53,60 @@ def part_D(opts=None):
     return cube([PartD.length, PartD.width, PartD.height])
 
 
-def part_E(opts=None):
-    piece = polygon([
+def __EF_base(opts=None):
+    part = polygon([
         [0, 0],
-        [0, PartE.width - ((3/8)*Standard.unit)],
-        [0.75*Standard.unit, PartE.width],
-        [PartE.length - (0.25*Standard.unit), PartE.width],
-        [PartE.length, PartE.width - (0.25*Standard.unit)],
-        [PartE.length, 0]
-    ]).linear_extrude(height=PartE.height)
+        [0, PartEF.width - ((3/8)*Standard.unit)],
+        [0.75*Standard.unit, PartEF.width],
+        [PartEF.length - (0.25*Standard.unit), PartEF.width],
+        [PartEF.length, PartEF.width - (0.25*Standard.unit)],
+        [PartEF.length, 0]
+    ]).linear_extrude(height=PartEF.height)
 
-    hole = cylinder(d=PartE.hole_dia, h=PartE.hole_depth+1)
+    return part
+
+
+def part_E(opts=None):
+    piece = __EF_base(opts)
+
+    hole = cylinder(d=PartEF.hole_dia, h=PartEF.hole_depth+1)
 
     part = (
         piece
         - hole.translate([
             1.75 * Standard.unit,
             0.50 * Standard.unit,
-            PartE.height - PartE.hole_depth
+            PartEF.height - PartEF.hole_depth
         ])
         - hole.translate([
-            PartE.length - 0.50 * Standard.unit,
-            PartE.width - (3/8) * Standard.unit,
-            PartE.height - PartE.hole_depth
+            PartEF.length - 0.50 * Standard.unit,
+            PartEF.width - (3/8) * Standard.unit,
+            PartEF.height - PartEF.hole_depth
+        ])
+    )
+
+    return part
+
+
+def part_F(opts=None):
+    piece = __EF_base(opts)
+    piece = piece.rotateY(180).translate([
+        PartEF.length, 0, PartEF.height
+    ])
+
+    hole = cylinder(d=PartEF.hole_dia, h=PartEF.hole_depth+1)
+
+    part = (
+        piece
+        - hole.translate([
+            1.75 * Standard.unit,
+            0.50 * Standard.unit,
+            PartEF.height - PartEF.hole_depth
+        ])
+        - hole.translate([
+            0.50 * Standard.unit,
+            PartEF.width - (3/8) * Standard.unit,
+            PartEF.height - PartEF.hole_depth
         ])
     )
 
@@ -88,7 +119,8 @@ PART_LIST = {
     "B": { "builder": part_B },
     "C": { "builder": part_C },
     "D": { "builder": part_D },
-    "E": { "builder": part_E }
+    "E": { "builder": part_E },
+    "F": { "builder": part_F }
 }
 # ------------------------------------------------------------------------------
 def build(part_name, opts=None):
