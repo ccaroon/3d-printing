@@ -82,6 +82,19 @@ PartJ = __constant(
     radius     = 1.25 * Standard.unit
 )
 
+PartL = __constant(
+    "PartL",
+    length = 2.5 * Standard.unit,
+    width  = 0.5 * Standard.unit,
+    height = 0.5 * Standard.unit
+)
+
+
+
+
+
+
+
 
 
 

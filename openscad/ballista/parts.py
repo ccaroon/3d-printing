@@ -1,6 +1,9 @@
 from solid2 import *
 
-from units import Standard, PartA, PartB, PartC, PartD, PartEF, PartG, PartJ
+from units import Standard, \
+                    PartA, PartB, PartC, \
+                    PartD, PartEF, PartG, \
+                    PartJ, PartL
 
 set_global_fn(150)
 
@@ -160,6 +163,20 @@ def part_J(opts=None):
     return part
 
 
+def part_L(opts=None):
+    piece1 = cylinder(d=PartL.height, h=PartL.length).rotateY(90).translate([
+        0, PartL.width / 2, PartL.height / 2
+    ])
+    piece2 = cube([PartL.length, PartL.width, PartL.height * 0.5])
+
+    part = (
+        piece1 + piece2
+    )
+
+    # Stand on end for better printing of rounded edge
+    return part.rotateY(-90)
+
+
 # ------------------------------------------------------------------------------
 PART_LIST = {
     "A": { "builder": part_A },
@@ -169,7 +186,8 @@ PART_LIST = {
     "E": { "builder": part_E },
     "F": { "builder": part_F },
     "G": { "builder": part_G },
-    "J": { "builder": part_J }
+    "J": { "builder": part_J },
+    "L": { "builder": part_L }
 }
 # ------------------------------------------------------------------------------
 def build(part_name, opts=None):
