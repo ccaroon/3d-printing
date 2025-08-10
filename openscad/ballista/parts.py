@@ -3,7 +3,7 @@ from solid2 import *
 from units import Standard, \
                     PartA, PartB, PartC, \
                     PartD, PartEF, PartG, \
-                    PartHI, PartJ, PartL
+                    PartHI, PartJ, PartK, PartL
 
 set_global_fn(150)
 
@@ -168,6 +168,48 @@ def part_J(opts=None):
     return part
 
 
+def part_K(opts=None):
+    left1 = polygon([
+        [0, 0],
+        [0, PartK.width],
+        # top notch
+        [PartK.notch_x - (PartK.notch_w / 2), PartK.width],
+        [PartK.notch_x, PartK.width - PartK.notch_d],
+        [PartK.notch_x + (PartK.notch_w / 2), PartK.width],
+        # bottom notch
+        [PartK.notch_x + (PartK.notch_w / 2), 0],
+        [PartK.notch_x, PartK.notch_d],
+        [PartK.notch_x - (PartK.notch_w / 2), 0],
+    ]).linear_extrude(height=PartG.height).color("#00ff77")
+
+    left2 = cube([
+        PartK.non_taper_l - (PartK.notch_x + PartK.notch_w / 2),
+        PartK.width,
+        PartK.height
+    ]).color("#0077ff")
+
+    taper_len = PartK.length - PartK.non_taper_l
+    taper_l = cube([1, PartK.width, PartK.height])
+    taper_r = cylinder(d=PartK.height, h=1).rotateY(90).translate([
+        taper_len - 1, # -1 for height/thkness of cylinder
+        PartK.width / 2,
+        PartK.height / 2
+    ])
+
+    taper_piece = hull()(
+        taper_l, taper_r
+    ).color("#770077")
+
+    part = (
+        left1
+        + left2.translateX(PartK.notch_x + PartK.notch_w / 2)
+        + taper_piece.translateX(PartK.non_taper_l)
+    )
+
+    # Stand on the square end for better printing
+    return part.rotateY(-90)
+
+
 def part_L(opts=None):
     piece1 = cylinder(d=PartL.height, h=PartL.length).rotateY(90).translate([
         0, PartL.width / 2, PartL.height / 2
@@ -194,7 +236,7 @@ PART_LIST = {
     "H": { "builder": part_HI },
     "I": { "builder": part_HI },
     "J": { "builder": part_J },
-    # K - TODO
+    "K": { "builder": part_K },
     "L": { "builder": part_L }
 }
 # ------------------------------------------------------------------------------

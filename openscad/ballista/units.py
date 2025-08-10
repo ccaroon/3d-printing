@@ -71,6 +71,13 @@ PartG = __constant(
     hole_z     = -1
 )
 
+# Dowels
+PartHI = __constant(
+    "PartHI",
+    length = 2.0 * Standard.unit,
+    dia    = 0.25 * Standard.unit
+)
+
 PartJ = __constant(
     "PartJ",
     length     = 2.5 * Standard.unit,
@@ -82,6 +89,22 @@ PartJ = __constant(
     radius     = 1.25 * Standard.unit
 )
 
+PartK = __constant(
+    "PartK",
+    length = 8.0  * Standard.unit,
+    width  = 0.75 * Standard.unit,
+    height = Standard.thickness,
+
+    non_taper_l = 2.0 * Standard.unit,
+
+    hole_dia   = (3/16) * Standard.unit,
+    hole_depth = Standard.thickness + 2,
+    hole_z     = -1,
+    notch_x    = 0.75 * Standard.unit,
+    notch_w    = 0.25 * Standard.unit,
+    notch_d    = 0.125 * Standard.unit
+)
+
 PartL = __constant(
     "PartL",
     length = 2.5 * Standard.unit,
@@ -89,12 +112,7 @@ PartL = __constant(
     height = 0.5 * Standard.unit
 )
 
-# Dowels
-PartHI = __constant(
-    "PartHI",
-    length = 2.0 * Standard.unit,
-    dia    = 0.25 * Standard.unit
-)
+
 
 
 
