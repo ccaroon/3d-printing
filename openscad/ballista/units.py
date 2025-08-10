@@ -89,6 +89,12 @@ PartL = __constant(
     height = 0.5 * Standard.unit
 )
 
+# Dowels
+PartHI = __constant(
+    "PartHI",
+    length = 2.0 * Standard.unit,
+    dia    = 0.25 * Standard.unit
+)
 
 
 

@@ -3,7 +3,7 @@ from solid2 import *
 from units import Standard, \
                     PartA, PartB, PartC, \
                     PartD, PartEF, PartG, \
-                    PartJ, PartL
+                    PartHI, PartJ, PartL
 
 set_global_fn(150)
 
@@ -140,6 +140,11 @@ def part_G(opts=None):
     return part
 
 
+def part_HI(opts=None):
+    part = cylinder(d=PartHI.dia, h=PartHI.length)
+    return part
+
+
 def part_J(opts=None):
     piece1 = cube([PartJ.length, PartJ.radius, PartJ.height])
     piece2 = cylinder(d=PartJ.radius * 2, h=PartJ.height)
@@ -186,7 +191,10 @@ PART_LIST = {
     "E": { "builder": part_E },
     "F": { "builder": part_F },
     "G": { "builder": part_G },
+    "H": { "builder": part_HI },
+    "I": { "builder": part_HI },
     "J": { "builder": part_J },
+    # K - TODO
     "L": { "builder": part_L }
 }
 # ------------------------------------------------------------------------------
