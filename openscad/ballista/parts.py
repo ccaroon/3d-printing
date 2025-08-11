@@ -200,6 +200,8 @@ def part_K(opts=None):
         taper_l, taper_r
     ).color("#770077")
 
+    # TODO: add through-hole
+
     part = (
         left1
         + left2.translateX(PartK.notch_x + PartK.notch_w / 2)
