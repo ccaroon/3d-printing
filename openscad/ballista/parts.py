@@ -4,7 +4,8 @@ from units import Standard, \
                     PartA,  PartB,  PartC, \
                     PartD,  PartEF, PartG, \
                     PartHI, PartJ,  PartK, \
-                    PartL, PartM
+                    PartL, PartM,   PartQ, \
+                    PartS
 
 set_global_fn(150)
 
@@ -60,10 +61,10 @@ def part_D(opts=None):
 def __EF_base(opts=None):
     part = polygon([
         [0, 0],
-        [0, PartEF.width - ((3/8)*Standard.unit)],
-        [0.75*Standard.unit, PartEF.width],
-        [PartEF.length - (0.25*Standard.unit), PartEF.width],
-        [PartEF.length, PartEF.width - (0.25*Standard.unit)],
+        [0, PartEF.width - Standard.unit_3_8],
+        [Standard.unit_3_4, PartEF.width],
+        [PartEF.length - Standard.unit_1_4, PartEF.width],
+        [PartEF.length, PartEF.width - Standard.unit_1_4],
         [PartEF.length, 0]
     ]).linear_extrude(height=PartEF.height)
 
@@ -79,12 +80,12 @@ def part_E(opts=None):
         piece
         - hole.translate([
             1.75 * Standard.unit,
-            0.50 * Standard.unit,
+            Standard.unit_1_2,
             PartEF.height - PartEF.hole_depth
         ])
         - hole.translate([
-            PartEF.length - 0.50 * Standard.unit,
-            PartEF.width - (3/8) * Standard.unit,
+            PartEF.length - Standard.unit_1_2,
+            PartEF.width - Standard.unit_3_8,
             PartEF.height - PartEF.hole_depth
         ])
     )
@@ -104,12 +105,12 @@ def part_F(opts=None):
         piece
         - hole.translate([
             1.75 * Standard.unit,
-            0.50 * Standard.unit,
+            Standard.unit_1_2,
             PartEF.height - PartEF.hole_depth
         ])
         - hole.translate([
-            0.50 * Standard.unit,
-            PartEF.width - (3/8) * Standard.unit,
+            Standard.unit_1_2,
+            PartEF.width - Standard.unit_3_8,
             PartEF.height - PartEF.hole_depth
         ])
     )
@@ -120,10 +121,10 @@ def part_F(opts=None):
 def part_G(opts=None):
     piece = polygon([
         [0, 0],
-        [0, 0.5 * Standard.unit],
-        [0.5 * Standard.unit, PartG.width],
-        [PartG.length - 0.5 * Standard.unit, PartG.width],
-        [PartG.length, 0.5 * Standard.unit],
+        [0, Standard.unit_1_2],
+        [Standard.unit_1_2, PartG.width],
+        [PartG.length - Standard.unit_1_2, PartG.width],
+        [PartG.length, Standard.unit_1_2],
         [PartG.length, 0]
     ]).linear_extrude(height=PartG.height)
 
@@ -132,8 +133,8 @@ def part_G(opts=None):
     part = (
         piece
         - hole.translate([
-            PartG.length - 1.5 * Standard.unit,
-            0.375 * Standard.unit,
+            PartG.length - (1.5 * Standard.unit),
+            Standard.unit_3_8,
             PartG.hole_z
         ])
     )
@@ -161,7 +162,7 @@ def part_J(opts=None):
         ])
         - hole.translate(
             PartJ.radius,
-            0.5 * Standard.unit,
+            Standard.unit_1_2,
             PartJ.hole_z
         )
     )
@@ -203,8 +204,8 @@ def part_K(opts=None):
 
     hole = cylinder(d=PartK.hole_dia, h=PartK.hole_depth)
     taper_piece -= hole.translate([
-        PartK.taper_l - (0.5 * Standard.unit),
-        (3/8) * Standard.unit,
+        PartK.taper_l - Standard.unit_1_2,
+        Standard.unit_3_8,
         PartK.hole_z
     ])
 
@@ -248,7 +249,7 @@ def part_M(opts=None):
     piece = (
         base_piece
         - hole.translate([PartM.hole_x, 1.0 * Standard.unit, PartM.height / 2])
-        - hole.translate([PartM.hole_x, 0.5 * Standard.unit, PartM.height / 2])
+        - hole.translate([PartM.hole_x, Standard.unit_1_2, PartM.height / 2])
     )
 
 
@@ -256,11 +257,56 @@ def part_M(opts=None):
 
     part = (
         piece
-        - cutout.translate(0.75*Standard.unit, PartM.width, -1)
+        - cutout.translate(Standard.unit_3_4, PartM.width, -1)
     )
 
     return part
 
+
+def part_Q(opts=None):
+    piece = polygon([
+        [0, 0],
+        [PartQ.length - PartQ.back_l, PartQ.width],
+        [PartQ.length, PartQ.width],
+        [PartQ.length, 0]
+    ]).linear_extrude(height=PartQ.height)
+
+    hole = cylinder(d=PartQ.hole_dia, h=PartQ.hole_depth)
+
+    part = (
+        piece
+        - hole.translate([
+            PartQ.length - Standard.unit_1_2,
+            Standard.unit_3_8,
+            PartQ.hole_z
+        ])
+    )
+
+    return part
+
+
+def part_S(opts=None):
+    piece = polygon([
+        [0, 0],
+        [0, PartS.width],
+        [PartS.length - Standard.unit_1_4, PartS.width],
+        [PartS.length, PartS.width - Standard.unit_1_4],
+        [PartS.length, Standard.unit_1_4],
+        [PartS.length - Standard.unit_1_4, 0]
+    ]).linear_extrude(height=PartS.height)
+
+    hole = cylinder(d=PartS.hole_dia, h=PartS.hole_depth)
+
+    part = (
+        piece
+        - hole.translate([
+            PartS.length - Standard.unit_1_2,
+            Standard.unit_3_8,
+            PartS.hole_z
+        ])
+    )
+
+    return part
 
 # ------------------------------------------------------------------------------
 PART_LIST = {
@@ -276,14 +322,42 @@ PART_LIST = {
     "J": { "builder": part_J },
     "K": { "builder": part_K },
     "L": { "builder": part_L },
-    "M": { "builder": part_M }
+    "M": { "builder": part_M },
+    # N: Jute Cord
+    # O: Nylon Cord
+    # P: Nylon Cord
+    "Q": { "builder": part_Q },
+    # R: Jute Cord
+    "S": { "builder": part_S },
 }
 # ------------------------------------------------------------------------------
 def build(part_name, opts=None):
-    data = PART_LIST.get(part_name)
-
-    if data:
-        model = data["builder"](opts)
-        return model
+    parts = {}
+    if part_name == "ALL":
+        for name, data in PART_LIST.items():
+            part = data["builder"](opts)
+            parts[name] = part
     else:
-        print(f"=> Part with name '{part_name}' has not been implemented!")
+        data = PART_LIST.get(part_name)
+        if data:
+            part = data["builder"](opts)
+            parts[part_name] = part
+        else:
+            print(f"=> Part with name '{part_name}' has not been implemented!")
+
+    if parts:
+        for part_name, part in parts.items():
+            base_name = f"ballista-p{part_name}"
+            if opts:
+                opts_sfx = "-".join(opts)
+                base_name += f"-{opts_sfx}"
+
+            file_name = f"./models/{base_name}.scad"
+            part.save_as_scad(file_name)
+            print(f"=> {file_name}")
+
+
+
+
+
+#

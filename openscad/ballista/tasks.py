@@ -11,16 +11,8 @@ def build(ctx, name, opts=None):
     :param opt: Part specific options.
     """
     part_name = name.upper()
-    model = parts.build(part_name, opts)
-    if model:
-        base_name = f"ballista-p{part_name}"
-        if opts:
-            opts_sfx = "-".join(opts)
-            base_name += f"-{opts_sfx}"
+    parts.build(part_name, opts)
 
-        file_name = f"./models/{base_name}.scad"
-        model.save_as_scad(file_name)
-        print(f"=> {file_name}")
 
 @task
 def clean(ctx):
