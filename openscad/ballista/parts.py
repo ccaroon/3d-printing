@@ -5,7 +5,7 @@ from units import Standard, \
                     PartD,  PartEF, PartG, \
                     PartHI, PartJ,  PartK, \
                     PartL, PartM,   PartQ, \
-                    PartS
+                    PartS, PartT
 
 set_global_fn(150)
 
@@ -308,6 +308,38 @@ def part_S(opts=None):
 
     return part
 
+
+def part_T(opts=None):
+    piece = cube([PartT.length, PartT.width, PartT.height])
+    hole = cylinder(d=PartT.hole_dia, h=PartT.hole_depth + 1)
+
+    part = (
+        piece
+        - hole.translate([
+            Standard.unit_3_8,
+            PartT.width - 2.0 * Standard.unit,
+            PartT.height - PartT.hole_depth
+        ])
+        - hole.translate([
+            Standard.unit_3_8,
+            PartT.width - 4.5 * Standard.unit,
+            PartT.height - PartT.hole_depth
+        ])
+        - hole.translate([
+            Standard.unit_3_8,
+            PartT.width - 7.75 * Standard.unit,
+            PartT.height - PartT.hole_depth
+        ])
+        - hole.translate([
+            Standard.unit_3_8,
+            PartT.width - 10.5 * Standard.unit,
+            PartT.height - PartT.hole_depth
+        ])
+    )
+
+    return part
+
+# ------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------
 PART_LIST = {
     "A": { "builder": part_A },
@@ -329,6 +361,7 @@ PART_LIST = {
     "Q": { "builder": part_Q },
     # R: Jute Cord
     "S": { "builder": part_S },
+    "T": { "builder": part_T },
 }
 # ------------------------------------------------------------------------------
 def build(part_name, opts=None):

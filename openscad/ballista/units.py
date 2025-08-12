@@ -163,7 +163,15 @@ PartS = __constant(
     hole_z     = -1
 )
 
+PartT = __constant(
+    "PartT",
+    length = Standard.unit_3_4,
+    width  = 23.0 * Standard.unit,
+    height = Standard.thickness,
 
+    hole_dia   = Standard.unit_1_4,
+    hole_depth = Standard.unit_1_2
+)
 
 
 
