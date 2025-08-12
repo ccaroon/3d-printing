@@ -173,6 +173,58 @@ PartT = __constant(
     hole_depth = Standard.unit_1_2
 )
 
+PartU = __constant(
+    "PartU",
+    length = 1.5 * Standard.unit,
+    width  = 8.75 * Standard.unit,
+    height = Standard.thickness,
+
+    hole_dia   = Standard.unit_1_4,
+    hole_depth = Standard.thickness + 2,
+    hole_z     = -1,
+
+    radius = Standard.unit_3_4
+)
+
+PartV = __constant(
+    "PartV",
+    length = 7.5 * Standard.unit,
+    back_l = 6.0 * Standard.unit,
+    width  = Standard.unit_3_4,
+    height = Standard.thickness
+)
+
+PartW = __constant(
+    "PartW",
+    length = 6.0 * Standard.unit,
+    back_l = 4.5 * Standard.unit,
+    width  = Standard.unit_3_4,
+    height = Standard.thickness
+)
+
+PartX = __constant(
+    "PartX",
+    length = 5.25 * Standard.unit,
+    width  = 1.5 * Standard.unit,
+    height = Standard.thickness
+)
+
+# More Dowels
+PartY = __constant(
+    "PartY",
+    length = 1.25 * Standard.unit,
+    dia    = Standard.unit_1_4
+)
+
+PartZ = __constant(
+    "PartZ",
+    length = 3.0 * Standard.unit,
+    dia    = Standard.unit_1_4
+)
+
+
+
+
 
 
 

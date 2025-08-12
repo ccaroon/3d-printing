@@ -5,7 +5,9 @@ from units import Standard, \
                     PartD,  PartEF, PartG, \
                     PartHI, PartJ,  PartK, \
                     PartL, PartM,   PartQ, \
-                    PartS, PartT
+                    PartS, PartT,   PartU, \
+                    PartV, PartW,   PartX, \
+                    PartY, PartZ
 
 set_global_fn(150)
 
@@ -339,6 +341,76 @@ def part_T(opts=None):
 
     return part
 
+
+def part_U(opts=None):
+    piece = cube([PartU.length, PartU.width - PartU.radius, PartU.height])
+    tip = cylinder(d=PartU.radius * 2, h=PartU.height)
+    hole = cylinder(d=PartU.hole_dia, h=PartU.hole_depth)
+
+    part = (
+        piece
+        + tip.translate([
+            PartU.length / 2,
+            PartU.width - PartU.radius,
+            0
+        ])
+        - hole.translate([
+            Standard.unit_3_4,
+            PartU.width - Standard.unit_1_2,
+            PartU.hole_z
+        ])
+    )
+
+    return part
+
+
+def part_V(opts=None):
+    back_pt_l = (PartV.length - PartV.back_l) / 2.0
+    piece = polygon([
+        [0, 0],
+        [back_pt_l, PartV.width],
+        [PartV.length - back_pt_l, PartV.width],
+        [PartV.length, 0]
+    ]).linear_extrude(height=PartV.height)
+
+    part = (
+        piece
+    )
+
+    return part
+
+
+def part_W(opts=None):
+    back_pt_l = (PartW.length - PartW.back_l) / 2.0
+    piece = polygon([
+        [0, 0],
+        [back_pt_l, PartW.width],
+        [PartW.length - back_pt_l, PartW.width],
+        [PartW.length, 0]
+    ]).linear_extrude(height=PartW.height)
+
+    part = (
+        piece
+    )
+
+    return part
+
+
+def part_X(opts=None):
+    part = cube([PartX.length, PartX.width, PartX.height])
+    return part
+
+
+def part_Y(opts=None):
+    part = cylinder(d=PartY.dia, h=PartY.length)
+    return part
+
+
+def part_Z(opts=None):
+    part = cylinder(d=PartZ.dia, h=PartZ.length)
+    return part
+
+
 # ------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------
 PART_LIST = {
@@ -362,6 +434,12 @@ PART_LIST = {
     # R: Jute Cord
     "S": { "builder": part_S },
     "T": { "builder": part_T },
+    "U": { "builder": part_U },
+    "V": { "builder": part_V },
+    "W": { "builder": part_W },
+    "X": { "builder": part_X },
+    "Y": { "builder": part_Y },
+    "Z": { "builder": part_Z },
 }
 # ------------------------------------------------------------------------------
 def build(part_name, opts=None):
