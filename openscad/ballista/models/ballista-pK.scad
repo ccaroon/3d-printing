@@ -13,14 +13,19 @@ rotate(a = [0, -90, 0]) {
 			}
 		}
 		translate(v = [17.0, 0, 0]) {
-			color(alpha = 1.0, c = "#770077") {
-				hull() {
-					cube(size = [1, 6.375, 6.375]);
-					translate(v = [50.0, 3.1875, 3.1875]) {
-						rotate(a = [0, 90, 0]) {
-							cylinder(d = 6.375, h = 1);
+			difference() {
+				color(alpha = 1.0, c = "#770077") {
+					hull() {
+						cube(size = [1, 6.375, 6.375]);
+						translate(v = [50.0, 3.1875, 3.1875]) {
+							rotate(a = [0, 90, 0]) {
+								cylinder(d = 6.375, h = 1);
+							}
 						}
 					}
+				}
+				translate(v = [46.75, 3.1875, -1]) {
+					cylinder(d = 1.59375, h = 8.375);
 				}
 			}
 		}

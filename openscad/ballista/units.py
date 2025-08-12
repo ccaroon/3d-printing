@@ -95,11 +95,14 @@ PartK = __constant(
     width  = 0.75 * Standard.unit,
     height = Standard.thickness,
 
+    # Should total `length` above
     non_taper_l = 2.0 * Standard.unit,
+    taper_l     = 6.0 * Standard.unit,
 
     hole_dia   = (3/16) * Standard.unit,
     hole_depth = Standard.thickness + 2,
     hole_z     = -1,
+
     notch_x    = 0.75 * Standard.unit,
     notch_w    = 0.25 * Standard.unit,
     notch_d    = 0.125 * Standard.unit
@@ -112,7 +115,21 @@ PartL = __constant(
     height = 0.5 * Standard.unit
 )
 
+PartM = __constant(
+    "PartM",
+    length = 1.5 * Standard.unit,
+    width  = 2.0 * Standard.unit,
+    height = Standard.thickness,
 
+    front_l    = 0.75 * Standard.unit,
+    cutout_rad = (3/8) * Standard.unit,
+
+    hole_dia   = (3/16) * Standard.unit,
+    # holes are horizontal, not vertical
+    # so depth is same as `length` + 2
+    hole_depth = (1.5 * Standard.unit) + 2,
+    hole_x     = -1
+)
 
 
 

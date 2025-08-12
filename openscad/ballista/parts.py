@@ -1,9 +1,10 @@
 from solid2 import *
 
 from units import Standard, \
-                    PartA, PartB, PartC, \
-                    PartD, PartEF, PartG, \
-                    PartHI, PartJ, PartK, PartL
+                    PartA,  PartB,  PartC, \
+                    PartD,  PartEF, PartG, \
+                    PartHI, PartJ,  PartK, \
+                    PartL, PartM
 
 set_global_fn(150)
 
@@ -200,7 +201,12 @@ def part_K(opts=None):
         taper_l, taper_r
     ).color("#770077")
 
-    # TODO: add through-hole
+    hole = cylinder(d=PartK.hole_dia, h=PartK.hole_depth)
+    taper_piece -= hole.translate([
+        PartK.taper_l - (0.5 * Standard.unit),
+        (3/8) * Standard.unit,
+        PartK.hole_z
+    ])
 
     part = (
         left1
@@ -226,6 +232,36 @@ def part_L(opts=None):
     return part.rotateY(-90)
 
 
+def part_M(opts=None):
+    taper_l = (PartM.length - PartM.front_l) / 2
+    base_piece = polygon([
+        [taper_l, 0],
+        [0, 1.0 * Standard.unit],
+        [0, PartM.width],
+        [PartM.length, PartM.width],
+        [PartM.length, 1.0 * Standard.unit],
+        [PartM.length - taper_l, 0]
+    ]).linear_extrude(height=PartM.height)
+
+    hole = cylinder(d=PartM.hole_dia, h=PartM.hole_depth).rotateY(90)
+
+    piece = (
+        base_piece
+        - hole.translate([PartM.hole_x, 1.0 * Standard.unit, PartM.height / 2])
+        - hole.translate([PartM.hole_x, 0.5 * Standard.unit, PartM.height / 2])
+    )
+
+
+    cutout = cylinder(r=PartM.cutout_rad, h=PartM.height + 2)
+
+    part = (
+        piece
+        - cutout.translate(0.75*Standard.unit, PartM.width, -1)
+    )
+
+    return part
+
+
 # ------------------------------------------------------------------------------
 PART_LIST = {
     "A": { "builder": part_A },
@@ -239,7 +275,8 @@ PART_LIST = {
     "I": { "builder": part_HI },
     "J": { "builder": part_J },
     "K": { "builder": part_K },
-    "L": { "builder": part_L }
+    "L": { "builder": part_L },
+    "M": { "builder": part_M }
 }
 # ------------------------------------------------------------------------------
 def build(part_name, opts=None):
