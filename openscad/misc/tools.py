@@ -22,6 +22,8 @@ def rod():
     """ Long Cylinder to help test Z-Seam modes """
     return cylinder(d=1.0 * units.cm, h=5.0 * units.cm)
 
+def small_rect():
+    return cube([0.75 * units.cm, 2.0 * units.cm, 0.5 * units.cm])
 
 def star():
     """
@@ -42,7 +44,8 @@ MODELS = {
     "circle1": circle1,
     "barrel": barrel,
     "rod": rod,
-    "star": star
+    "star": star,
+    "small_rect": small_rect
 }
 
 def build(model):
