@@ -145,7 +145,7 @@ PartQ = __constant(
     width  = Standard.unit_3_4,
     height = Standard.thickness,
 
-    back_l = (1.0 + (5/8)) + Standard.unit,
+    back_l = (1.0 + (5/8)) * Standard.unit,
 
     hole_dia   = Standard.unit_1_4,
     hole_depth = Standard.thickness + 2,
