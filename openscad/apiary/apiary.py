@@ -78,6 +78,92 @@ class Apiary:
         return frame
 
 
+    def __hive_mat(self, positions, **kwargs):
+        """
+        Build a Hive Mat based on given positions.
+
+        Args:
+            positions (tuple): Tuple of tuples describing the position of each
+                               Hex in the grid.
+        """
+        hex = self._hex(**kwargs)
+
+        origin = positions[0]
+        hive = hex.translate(self.__grid_pos(origin[0], origin[1]))
+
+        for pos in positions[1:]:
+            hive += hex.translate(self.__grid_pos(pos[0], pos[1]))
+
+        return hive
+
+
+    def _log(self, **kwargs):
+        """ The Log Hive Mat"""
+
+        positions = (
+            (0, 0), (0, 1), (0, 2),
+            (-1, 1),
+            (1, 0), (1, 1), (1, 2),
+            (2, 2), (1, 3), (0,3),
+        )
+
+        return self.__hive_mat(positions, **kwargs)
+
+
+    def _langstroth(self, **kwargs):
+        """ The Langstroth Hive Mat """
+        positions = (
+            (0,0), (0,1),
+            (1,0), (1,1) ,(1,2),
+            (2,0), (2,2),
+            (2,-1), (2,-2),
+            (3,-2)
+        )
+
+        return self.__hive_mat(positions, **kwargs)
+
+
+    def _poppleton(self, **kwargs):
+        """ The Poppleton Hive Mat """
+        positions = (
+            (0,0), (0,1),
+            (1,0), (1,1), (1,2),
+            (2,0), (2,2),
+            (2,3), (3,4), (3,5)
+        )
+
+        return self.__hive_mat(positions, **kwargs)
+
+
+    def _skep(self, **kwargs):
+        """ The Skep Hive Mat """
+        positions = (
+            (0,0), (0,1),
+            (1,0), (1,1), (1,2),
+            (2,0), (2,1), (2,2),
+            (3,0), (3,2)
+        )
+
+        return self.__hive_mat(positions, **kwargs)
+
+
+    def _warre(self, **kwargs):
+        """ The Warre Hive Mat """
+        positions = (
+            (0,0), (0,1),
+            (1,0), (1,1), (1,2),
+            (1,-1),
+            (2,0),
+            (3,-1), (3,0), (3,1)
+
+        )
+
+        return self.__hive_mat(positions, **kwargs)
+
+
+
+
+
 
 
 
