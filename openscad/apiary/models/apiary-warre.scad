@@ -5,86 +5,86 @@ union() {
 		union() {
 			translate(v = [0.0, 0.0, 0]) {
 				difference() {
-					cylinder($fn = 6, d = 57.0, h = 3.0);
+					cylinder($fn = 6, d = 56.0, h = 3.0);
 					translate(v = [0, 0, 1.0]) {
-						cylinder($fn = 6, d = 55.0, h = 3.0);
+						cylinder($fn = 6, d = 54.0, h = 3.0);
 					}
 				}
 			}
-			translate(v = [42.0, 24.24871130596428, 0]) {
+			translate(v = [41.25, 23.81569860407206, 0]) {
 				difference() {
-					cylinder($fn = 6, d = 57.0, h = 3.0);
+					cylinder($fn = 6, d = 56.0, h = 3.0);
 					translate(v = [0, 0, 1.0]) {
-						cylinder($fn = 6, d = 55.0, h = 3.0);
+						cylinder($fn = 6, d = 54.0, h = 3.0);
 					}
 				}
 			}
-			translate(v = [0.0, 48.49742261192856, 0]) {
+			translate(v = [0.0, 47.63139720814412, 0]) {
 				difference() {
-					cylinder($fn = 6, d = 57.0, h = 3.0);
+					cylinder($fn = 6, d = 56.0, h = 3.0);
 					translate(v = [0, 0, 1.0]) {
-						cylinder($fn = 6, d = 55.0, h = 3.0);
+						cylinder($fn = 6, d = 54.0, h = 3.0);
 					}
 				}
 			}
 		}
-		translate(v = [14.0, 24.25768590217984, 1.0]) {
-			cylinder(d = 56.0, h = 3.5);
+		translate(v = [13.75, 23.824673200287624, 1.0]) {
+			cylinder(d = 55.0, h = 3.5);
 		}
 	}
-	translate(v = [-42.0, 72.74613391789285, 0]) {
+	translate(v = [-41.25, 71.44709581221619, 0]) {
 		difference() {
-			cylinder($fn = 6, d = 57.0, h = 3.0);
+			cylinder($fn = 6, d = 56.0, h = 3.0);
 			translate(v = [0, 0, 1.0]) {
-				cylinder($fn = 6, d = 55.0, h = 3.0);
+				cylinder($fn = 6, d = 54.0, h = 3.0);
 			}
 		}
 	}
-	translate(v = [42.0, 72.74613391789285, 0]) {
+	translate(v = [41.25, 71.44709581221619, 0]) {
 		difference() {
-			cylinder($fn = 6, d = 57.0, h = 3.0);
+			cylinder($fn = 6, d = 56.0, h = 3.0);
 			translate(v = [0, 0, 1.0]) {
-				cylinder($fn = 6, d = 55.0, h = 3.0);
+				cylinder($fn = 6, d = 54.0, h = 3.0);
 			}
 		}
 	}
-	translate(v = [84.0, 48.49742261192856, 0]) {
+	translate(v = [82.5, 47.63139720814412, 0]) {
 		difference() {
-			cylinder($fn = 6, d = 57.0, h = 3.0);
+			cylinder($fn = 6, d = 56.0, h = 3.0);
 			translate(v = [0, 0, 1.0]) {
-				cylinder($fn = 6, d = 55.0, h = 3.0);
+				cylinder($fn = 6, d = 54.0, h = 3.0);
 			}
 		}
 	}
-	translate(v = [0.0, 96.99484522385713, 0]) {
+	translate(v = [0.0, 95.26279441628824, 0]) {
 		difference() {
-			cylinder($fn = 6, d = 57.0, h = 3.0);
+			cylinder($fn = 6, d = 56.0, h = 3.0);
 			translate(v = [0, 0, 1.0]) {
-				cylinder($fn = 6, d = 55.0, h = 3.0);
+				cylinder($fn = 6, d = 54.0, h = 3.0);
 			}
 		}
 	}
-	translate(v = [-42.0, 169.74097914174996, 0]) {
+	translate(v = [-41.25, 166.70989022850443, 0]) {
 		difference() {
-			cylinder($fn = 6, d = 57.0, h = 3.0);
+			cylinder($fn = 6, d = 56.0, h = 3.0);
 			translate(v = [0, 0, 1.0]) {
-				cylinder($fn = 6, d = 55.0, h = 3.0);
+				cylinder($fn = 6, d = 54.0, h = 3.0);
 			}
 		}
 	}
-	translate(v = [0.0, 145.4922678357857, 0]) {
+	translate(v = [0.0, 142.89419162443238, 0]) {
 		difference() {
-			cylinder($fn = 6, d = 57.0, h = 3.0);
+			cylinder($fn = 6, d = 56.0, h = 3.0);
 			translate(v = [0, 0, 1.0]) {
-				cylinder($fn = 6, d = 55.0, h = 3.0);
+				cylinder($fn = 6, d = 54.0, h = 3.0);
 			}
 		}
 	}
-	translate(v = [42.0, 169.74097914174996, 0]) {
+	translate(v = [41.25, 166.70989022850443, 0]) {
 		difference() {
-			cylinder($fn = 6, d = 57.0, h = 3.0);
+			cylinder($fn = 6, d = 56.0, h = 3.0);
 			translate(v = [0, 0, 1.0]) {
-				cylinder($fn = 6, d = 55.0, h = 3.0);
+				cylinder($fn = 6, d = 54.0, h = 3.0);
 			}
 		}
 	}

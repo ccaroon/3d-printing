@@ -7,7 +7,7 @@ set_global_fn(150)
 
 class Apiary:
     # Length of each flat side
-    HEX_SIDE = 27.00 * units.mm
+    HEX_SIDE = 26.50 * units.mm
 
     # point-to-point
     # Also, the diameter if it were a circle
@@ -21,6 +21,14 @@ class Apiary:
     WALL_THK = 2.00 * units.mm
     BOTT_THK = 1.00 * units.mm
     PADDING  = 1.00 * units.mm
+
+    # HIVES = (
+    #     "langstroth",
+    #     "log",
+    #     "poppleton",
+    #     "skep",
+    #     "warre"
+    # )
 
     def build(self, name, **kwargs):
         """
@@ -93,14 +101,15 @@ class Apiary:
         )
         grid = self.__hive_grid(positions, **kwargs)
 
-        craig  = cylinder(
+        # To remove the inner walls
+        eraser = cylinder(
             d=Apiary.HEX_LENGTH + Apiary.PADDING + 1.00,
             h=Apiary.HEX_HEIGHT + Apiary.PADDING + 0.50,
         )
 
         tile = (
             grid
-            - craig.translate([
+            - eraser.translate([
                 (Apiary.HEX_SIDE + Apiary.PADDING) / 2,
                 (Apiary.HEX_WIDTH + Apiary.PADDING + 0.75) / 2,
                 Apiary.BOTT_THK
