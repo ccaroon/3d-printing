@@ -411,6 +411,17 @@ def part_Z(opts=None):
     return part
 
 
+def ruler(opts=None):
+    """ A ruler in Standard.unit(s) to help assemble the Ballista """
+    dims = {k: float(v) for k,v in (opt.split("=", 2) for opt in opts)}
+
+    length = dims.get("l", 10)
+    width = dims.get("w", 1)
+    height = dims.get("h", 1)
+
+    return cube([length * Standard.unit, width * Standard.unit, height])
+
+
 # ------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------
 PART_LIST = {
@@ -440,6 +451,7 @@ PART_LIST = {
     "X": { "builder": part_X },
     "Y": { "builder": part_Y },
     "Z": { "builder": part_Z },
+    "RULER": {"builder": ruler}
 }
 # ------------------------------------------------------------------------------
 def build(part_name, opts=None):
