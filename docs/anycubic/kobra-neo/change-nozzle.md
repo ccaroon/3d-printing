@@ -22,7 +22,7 @@ https://www.youtube.com/watch?v=JBjIIE1B60k
     * Nozzle **WILL** be **HOT**
 12. Clean the block / hot end & silicone cover if necessary
     * Block - Wipe off outside & Insert a metal "pipe cleaner" up where the nozzle screws in to clean it out
-    * Silicone Cover - Wipe off. Wash with water if necessary. Drop thoroughly.
+    * Silicone Cover - Wipe off. Wash with water if necessary. Dry thoroughly.
 13. Put the new nozzle into the 7mm socket, insert & thread it into the print head
     * Hand thread it to get it started, the use the 7mm socket wrench
     * **DO NOT OVER TIGHTEN**
