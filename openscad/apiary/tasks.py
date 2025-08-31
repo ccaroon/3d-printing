@@ -1,3 +1,4 @@
+import re
 from invoke import task
 
 from apiary import Apiary
@@ -23,6 +24,7 @@ def build(ctx, name, options=[]):
         base_name = f"apiary-{name}"
         if options:
             opts_sfx = "-".join(options)
+            opts_sfx = re.sub(r"\W", "-", opts_sfx)
             base_name += f"-{opts_sfx}"
 
         file_name = f"./models/{base_name}.scad"

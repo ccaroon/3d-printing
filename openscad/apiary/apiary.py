@@ -16,7 +16,9 @@ class Apiary:
     # top-to-bottom
     HEX_WIDTH = math.sqrt(3) * HEX_SIDE
 
-    HEX_HEIGHT = 2.00  * units.mm
+    HEX_HEIGHT = 2.00 * units.mm
+
+    HEX_CUTOUT = 39 * units.mm
 
     WALL_THK = 2.00 * units.mm
     BOTT_THK = 1.00 * units.mm
@@ -79,6 +81,8 @@ class Apiary:
 
 
     def _hex(self, **kwargs):
+        hex = None
+
         outside = cylinder(
             d=Apiary.HEX_LENGTH + Apiary.WALL_THK  + Apiary.PADDING,
             h=Apiary.HEX_HEIGHT + Apiary.BOTT_THK,
@@ -91,11 +95,22 @@ class Apiary:
             _fn=6
         )
 
-        return outside - inside.up(Apiary.BOTT_THK)
+        hex = outside - inside.up(Apiary.BOTT_THK)
+        if kwargs.get("cutout", False):
+            cutout = cylinder(
+                d=Apiary.HEX_CUTOUT,
+                h=Apiary.HEX_HEIGHT + Apiary.PADDING,
+                _fn=6
+            )
+            hex -= cutout.down(1)
+
+        return hex
 
 
     def _starting_tile(self, **kwargs):
         """ The Faction & 2 Resources Tile """
+        # kwargs["cutout"] = False
+
         positions = (
             (0, 0), (0, 1), (1,0),
         )
