@@ -14,8 +14,11 @@ def build(ctx, name, options=[]):
 
     kwargs = {}
     for opt in options:
-        (key,value) = opt.split("=", 2)
-        kwargs[key] = value
+        if "=" in opt:
+            (key, value) = opt.split("=", 2)
+            kwargs[key] = value
+        else:
+            kwargs[opt] = True
 
     apiary = Apiary()
     model = apiary.build(name, **kwargs)

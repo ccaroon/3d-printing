@@ -184,15 +184,30 @@ class Apiary:
         """ The Poppleton Hive Mat """
         stile = self._starting_tile(**kwargs)
 
-        positions = (
+        pos1 = (
             (1,1), (1,2),
             (2,0), (2,2), (2,3),
+            # (3,4), (3,5)
+        )
+
+        pos2 = (
+            # (1,1), (1,2),
+            # (2,0), (2,2), (2,3),
             (3,4), (3,5)
         )
 
-        hive_grid = self.__hive_grid(positions, **kwargs)
+        pplton = None
+        section = kwargs.get("section")
+        if section == "part1":
+            hive_grid = self.__hive_grid(pos1, **kwargs)
+            pplton = stile + hive_grid
+        elif section == "part2":
+            hive_grid = self.__hive_grid(pos2, **kwargs)
+            pplton = hive_grid
+        else:
+            raise ValueError("Error: Poppleton -> Must specify `section` (part1 | part2)")
 
-        return stile + hive_grid
+        return pplton
 
 
     def _skep(self, **kwargs):
