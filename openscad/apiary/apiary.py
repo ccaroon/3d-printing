@@ -109,7 +109,6 @@ class Apiary:
 
     def _starting_tile(self, **kwargs):
         """ The Faction & 2 Resources Tile """
-        # kwargs["cutout"] = False
 
         positions = (
             (0, 0), (0, 1), (1,0),
@@ -117,9 +116,9 @@ class Apiary:
         grid = self.__hive_grid(positions, **kwargs)
 
         # To remove the inner walls
-        eraser = cylinder(
-            d=Apiary.HEX_LENGTH + Apiary.PADDING + 1.00,
-            h=Apiary.HEX_HEIGHT + Apiary.PADDING + 0.50,
+        eraser  = cylinder(
+            d=Apiary.HEX_LENGTH + Apiary.PADDING + 0.55,
+            h=Apiary.HEX_HEIGHT + Apiary.PADDING
         )
 
         tile = (
