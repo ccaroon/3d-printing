@@ -50,9 +50,31 @@ class Factory:
 
 
     @model
-    def box(self, **kwargs):
-        """ A very tinny, tiny cube """
-        return cube([1,1,1])
+    def hollow_cube(self, **kwargs):
+        """ A Hollow Cube of `size` with `walls=1` thick walls """
+        size = kwargs.get("size")
+        walls = kwargs.get("walls", 1)
+
+        model = None
+        if size and walls:
+            outer_cube = cube([size,size,size])
+            inner_cube = cube([
+                size - (walls*2),
+                size - (walls*2),
+                size - (walls*2)
+            ])
+
+            model = outer_cube - inner_cube.translate([walls,walls,walls])
+        else:
+            raise ValueError("Must specify `size`")
+
+        return model
+
+
+    @model
+    def color_cube(self, **kwargs):
+        """ A 1in Cube; used to print filament color samples """
+        return self.hollow_cube(size=1 * units.inch, walls=1)
 
 
     @classmethod

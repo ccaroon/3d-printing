@@ -32,16 +32,3 @@ def blank_die(size):
 
 def solid_cube(size):
     return cube(size,size,size)
-
-
-def hollow_cube(size, wall=1):
-    outer_cube = cube([size,size,size])
-    inner_cube = cube([
-        size - (wall*2),
-        size - (wall*2),
-        size - (wall*2)
-    ])
-
-    box = outer_cube - inner_cube.translate([wall,wall,wall])
-
-    return box
