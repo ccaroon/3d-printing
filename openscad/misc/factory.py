@@ -57,7 +57,7 @@ class Factory:
 
         model = None
         if size and walls:
-            outer_cube = cube([size,size,size])
+            outer_cube = cube([size,size,size]).background()
             inner_cube = cube([
                 size - (walls*2),
                 size - (walls*2),
@@ -75,6 +75,29 @@ class Factory:
     def color_cube(self, **kwargs):
         """ A 1in Cube; used to print filament color samples """
         return self.hollow_cube(size=1 * units.inch, walls=1)
+
+
+    @model
+    def hollow_cylinder(self, **kwargs):
+        """ A Hollow Cylinder of `dia` & `height` with `walls=1` thick walls """
+        dia = float(kwargs.get("dia"))
+        height = float(kwargs.get("height"))
+        walls = kwargs.get("walls", 1)
+
+        model = None
+        if dia and height and walls:
+            outer = cylinder(d=dia, h=height, center=True).background()
+            inner = cylinder(
+                d=dia - walls,
+                h=height - (walls*2),
+                center=True
+            )
+
+            model = outer - inner
+        else:
+            raise ValueError("Must specify `dia` & `height`")
+
+        return model
 
 
     @classmethod
