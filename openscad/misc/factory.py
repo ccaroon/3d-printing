@@ -57,7 +57,7 @@ class Factory:
 
         model = None
         if size and walls:
-            outer_cube = cube([size,size,size]).background()
+            outer_cube = cube([size,size,size])
             inner_cube = cube([
                 size - (walls*2),
                 size - (walls*2),
@@ -86,7 +86,7 @@ class Factory:
 
         model = None
         if dia and height and walls:
-            outer = cylinder(d=dia, h=height, center=True).background()
+            outer = cylinder(d=dia, h=height, center=True)
             inner = cylinder(
                 d=dia - walls,
                 h=height - (walls*2),

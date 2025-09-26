@@ -9,3 +9,4 @@
 * KobraInsights: https://1coderookie.github.io/KobraGoNeoInsights/hardware/bed/#tramming-the-bed
 * Bed Tramming: https://www.youtube.com/watch?v=9eQ_rBzfm5s
 * Bed Level Test Print: https://www.thingiverse.com/thing:4620084
+* Slicer Profiles: https://github.com/sclebo05/KobraNeoProfiles
