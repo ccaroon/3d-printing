@@ -3,7 +3,8 @@ from solid2 import *
 # TODO: convert to use lib/pixel_art.py
 
 
-def invader(size, with_base = False):
+def invader(size, with_base=False):
+    # fmt: off
     # x, y, y-adjustment
     coords = (
         (2,0,.5), (8,0,.5),
@@ -15,18 +16,21 @@ def invader(size, with_base = False):
         (0,6), (2,6), (8,6), (10,6),
         (3,7, -.5), (4,7, -.5), (6,7, -.5), (7,7, -.5)
     )
+    # fmt: on
 
     base = None
     if with_base:
-        base_thickness = .5
-        base = cube(11*size,8*size,base_thickness) \
-            .color("black")                      \
-            .back(7*size)                        \
+        base_thickness = 0.5
+        base = (
+            cube(11 * size, 8 * size, base_thickness)
+            .color("black")
+            .back(7 * size)
             .down(base_thickness)
+        )
 
     pixels = []
     for loc in coords:
-        px = cube(size).right(loc[0]*size).back(loc[1]*size)
+        px = cube(size).right(loc[0] * size).back(loc[1] * size)
         if len(loc) > 2 and loc[2]:
             px = px.back(loc[2])
         pixels.append(px)

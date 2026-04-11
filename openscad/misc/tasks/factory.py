@@ -3,6 +3,7 @@ from invoke import task
 
 from factory import Factory
 
+
 @task(iterable=["options"])
 def build(ctx, name, options=[]):
     """
@@ -42,10 +43,3 @@ def list_models(ctx):
     models = Factory.list_models()
     for name, desc in models.items():
         print(f"* {name} - {desc}")
-
-
-@task
-def clean(ctx):
-    """ Clean up generated files"""
-    with ctx.cd("models"):
-        ctx.run("rm -f *.stl")

@@ -16,12 +16,13 @@ WHEEL_HOLE_DIA = 7.5 * units.mm
 WHEEL_HUB_H = 2 * units.mm
 WHEEL_HUB_DIA = 10.5 * units.mm
 
+
 def microwave_wheel():
     wheel = cylinder(d=WHEEL_DIA, h=WHEEL_H)
-    hub = cylinder(d=WHEEL_HUB_DIA, h=WHEEL_HUB_H+1)
+    hub = cylinder(d=WHEEL_HUB_DIA, h=WHEEL_HUB_H + 1)
     hole = cylinder(d=WHEEL_HOLE_DIA, h=WHEEL_H + 5)
 
-    return wheel - hub.up(WHEEL_H-WHEEL_HUB_H) - hole.down(2.5)
+    return wheel - hub.up(WHEEL_H - WHEEL_HUB_H) - hole.down(2.5)
 
 
 if __name__ == "__main__":

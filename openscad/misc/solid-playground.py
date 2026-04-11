@@ -35,6 +35,5 @@ set_global_fn(72)
 model = cube(10)
 
 
-
 # --- Save to file ---
 model.save_as_scad("./solid-playground.scad")

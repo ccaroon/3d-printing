@@ -9,10 +9,10 @@ depth = 1 * units.cm
 height = 2 * units.mm
 
 
-hole = cylinder(d=3.25, h=height+2)
+hole = cylinder(d=3.25, h=height + 2)
 
-side1 = cylinder(d=1*units.cm, h=height)
-side2 = cylinder(d=1*units.cm, h=height).translate([width, 0, 0])
+side1 = cylinder(d=1 * units.cm, h=height)
+side2 = cylinder(d=1 * units.cm, h=height).translate([width, 0, 0])
 
 
 model = hull()(side1, side2)
