@@ -3,6 +3,12 @@ from invoke import Collection, task
 
 from solid2 import *
 
+ADJUSTMENT = 0.5
+# 1, X    = ON, no adjustment
+# U,D,L,R = ON, with .5mm adjustment in the indicated direction
+STATE_ON = (1, "X", "U", "D", "L", "R")
+STATE_OFF = (0, " ")
+
 
 def pixel_art(pattern, size, **kwargs):
     """
@@ -22,10 +28,21 @@ def pixel_art(pattern, size, **kwargs):
         x = idx % width
         y = idx // width
 
-        if state == 1:
+        if state in STATE_ON:
             pixel = cube(size).color("white").right(x * size).back(y * size)
+
+            match state:
+                case "U":
+                    pixel = pixel.forward(ADJUSTMENT)
+                case "D":
+                    pixel = pixel.back(ADJUSTMENT)
+                case "R":
+                    pixel = pixel.right(ADJUSTMENT)
+                case "L":
+                    pixel = pixel.left(ADJUSTMENT)
+
             pixels.append(pixel)
-        elif debug:
+        elif state in STATE_OFF and debug:
             pixel = cube(size).color("black").right(x * size).back(y * size)
             pixels.append(pixel)
 
