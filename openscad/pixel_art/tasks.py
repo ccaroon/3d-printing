@@ -3,17 +3,27 @@ from invoke import Collection, task
 
 from solid2 import *
 
-ADJUSTMENT = 0.5
-# 1, X    = ON, no adjustment
-# U,D,L,R = ON, with .5mm adjustment in the indicated direction
-STATE_ON = (1, "X", "U", "D", "L", "R")
+ADJUSTMENT = 0.25
+
+# 1|X|.   = ON, no adjustment
+# U|D|L|R =   ON, with .5mm adjustment in the indicated direction
+STATE_ON = (
+    1,  # No Adjustment
+    "X",  # No Adjustment
+    ".",  # No Adjustment
+    # Direction Adjustments
+    "U",  # Up
+    "D",  # Down
+    "L",  # Left
+    "R",  # Right
+)
 STATE_OFF = (0, " ")
 
 
 def pixel_art(pattern, size, **kwargs):
     """
     Args:
-        pattern (dict): With 'width', 'height' & 'bitmap' fields.
+        pattern (dict): Must contain 'bitmap' & 'width' fields.
         size (float): The size of each 'pixel' in mm.
 
     KWArgs:
@@ -28,18 +38,24 @@ def pixel_art(pattern, size, **kwargs):
         x = idx % width
         y = idx // width
 
-        if state in STATE_ON:
+        state_code = state
+        if isinstance(state, str):
+            state_code = state[0]
+            state_multi = 1
+            if len(state) > 1 and state[1:].isdigit():
+                state_multi = int(state[1:])
+        if state_code in STATE_ON:
             pixel = cube(size).color("white").right(x * size).back(y * size)
 
-            match state:
+            match state_code:
                 case "U":
-                    pixel = pixel.forward(ADJUSTMENT)
+                    pixel = pixel.forward(ADJUSTMENT * state_multi)
                 case "D":
-                    pixel = pixel.back(ADJUSTMENT)
+                    pixel = pixel.back(ADJUSTMENT * state_multi)
                 case "R":
-                    pixel = pixel.right(ADJUSTMENT)
+                    pixel = pixel.right(ADJUSTMENT * state_multi)
                 case "L":
-                    pixel = pixel.left(ADJUSTMENT)
+                    pixel = pixel.left(ADJUSTMENT * state_multi)
 
             pixels.append(pixel)
         elif state in STATE_OFF and debug:
@@ -53,20 +69,20 @@ def pixel_art(pattern, size, **kwargs):
 
 @task(
     help={
-        "pattern": "A Pattern from the `patterns` directory.",
+        "name": "The name of a pattern from the `patterns` directory; E.g. si_crab",
         "size": "Pixel size in millimeters.",
     }
 )
-def build(ctx, pattern, size=2, debug=False):
+def build(ctx, name, size=3, debug=False):
     try:
-        module = importlib.import_module(f"patterns.{pattern}")
-        ptr_data = module.PATTERN
+        module = importlib.import_module(f"patterns.{name}")
+        pattern = module.PATTERN
 
-        model = pixel_art(ptr_data, size, debug=debug)
+        model = pixel_art(pattern, size, debug=debug)
 
-        file_name = f"./models/{pattern}.scad"
+        file_name = f"./models/{name}.scad"
         model.save_as_scad(file_name)
-        print(f"=> {file_name}")
+        print(f"=> Created '{pattern['desc']}' => {file_name}")
     except ModuleNotFoundError:
         print("Pattern not found. See the `patterns` directory for a list of patterns.")
 

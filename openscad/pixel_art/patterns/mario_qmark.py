@@ -1,7 +1,6 @@
 # fmt: off
 PATTERN = {
     "width": 7,
-    "height": 10,
     "bitmap": [
         0,1,1,1,1,1,0,
         1,1,0,0,0,1,1,
@@ -14,6 +13,6 @@ PATTERN = {
         0,0,0,1,1,0,0,
         0,0,0,1,1,0,0,
     ],
-    "desc": "Mario Questionmark",
+    "desc": "Mario Question Mark",
 }
 # fmt: on

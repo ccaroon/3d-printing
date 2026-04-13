@@ -1,7 +1,6 @@
 # fmt: off
 PATTERN = {
     "width": 11,
-    "height": 8,
     "bitmap": [
         ' ',' ','D',' ',' ',' ',' ',' ','D',' ',' ',
         ' ',' ',' ','X',' ',' ',' ','X',' ',' ',' ',
@@ -13,6 +12,6 @@ PATTERN = {
         ' ',' ',' ','U','U',' ','U','U',' ',' ',' ',
 
     ],
-    "desc": "Space Invader #1",
+    "desc": "Space Invader -- Crab",
 }
 # fmt: on
