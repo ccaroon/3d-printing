@@ -38,6 +38,13 @@ def pixel_art(pattern, size, **kwargs):
         x = idx % width
         y = idx // width
 
+
+        # TODO:
+        # Instead of using Code & Multiplier, look for adjacent adjustment
+        # codes and calculate multiplier
+        # E.g. I and connected pixels above are 'U', then adjust based on code's
+        # own modifier AND add 1 to multiplier for above 'U'
+
         state_code = state
         if isinstance(state, str):
             state_code = state[0]
