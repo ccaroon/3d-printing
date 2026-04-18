@@ -3,7 +3,7 @@ from invoke import Collection, task
 
 from solid2 import *
 
-ADJUSTMENT = 0.25
+ADJUSTMENT = 0.50
 
 # 1|X|.   = ON, no adjustment
 # U|D|L|R =   ON, with .5mm adjustment in the indicated direction
