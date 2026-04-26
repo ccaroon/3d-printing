@@ -65,10 +65,19 @@
     - Scale proportionally: YES
     - Apply
 17. Edit -> Resize Page to Selection
-    - Page and profil object may not be in the same place
+    - Page and profile object may not be in the same place
     - View -> Zoom -> Zoom Page ... should fix it.
 18. DON'T save the SVG after Scaling it down
     - Save the original size in case you need it again
 19. Save As...
-    - Desktop Cutter Plotter (...R12...) (.dxf)
+    - ~~Desktop Cutter Plotter (...R12...) (.dxf)~~
+    - Desktop Cutter Plutter (...R14...) (.dxf)
+      + ROBO-Master ... OFF
+      + Use LWPOLYLINE Type ... ON
+      + Flatten Beziers ... OFF
+      + Use Document unit ...ON
+      + Base unit: mm
+      + Char enc: Latin 1
+      + Layer export selection: All
+      + Layer match name: __blank__
 20. DXF file can now be imported into OpenSCAD

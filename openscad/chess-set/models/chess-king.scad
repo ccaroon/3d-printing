@@ -9,7 +9,7 @@ union() {
 	}
 	translate(v = [0, 0, 3.9]) {
 		rotate_extrude($fn = 250, angle = 360) {
-			import(file = "./images/king/King-Profile.dxf", origin = [0, 0]);
+			import(file = "../images/king/King-Profile.dxf", origin = [0, 0]);
 		}
 	}
 	translate(v = [0, 0, 47.3]) {
