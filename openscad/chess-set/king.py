@@ -52,6 +52,9 @@ def build():
 
     piece = bottom + middle_part.up(King.base_thk) + top.up(King.base_thk + King.height)
 
+    # UNCOMMENT: to just print base & crown
+    # piece = bottom + top.up(King.base_thk)
+
     # block = cube([40,40,King.height * .95]).down(2).left(20).back(20)
     # return piece - block
 
