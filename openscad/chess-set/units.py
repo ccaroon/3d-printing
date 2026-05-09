@@ -53,8 +53,8 @@ Magnet15 = __constant(
 # 20mm x 1mm
 Magnet20 = __constant(
     "Magnet",
-    dia=20.60,
-    thk=1.75
+    dia=20.30,
+    thk=1.30
 )
 
 Magnet = Magnet20

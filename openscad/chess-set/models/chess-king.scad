@@ -4,7 +4,7 @@ union() {
 	difference() {
 		cylinder(d = 30.0, h = 3.9);
 		translate(v = [0, 0, -1]) {
-			cylinder(d = 20.6, h = 2.75);
+			cylinder(d = 20.3, h = 2.3);
 		}
 	}
 	translate(v = [0, 0, 3.9]) {
