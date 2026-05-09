@@ -35,8 +35,27 @@ CapStone1 = __constant(
 )
 
 # Board tiles
-Tile = __constant(
-    "Tile",
-    size=40.0,
-    thk=2,
+BoardTile = __constant(
+    "BoardTile",
+    # size=40.0,
+    size=20,
+)
+
+BoardBorder = __constant(
+    "BoardBorder",
+    width=3,
+)
+
+BoardInset = __constant(
+    "BoardInset",
+    width=1,
+    thk=1,
+)
+
+Board = __constant(
+    "Board",
+    thk=3,
+    tile=BoardTile,
+    inset=BoardInset,
+    border=BoardBorder
 )

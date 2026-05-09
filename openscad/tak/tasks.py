@@ -3,7 +3,6 @@ from solid2 import *
 
 import board
 import cap_stone_1
-import tile
 
 
 @task(iterable=["opts"])
@@ -25,10 +24,6 @@ def build(ctx, piece, opts=None):
         case "stone-2":
             print(f"-> {piece} ... not yet implemented!")
         case "cap-stone-2":
-            print(f"-> {piece} ... not yet implemented!")
-        case "tile":
-            model = tile.build()
-        case "board-inset":
             print(f"-> {piece} ... not yet implemented!")
         case "board":
             model = board.build()
