@@ -17,3 +17,4 @@ Purchased April 10, 2026
 
 ## How To
 * [Load / Unload Filament](./filament.md)
+* [Apply Glue](./apply-glue.md)
