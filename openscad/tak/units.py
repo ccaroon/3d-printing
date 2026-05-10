@@ -18,15 +18,7 @@ Standard = __constant(
     inch=25.4,
 )
 
-
-# # Base Dims
-# Base = __constant(
-#     "Base",
-#     dia=32.0,
-#     thk=3.90,
-# )
-
-
+# Board
 Tile = __constant(
     "Tile",
     size=20.0,
@@ -59,29 +51,23 @@ Board = __constant(
     border=BoardBorder,
     tile_inset=TileInset,
     tile_count=Tile.count,
-    inset_count=Tile.count+1,
+    inset_count=Tile.count + 1,
 )
 
-# Player One - Stones
+# Stones
 Stone = __constant(
     "Stone",
     width=Tile.size * 0.90,
     height=Tile.size * 0.90,
-    thk=5,
+    thk=(Tile.size * 0.90) * 0.25,
 )
 
 CapStone = __constant(
     "CapStone",
     width=Tile.size * 0.50,
     height=Tile.size * 0.90,
-    thk=5
+    thk=(Tile.size * 0.90) * 0.25,
 )
-
-
-
-
-
-
 
 
 #
