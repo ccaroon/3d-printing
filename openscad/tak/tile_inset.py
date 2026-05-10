@@ -5,8 +5,11 @@ from units import Board
 
 
 def tile_inset():
-    height = Board.tile.size * 0.25
-    base_r = Board.tile.size * 0.10
+    # cylinder height -> star arm
+    height = Board.tile_inset.length
+    # cylinder radius -> star arm base height
+    base_r = Board.tile_inset.height
+
     arm1 = cylinder(
         h=height,
         r1=base_r,

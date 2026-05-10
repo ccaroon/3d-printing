@@ -2,8 +2,11 @@ from invoke import task
 from solid2 import *
 
 import board
-import cap_stone_1
 import tile_inset
+import stone1
+import stone2
+import cap_stone1
+import cap_stone2
 
 
 @task(iterable=["opts"])
@@ -18,14 +21,14 @@ def build(ctx, piece, opts=None):
 
     model = None
     match piece:
-        case "stone-1":
-            print(f"-> {piece} ... not yet implemented!")
-        case "cap-stone-1":
-            model = cap_stone_1.build()
-        case "stone-2":
-            print(f"-> {piece} ... not yet implemented!")
-        case "cap-stone-2":
-            print(f"-> {piece} ... not yet implemented!")
+        case "stone1":
+            model = stone1.build()
+        case "cap-stone1":
+            model = cap_stone1.build()
+        case "stone2":
+            model = stone2.build()
+        case "cap-stone2":
+            model = cap_stone2.build()
         case "tile-inset":
             model = tile_inset.build()
         case "board":

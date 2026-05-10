@@ -19,35 +19,34 @@ Standard = __constant(
 )
 
 
-# Base Dims
-Base = __constant(
-    "Base",
-    dia=32.0,
-    thk=3.90,
-)
+# # Base Dims
+# Base = __constant(
+#     "Base",
+#     dia=32.0,
+#     thk=3.90,
+# )
 
-# CapStone pieces
-CapStone1 = __constant(
-    "CapStone1",
-    base_dia=Base.dia - 4,
-    base_thk=Base.thk,
-    height=24.35,
-)
 
-BoardTile = __constant(
-    "BoardTile",
-    size=40.0,
-    count=5,
+Tile = __constant(
+    "Tile",
+    size=20.0,
+    count=2,
     # size=20,
+)
+
+TileInset = __constant(
+    "TileInset",
+    height=Tile.size * 0.07,
+    length=Tile.size * 0.25,
 )
 
 BoardBorder = __constant(
     "BoardBorder",
-    width=3,
+    width=TileInset.length,
 )
 
-BoardInset = __constant(
-    "BoardInset",
+GridInset = __constant(
+    "GridInset",
     width=1,
     thk=1,
 )
@@ -55,9 +54,34 @@ BoardInset = __constant(
 Board = __constant(
     "Board",
     thk=3,
-    tile=BoardTile,
-    inset=BoardInset,
+    tile=Tile,
+    inset=GridInset,
     border=BoardBorder,
-    tile_count=BoardTile.count,
-    inset_count=BoardTile.count+1,
+    tile_inset=TileInset,
+    tile_count=Tile.count,
+    inset_count=Tile.count+1,
 )
+
+# Player One - Stones
+Stone = __constant(
+    "Stone",
+    width=Tile.size * 0.90,
+    height=Tile.size * 0.90,
+    thk=5,
+)
+
+CapStone = __constant(
+    "CapStone",
+    width=Tile.size * 0.50,
+    height=Tile.size * 0.90,
+    thk=5
+)
+
+
+
+
+
+
+
+
+#
