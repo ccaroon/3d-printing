@@ -2,6 +2,7 @@ from invoke import task
 from solid2 import *
 
 import bishop
+import checker
 import king
 import knight
 import pawn
@@ -35,6 +36,8 @@ def build(ctx, piece, opts=None):
             model = bishop.build()
         case "rook":
             model = rook.build()
+        case "checker":
+            model = checker.build()
         case "tile":
             model = tile.build()
         case "tool":
