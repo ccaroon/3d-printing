@@ -23,7 +23,6 @@ Tile = __constant(
     "Tile",
     size=20.0,
     count=2,
-    # size=20,
 )
 
 TileInset = __constant(
@@ -64,9 +63,10 @@ Stone = __constant(
 
 CapStone = __constant(
     "CapStone",
-    width=Tile.size * 0.50,
-    height=Tile.size * 0.90,
-    thk=(Tile.size * 0.90) * 0.25,
+    base_dia=Tile.size * 0.90,
+    base_h=3.0,
+    mid_height=Tile.size * 0.75,
+    top_dia=(Tile.size * 0.90) * .50
 )
 
 

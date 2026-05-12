@@ -19,28 +19,33 @@ def build(ctx, piece, opts=None):
     """
     set_global_fn(150)
 
+    build_opts = {}
+    for option in opts:
+        key, value = option.split("=",1)
+        build_opts[key] = value
+
     model = None
     match piece:
         case "stone1":
-            model = stone1.build()
-        case "cap-stone1":
-            model = cap_stone1.build()
+            model = stone1.build(build_opts)
+        case "capstone1":
+            model = cap_stone1.build(build_opts)
         case "stone2":
-            model = stone2.build()
-        case "cap-stone2":
-            model = cap_stone2.build()
+            model = stone2.build(build_opts)
+        case "capstone2":
+            model = cap_stone2.build(build_opts)
         case "tile-inset":
-            model = tile_inset.build()
+            model = tile_inset.build(build_opts)
         case "board":
-            model = board.build()
+            model = board.build(build_opts)
         case _:
             print(f"Unknown piece: '{piece}'")
 
     if model:
         base_name = f"tak-{piece}"
-        if opts:
-            opts_sfx = "-".join(opts)
-            base_name += f"-{opts_sfx}"
+        # if opts:
+        #     opts_sfx = "-".join(opts)
+        #     base_name += f"-{opts_sfx}"
 
         file_name = f"./models/{base_name}.scad"
         model.save_as_scad(file_name)
