@@ -21,8 +21,13 @@ Standard = __constant(
 # Board
 Tile = __constant(
     "Tile",
-    size=20.0,
-    count=2,
+    # Real Size
+    size=37.5,
+    count=5,
+    #
+    # Test Size
+    # size=37.5,
+    # count=1,
 )
 
 TileInset = __constant(
@@ -44,7 +49,7 @@ GridInset = __constant(
 
 Board = __constant(
     "Board",
-    thk=3,
+    thk=Tile.size * 0.15,
     tile=Tile,
     inset=GridInset,
     border=BoardBorder,
@@ -54,19 +59,21 @@ Board = __constant(
 )
 
 # Stones
+STONE_SCALE = 0.80
 Stone = __constant(
     "Stone",
-    width=Tile.size * 0.90,
-    height=Tile.size * 0.90,
-    thk=(Tile.size * 0.90) * 0.25,
+    width=Tile.size * STONE_SCALE,
+    height=Tile.size * STONE_SCALE,
+    thk=(Tile.size * STONE_SCALE) * 0.25,
 )
 
+# CAPSTONE_SCALE = 0.70
 CapStone = __constant(
     "CapStone",
-    base_dia=Tile.size * 0.90,
+    base_dia=Tile.size * 0.80,
     base_h=3.0,
-    mid_height=Tile.size * 0.75,
-    top_dia=(Tile.size * 0.90) * .50
+    mid_height=Tile.size * 0.65,
+    top_dia=(Tile.size * 0.75) * .55
 )
 
 

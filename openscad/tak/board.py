@@ -60,7 +60,7 @@ def __tile_insets():
     return insets
 
 
-def build():
+def build(opts):
     base = __base()
     border_insets = __border_insets()
     tile_insets = __tile_insets()

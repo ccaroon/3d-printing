@@ -45,5 +45,5 @@ def tile_inset():
     return piece
 
 
-def build():
+def build(opts):
     return tile_inset()

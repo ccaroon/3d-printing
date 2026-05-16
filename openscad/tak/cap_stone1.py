@@ -59,7 +59,7 @@ def __build_middle():
     return part
 
 
-def build():
+def build(opts):
     bottom = __build_bottom()
     middle = __build_middle()
     top = __build_top()
