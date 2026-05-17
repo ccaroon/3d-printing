@@ -34,7 +34,7 @@ def __border_insets():
 
 
 def __tile_insets():
-    extra_depth = 1
+    extra_depth = Board.tile_inset.depth_offset
     insets = tile_inset.build({"ex_h": extra_depth}).rotateY(180)
 
     for row in range(0, Board.tile_inset.count):
