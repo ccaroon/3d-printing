@@ -3,11 +3,11 @@ from solid2 import *
 from units import Board
 
 
-def tile_inset():
+def __tile_inset(opts):
     # cylinder height -> star arm
     height = Board.tile_inset.length
     # cylinder radius -> star arm base height
-    base_r = Board.tile_inset.height
+    base_r = Board.tile_inset.height + opts.get("ex_h", 0)
 
     arm1 = cylinder(
         h=height,
@@ -46,4 +46,4 @@ def tile_inset():
 
 
 def build(opts):
-    return tile_inset()
+    return __tile_inset(opts)

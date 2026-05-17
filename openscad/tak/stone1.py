@@ -11,6 +11,7 @@ def __style1():
 
     return model
 
+
 def __style2():
     model = cylinder(d=Stone.width, h=Stone.thk, _fn=5)
 

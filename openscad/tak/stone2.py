@@ -14,10 +14,9 @@ def __style1():
 
 def __style2():
     model = cylinder(d=Stone.width, h=Stone.thk)
-    cut = cube(Stone.width, Stone.height/2, Stone.thk+2, center=True)
+    cut = cube(Stone.width, Stone.height / 2, Stone.thk + 2, center=True)
 
-    return model - cut.up(Stone.thk / 2).back(Stone.width*0.5)
-
+    return model - cut.up(Stone.thk / 2).back(Stone.width * 0.5)
 
 
 def build(opts):

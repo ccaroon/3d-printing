@@ -34,6 +34,8 @@ TileInset = __constant(
     "TileInset",
     height=Tile.size * 0.07,
     length=Tile.size * 0.25,
+    count=Tile.count + 1,
+    depth_offset=0.75,
 )
 
 BoardBorder = __constant(
@@ -47,15 +49,27 @@ GridInset = __constant(
     thk=1,
 )
 
+Magnet = __constant(
+    "Magnet",
+    dia=10.30,
+    thk=1.30,
+)
+
 Board = __constant(
     "Board",
     thk=Tile.size * 0.15,
     tile=Tile,
     inset=GridInset,
     border=BoardBorder,
+    magnet=Magnet,
     tile_inset=TileInset,
     tile_count=Tile.count,
-    inset_count=Tile.count + 1,
+    # Total Board size (width & height)
+    size=(
+        (Tile.size * Tile.count)
+        + (GridInset.width * TileInset.count)
+        + (BoardBorder.width * 2)
+    ),
 )
 
 # Stones
@@ -73,7 +87,7 @@ CapStone = __constant(
     base_dia=Tile.size * 0.80,
     base_h=3.0,
     mid_height=Tile.size * 0.65,
-    top_dia=(Tile.size * 0.75) * .55
+    top_dia=(Tile.size * 0.75) * 0.55,
 )
 
 

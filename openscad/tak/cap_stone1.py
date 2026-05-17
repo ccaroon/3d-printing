@@ -67,7 +67,12 @@ def build(opts):
     piece = (
         bottom
         + middle.up(CapStone.base_h)
-        + top.up(CapStone.base_h + CapStone.mid_height + (CapStone.top_dia/2) - CapStone.top_dia*.25)
+        + top.up(
+            CapStone.base_h
+            + CapStone.mid_height
+            + (CapStone.top_dia / 2)
+            - CapStone.top_dia * 0.25
+        )
     )
 
     return piece

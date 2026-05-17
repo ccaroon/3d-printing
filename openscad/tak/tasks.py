@@ -21,7 +21,7 @@ def build(ctx, piece, opts=None):
 
     build_opts = {}
     for option in opts:
-        key, value = option.split("=",1)
+        key, value = option.split("=", 1)
         build_opts[key] = value
 
     model = None
