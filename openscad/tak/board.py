@@ -108,19 +108,18 @@ def build(opts):
         )
 
         # Magnet cut-out in each corner
-        mag_edge_offset = 5
         mag_radius = Board.magnet.dia / 2
         for row in range(2):
             for col in range(2):
                 x = Board.size * col
                 y = Board.size * row
 
-                xoffset = mag_radius + mag_edge_offset
+                xoffset = mag_radius + Board.magnet_offset
                 if col == 1:
                     xoffset *= -1
                 x += xoffset
 
-                yoffset = mag_radius + mag_edge_offset
+                yoffset = mag_radius + Board.magnet_offset
                 if row == 1:
                     yoffset *= -1
                 y += yoffset

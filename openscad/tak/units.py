@@ -62,6 +62,7 @@ Board = __constant(
     inset=GridInset,
     border=BoardBorder,
     magnet=Magnet,
+    magnet_offset=5,
     tile_inset=TileInset,
     tile_count=Tile.count,
     # Total Board size (width & height)
@@ -81,13 +82,27 @@ Stone = __constant(
     thk=(Tile.size * STONE_SCALE) * 0.25,
 )
 
-# CAPSTONE_SCALE = 0.70
 CapStone = __constant(
     "CapStone",
-    base_dia=Tile.size * 0.80,
+    base_dia=Stone.width,
     base_h=3.0,
     mid_height=Tile.size * 0.65,
     top_dia=(Tile.size * 0.75) * 0.55,
+)
+
+CasePost = __constant(
+    "CasePost",
+    width=Magnet.dia + (Board.magnet_offset * 2),
+    length=Magnet.dia + (Board.magnet_offset * 2),
+)
+
+Case = __constant(
+    "Case",
+    width=Board.size,
+    length=Board.size,
+    height=Stone.width + 2,
+    wall_thk=Board.thk,
+    post=CasePost,
 )
 
 

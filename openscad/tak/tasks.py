@@ -2,6 +2,7 @@ from invoke import task
 from solid2 import *
 
 import board
+import case
 import tile_inset
 import stone1
 import stone2
@@ -26,6 +27,8 @@ def build(ctx, piece, opts=None):
 
     model = None
     match piece:
+        case "case":
+            model = case.build(build_opts)
         case "stone1":
             model = stone1.build(build_opts)
         case "capstone1":
