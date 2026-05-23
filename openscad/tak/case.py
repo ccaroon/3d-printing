@@ -1,13 +1,7 @@
 from solid2 import *
 
+from lib.box import Box
 from units import Board, CapStone, Case, Magnet, Stone
-
-
-def __box(width, length, height, wall_thk):
-    box = cube(width, length, height)
-    cutout = cube(width - (wall_thk * 2), length - (wall_thk * 2), height)
-
-    return box - cutout.translate(wall_thk, wall_thk, wall_thk)
 
 
 def __post():
@@ -21,7 +15,14 @@ def __post():
 
 def build(opts):
     # overall box
-    base = __box(Case.width, Case.length, Case.height, Case.wall_thk)
+    base_box = Box(
+        Case.width,
+        Case.length,
+        Case.height,
+        Case.wall_thk,
+        Box.DIMS_OUTER,
+    )
+    base = base_box.build()
 
     # corner posts with magnet cutouts
     mag_radius = Magnet.dia / 2
@@ -60,43 +61,42 @@ def build(opts):
                 )
             )
 
-    # stone1 compartment
+    # Stone Compartment
+    ## Sizes
+    capstone_h = CapStone.base_h + CapStone.mid_height + CapStone.top_dia
+    cmp_width = Stone.height + 5
+    cmp_length = Stone.thk * 25  # hold 25 stones
+    cmp_height = Case.height
     cmp_wall = Case.wall_thk / 2
-    cmp_width = Stone.height + (cmp_wall * 2) + 5
-    # based on number of stones to fit in compartment
-    cmp_length = (Stone.thk * 25) + (cmp_wall * 2)
-    stone1_cmp1 = __box(
-        cmp_width,
-        cmp_length,
-        Case.height,
-        cmp_wall,
-    )
 
-    left_over_space = Case.length - (Case.wall_thk * 2) - (Stone.thk * 25)
-    cmp_offset = (Case.wall_thk + left_over_space) / 2
-    base += stone1_cmp1.color("white").right(Case.post.width).forward(cmp_offset)
+    stone_box_lg = Box(cmp_width, cmp_length, cmp_height, cmp_wall, Box.DIMS_INNER)
 
-    # stone1 1/2 compartment
-    capstone_height = CapStone.base_h + CapStone.mid_height + CapStone.top_dia
-    cmp2_length = (Stone.thk * 5) + (capstone_height) + (cmp_wall * 2)
-    stone1_cmp2 = __box(
-        cmp_width,
-        cmp2_length,
-        Case.height,
-        cmp_wall
-    )
-    base += stone1_cmp2.color("white").right(Case.post.width + cmp_width - cmp_wall).forward(cmp_offset)
+    cmp_length_sm = (Stone.thk * 5) + capstone_h  # 5 stones + 1 capstone
+    stone_box_sm = Box(cmp_width, cmp_length_sm, cmp_height, cmp_wall)
 
-    # TODO: stone2 box
+    # Stone1 / Compartment 1
+    stone1_cmp1 = stone_box_lg.build()
+    xoff = Case.post.width
+    yoff = (base_box.length - stone_box_lg.length) / 2
+    base += stone1_cmp1.color("white").translate(xoff, yoff, 0)
 
-    # TODO: stone2 1/2 box
-    stone2_cmp2 = __box(
-        cmp_width,
-        cmp2_length,
-        Case.height,
-        cmp_wall
-    )
-    base += stone2_cmp2.color("black").right(Case.post.width + cmp_width - cmp_wall).forward(cmp_offset + cmp2_length - cmp_wall)
+    # Stone1 / Compartment 2
+    stone1_cmp2 = stone_box_sm.build()
+    xoff = Case.post.width + stone_box_lg.width - cmp_wall
+    yoff = (base_box.length - stone_box_sm.length) / 2
+    base += stone1_cmp2.color("white").translate(xoff, yoff, 0)
+
+    # Stone2 / Compartment 1
+    stone2_cmp1 = stone_box_lg.build()
+    xoff = Case.post.width + stone_box_lg.width + (stone_box_sm.width * 2) - (cmp_wall * 3)
+    yoff = (base_box.length - stone_box_lg.length) / 2
+    base += stone2_cmp1.color("black").translate(xoff, yoff, 0)
+
+    #  Stone2 / Compartment 2
+    stone2_cmp2 = stone_box_sm.build()
+    xoff = Case.post.width + stone_box_lg.width + stone_box_sm.width - (cmp_wall * 2)
+    yoff = (base_box.length - stone_box_sm.length) / 2
+    base += stone2_cmp2.color("black").translate(xoff, yoff, 0)
 
     piece = base
 
