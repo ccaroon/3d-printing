@@ -32,7 +32,7 @@ def build(opts):
             y = Case.length * row
 
             # Magnet cutout
-            magnet = cylinder(d=Magnet.dia, h=Magnet.thk + 1)
+            magnet = cylinder(d=Magnet.dia, h=Magnet.thk + 0.5)
             magx_offset = mag_radius + Board.magnet_offset
             magx_offset *= -1 if col == 1 else 1
             mag_x = x + magx_offset
@@ -66,7 +66,7 @@ def build(opts):
     capstone_h = CapStone.base_h + CapStone.mid_height + CapStone.top_dia
     cmp_width = Stone.height + 2
     # hold stone_cnt1 stones
-    cmp_length = Stone.thk * Case.stone_cnt1
+    cmp_length = Stone.thk * (Case.stone_cnt1 + 1)
     cmp_height = Case.height
     cmp_wall = Case.wall_thk / 2
 
@@ -79,7 +79,7 @@ def build(opts):
     )
 
     # stone_cnt2 stones + 1 capstone
-    cmp_length_sm = (Stone.thk * Case.stone_cnt2) + capstone_h
+    cmp_length_sm = (Stone.thk * (Case.stone_cnt2 + 1)) + capstone_h
     stone_box_sm = Box(
         cmp_width,
         cmp_length_sm,

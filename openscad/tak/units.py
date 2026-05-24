@@ -22,12 +22,12 @@ Standard = __constant(
 Tile = __constant(
     "Tile",
     # FULL SIZE
-    # size=37.5,
-    # count=5,
+    size=37.5,
+    count=5,
     # ---------
     # SMALL SIZE
-    size=13,
-    count=5,
+    # size=13,
+    # count=5,
 )
 
 TileInset = __constant(
@@ -104,9 +104,13 @@ Case = __constant(
     height=Stone.width + 3,
     wall_thk=Board.thk,
     post=CasePost,
-    # TODO: reset for full size board
-    stone_cnt1=12,
-    stone_cnt2=18,
+    # FULL SIZE
+    stone_cnt1=25,
+    stone_cnt2=5,
+    # ----------
+    # SMALL SIZE
+    # stone_cnt1=12,
+    # stone_cnt2=18,
 )
 
 
