@@ -21,13 +21,13 @@ Standard = __constant(
 # Board
 Tile = __constant(
     "Tile",
-    # Real Size
-    size=37.5,
-    count=5,
-    #
-    # Test Size
+    # FULL SIZE
     # size=37.5,
-    # count=1,
+    # count=5,
+    # ---------
+    # SMALL SIZE
+    size=13,
+    count=5,
 )
 
 TileInset = __constant(
@@ -52,6 +52,7 @@ GridInset = __constant(
 Magnet = __constant(
     "Magnet",
     dia=10.30,
+    # dia=round(Tile.size * 0.275, 1),
     thk=1.30,
 )
 
@@ -100,9 +101,12 @@ Case = __constant(
     "Case",
     width=Board.size,
     length=Board.size,
-    height=Stone.width + 2,
+    height=Stone.width + 3,
     wall_thk=Board.thk,
     post=CasePost,
+    # TODO: reset for full size board
+    stone_cnt1=12,
+    stone_cnt2=18,
 )
 
 
