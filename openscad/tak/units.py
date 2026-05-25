@@ -18,16 +18,33 @@ Standard = __constant(
     inch=25.4,
 )
 
+MiniSet = __constant(
+    "MiniSet",
+    tile_size=13,
+    tile_count=5,
+    stone_cnt1=12,
+    stone_cnt2=18,
+)
+
+LargeSet = __constant(
+    "LargeSet",
+    tile_size=37.5,
+    tile_count=5,
+    stone_cnt1=25,
+    stone_cnt2=5,
+)
+
+# -----------------------------------------------------------------------------
+# NOTE NOTE NOTE NOTE
+# Change this to switch between Full Size & Mini Size sets
+ActiveSet = MiniSet
+# -----------------------------------------------------------------------------
+
 # Board
 Tile = __constant(
     "Tile",
-    # FULL SIZE
-    size=37.5,
-    count=5,
-    # ---------
-    # SMALL SIZE
-    # size=13,
-    # count=5,
+    size=ActiveSet.tile_size,
+    count=ActiveSet.tile_count,
 )
 
 TileInset = __constant(
@@ -105,13 +122,8 @@ Case = __constant(
     height=Stone.width + 3 + Board.thk,
     wall_thk=Board.thk,
     post=CasePost,
-    # FULL SIZE
-    stone_cnt1=25,
-    stone_cnt2=5,
-    # ----------
-    # SMALL SIZE
-    # stone_cnt1=12,
-    # stone_cnt2=18,
+    stone_cnt1=ActiveSet.stone_cnt1,
+    stone_cnt2=ActiveSet.stone_cnt2,
 )
 
 
