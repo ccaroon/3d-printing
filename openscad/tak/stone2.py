@@ -4,10 +4,11 @@ from units import Stone
 
 
 def __style1():
+    hscale = 0.50
     top = cylinder(d=Stone.width, h=Stone.thk)
-    bottom = cube(Stone.width, Stone.height * 0.6, Stone.thk)
+    bottom = cube(Stone.width, Stone.height * hscale, Stone.thk)
 
-    model = bottom + top.right(Stone.width / 2).forward(Stone.height * 0.6)
+    model = bottom + top.right(Stone.width / 2).forward(Stone.height * hscale)
 
     return model
 

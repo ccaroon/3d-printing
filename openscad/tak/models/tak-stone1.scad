@@ -1,10 +1,10 @@
 $fn = 150;
 
 union() {
-	cube(size = [10.4, 6.24, 2.6]);
-	translate(v = [0, 6.24, 0]) {
-		translate(v = [5.2, 0, 0]) {
-			cylinder($fn = 6, d = 10.4, h = 2.6);
+	cube(size = [30.0, 17.25, 7.5]);
+	translate(v = [0, 17.25, 0]) {
+		translate(v = [15.0, 0, 0]) {
+			cylinder($fn = 6, d = 30.0, h = 7.5);
 		}
 	}
 }

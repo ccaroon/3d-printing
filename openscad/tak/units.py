@@ -101,7 +101,8 @@ Case = __constant(
     "Case",
     width=Board.size,
     length=Board.size,
-    height=Stone.width + 3,
+    # + Board.thk to account for bottom height
+    height=Stone.width + 3 + Board.thk,
     wall_thk=Board.thk,
     post=CasePost,
     # FULL SIZE
