@@ -37,7 +37,7 @@ LargeSet = __constant(
 # -----------------------------------------------------------------------------
 # NOTE NOTE NOTE NOTE
 # Change this to switch between Full Size & Mini Size sets
-ActiveSet = MiniSet
+ActiveSet = LargeSet
 # -----------------------------------------------------------------------------
 
 # Board

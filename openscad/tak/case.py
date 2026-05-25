@@ -65,7 +65,7 @@ def build(opts):
     ## Sizes
     capstone_h = CapStone.base_h + CapStone.mid_height + CapStone.top_dia
     cmp_width = Stone.height + 2
-    # hold stone_cnt1 stones
+    # hold stone_cnt1 stones+1 (extra room)
     cmp_length = Stone.thk * (Case.stone_cnt1 + 1)
     cmp_height = Case.height
     cmp_wall = Case.wall_thk / 2
@@ -78,7 +78,7 @@ def build(opts):
         Box.DIMS_INNER,
     )
 
-    # stone_cnt2 stones + 1 capstone
+    # stone_cnt2 stones+1 (extra room) + 1 capstone
     cmp_length_sm = (Stone.thk * (Case.stone_cnt2 + 1)) + capstone_h
     stone_box_sm = Box(
         cmp_width,
