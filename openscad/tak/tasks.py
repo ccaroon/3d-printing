@@ -8,6 +8,8 @@ import stone1
 import stone2
 import cap_stone1
 import cap_stone2
+import point_token
+import scroll
 
 
 @task(iterable=["opts"])
@@ -41,14 +43,26 @@ def build(ctx, piece, opts=None):
             model = tile_inset.build(build_opts)
         case "board":
             model = board.build(build_opts)
+        case "point-token":
+            model = point_token.build(build_opts)
+        case "scroll-band":
+            build_opts["part"] = "band"
+            model = scroll.build(build_opts)
+        case "scroll-core":
+            build_opts["part"] = "core"
+            model = scroll.build(build_opts)
         case _:
             print(f"Unknown piece: '{piece}'")
 
     if model:
         base_name = f"tak-{piece}"
-        # if opts:
-        #     opts_sfx = "-".join(opts)
-        #     base_name += f"-{opts_sfx}"
+        if build_opts:
+            suffix = ""
+            for key, value in build_opts.items():
+                suffix += f"{key}-{value}--"
+
+            suffix = suffix.rstrip("--")
+            base_name += f"__{suffix}"
 
         file_name = f"./models/{base_name}.scad"
         model.save_as_scad(file_name)
