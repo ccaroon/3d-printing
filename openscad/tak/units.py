@@ -136,7 +136,7 @@ PointToken = __constant(
 
 Scroll = __constant(
     "Scroll",
-    dia=23.0,
+    dia=21.0,
     height=5.0,
     thk=1.0,
     core_length=80.0,

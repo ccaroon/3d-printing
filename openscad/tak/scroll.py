@@ -15,9 +15,8 @@ def __band():
 def __core():
     # tip_thk = 5
 
-    outer = cylinder(d=Scroll.dia - Scroll.thk, h=Scroll.core_length).color(
-        "white", alpha=0.5
-    )
+    outer = cylinder(d=Scroll.dia - Scroll.thk, h=Scroll.core_length)
+    # .color("white", alpha=0.5)
     # inner = cylinder(
     #     d=Scroll.dia - Scroll.thk - 3, h=Scroll.core_length - (tip_thk * 2)
     # ).color("yellow")
