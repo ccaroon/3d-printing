@@ -94,6 +94,16 @@ class Factory:
 
         return model
 
+    @model
+    def column_foot(self, **kwargs):
+        """A Cylindrial Foot"""
+        width = float(kwargs.get("width", 1 * units.inch))
+        height = float( kwargs.get("height", 1.5 * units.inch))
+
+        foot = cylinder(d1=width, d2=width * 0.75, h=height)
+
+        return foot
+
     @classmethod
     def list_models(cls):
         return MODELS
