@@ -7,6 +7,7 @@ Purchased April 10, 2026
 * Creality Print: https://www.creality.com/download
 * Firmware: https://www.crealitycloud.com/downloads/firmware/flagship-series/k1c
   - NOT sure if these are for the K1C 2025, though
+* Video Guides: https://www.creality.com/video/k1c-carbon-3d-printer
 
 ## Mods
 * Lid Riser Model: https://www.printables.com/model/770238-creality-k1k1ck1se-hinged-lid-riser/files
