@@ -31,11 +31,15 @@ def build(opts):
         case 2:
             pass
         case _:
-            mid = cylinder(
-                d=PointToken.dia * PointToken.emboss_scale,
-                h=PointToken.thk,
-                _fn=points,
-            ).up(PointToken.thk).color("grey")
+            mid = (
+                cylinder(
+                    d=PointToken.dia * PointToken.emboss_scale,
+                    h=PointToken.thk,
+                    _fn=points,
+                )
+                .up(PointToken.thk)
+                .color("grey")
+            )
 
     piece = base + mid
 

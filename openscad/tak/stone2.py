@@ -17,16 +17,16 @@ def __style2():
     model = cylinder(d=Stone.width, h=Stone.thk)
     cut = cube(Stone.width, Stone.height / 2, Stone.thk + 2, center=True)
 
-    return model - cut.up(Stone.thk / 2).back(Stone.width * 0.5)
+    return model - cut.up(Stone.thk / 2).back(Stone.width / 1.5)
 
 
 def build(opts):
     piece = None
 
     match opts.get("style"):
-        case "style1":
+        case "s1":
             piece = __style1()
-        case "style2":
+        case "s2":
             piece = __style2()
         case _:
             piece = __style1()

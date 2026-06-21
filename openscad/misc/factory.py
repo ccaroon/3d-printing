@@ -98,11 +98,23 @@ class Factory:
     def column_foot(self, **kwargs):
         """A Cylindrial Foot"""
         width = float(kwargs.get("width", 1 * units.inch))
-        height = float( kwargs.get("height", 1.5 * units.inch))
+        height = float(kwargs.get("height", 1.5 * units.inch))
 
         foot = cylinder(d1=width, d2=width * 0.75, h=height)
 
         return foot
+
+    @model
+    def platter(self, **kwargs):
+        """A Flat Platter"""
+        lip = 2
+        dia = float(kwargs.get("dia", 11.5 * units.cm))
+        height = float(kwargs.get("height", 5 * units.mm))
+
+        platter = cylinder(d=dia, h=height)
+        cutout = cylinder(d=dia - (lip * 2), h=height)
+
+        return platter - cutout.up(2)
 
     @classmethod
     def list_models(cls):

@@ -14,7 +14,8 @@ def __style1():
 
 
 def __style2():
-    model = cylinder(d=Stone.width, h=Stone.thk, _fn=5)
+    add_w = Stone.width * 0.105
+    model = cylinder(d=Stone.width + add_w, h=Stone.thk, _fn=6)
 
     return model
 
@@ -23,9 +24,9 @@ def build(opts):
     piece = None
 
     match opts.get("style"):
-        case "style1":
+        case "s1":
             piece = __style1()
-        case "style2":
+        case "s2":
             piece = __style2()
         case _:
             piece = __style1()
