@@ -2,10 +2,13 @@ from solid2 import *
 
 from units import Board
 
+
 def __hexagon(opts):
-    piece = cylinder(r=Board.ti_s2.radius, h=Board.ti_s2.height, _fn=6)
+    padding = opts.get("padding", 0)
+    piece = cylinder(r=Board.ti_s2.radius + padding, h=Board.ti_s2.height, _fn=6)
 
     return piece
+
 
 def __star_ghoti(opts):
     # cylinder height -> star arm

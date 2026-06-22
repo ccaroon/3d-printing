@@ -8,33 +8,33 @@ difference() {
 				translate(v = [0, 0, 5.725]) {
 					union() {
 						rotate(a = [0, 180, 0]) {
-							cylinder($fn = 6, h = 2.0625, r = 7.5);
+							cylinder($fn = 6, h = 2.0625, r = 8.0);
 						}
 						translate(v = [0, 0.0, 0]) {
 							translate(v = [0.0, 0, 0]) {
 								rotate(a = [0, 180, 0]) {
-									cylinder($fn = 6, h = 2.0625, r = 7.5);
+									cylinder($fn = 6, h = 2.0625, r = 8.0);
 								}
 							}
 						}
 						translate(v = [0, 0.0, 0]) {
 							translate(v = [38.5, 0, 0]) {
 								rotate(a = [0, 180, 0]) {
-									cylinder($fn = 6, h = 2.0625, r = 7.5);
+									cylinder($fn = 6, h = 2.0625, r = 8.0);
 								}
 							}
 						}
 						translate(v = [0, 38.5, 0]) {
 							translate(v = [0.0, 0, 0]) {
 								rotate(a = [0, 180, 0]) {
-									cylinder($fn = 6, h = 2.0625, r = 7.5);
+									cylinder($fn = 6, h = 2.0625, r = 8.0);
 								}
 							}
 						}
 						translate(v = [0, 38.5, 0]) {
 							translate(v = [38.5, 0, 0]) {
 								rotate(a = [0, 180, 0]) {
-									cylinder($fn = 6, h = 2.0625, r = 7.5);
+									cylinder($fn = 6, h = 2.0625, r = 8.0);
 								}
 							}
 						}

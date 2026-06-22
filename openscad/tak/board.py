@@ -34,10 +34,13 @@ def __border_insets():
 
 
 def __tile_insets(style):
-    extra_depth = Board.ti_s1.depth_offset
-    insets = tile_inset.build(
-        {"ex_h": extra_depth, "style": style}
-    ).rotateY(180)
+    opts = {
+        "ex_h": Board.ti_s1.depth_offset,
+        "padding": 0.5,
+        "style": style,
+    }
+
+    insets = tile_inset.build(opts).rotateY(180)
 
     for row in range(0, Board.ti_count):
         for col in range(0, Board.ti_count):
@@ -45,7 +48,7 @@ def __tile_insets(style):
             col_offset = (Board.tile.size * col) + (Board.inset.width * col)
             row_offset = (Board.tile.size * row) + (Board.inset.width * row)
             insets += (
-                tile_inset.build({"ex_h": extra_depth, "style": style})
+                tile_inset.build(opts)
                 .rotateY(180)
                 .right(col_offset)
                 .forward(row_offset)
@@ -54,7 +57,7 @@ def __tile_insets(style):
     return insets
 
 
-def __inset_test():
+def __inset_test(style):
     tile = cube(Board.tile.size, Board.tile.size, Board.thk)
 
     inset_len = Board.tile.size + 2
@@ -73,7 +76,13 @@ def __inset_test():
     borders = hor_border + vert_border
 
     inset = (
-        tile_inset.build({"ex_h": Board.ti_s1.depth_offset})
+        tile_inset.build(
+            {
+                "ex_h": Board.ti_s1.depth_offset,
+                "style": style,
+                "padding": 0.5,
+            }
+        )
         .rotateY(180)
         .right(Board.tile.size / 2)
         .forward(Board.tile.size / 2)
@@ -95,7 +104,7 @@ def build(opts):
     style = opts.get("style", "s1")
 
     if opts.get("inset_test", False):
-        piece = __inset_test()
+        piece = __inset_test(style)
     else:
         base = __base()
         border_insets = __border_insets()
