@@ -34,10 +34,18 @@ LargeSet = __constant(
     stone_cnt2=5,
 )
 
+TestSet = __constant(
+    "TestSet",
+    tile_size=37.5,
+    tile_count=1,
+    stone_cnt1=1,
+    stone_cnt2=1,
+)
+
 # -----------------------------------------------------------------------------
 # NOTE NOTE NOTE NOTE
-# Change this to switch between Full Size & Mini Size sets
-ActiveSet = LargeSet
+# Change this to switch between Full, Mini & Test Sets
+ActiveSet = TestSet
 # -----------------------------------------------------------------------------
 
 # Board
@@ -51,8 +59,13 @@ TileInset = __constant(
     "TileInset",
     height=Tile.size * 0.07,
     length=Tile.size * 0.25,
-    count=Tile.count + 1,
     depth_offset=0.75,
+)
+
+TileInsertS2 = __constant(
+    "TileInsetS2",
+    height=Tile.size * 0.055,
+    radius=Tile.size * 0.20,
 )
 
 BoardBorder = __constant(
@@ -81,12 +94,14 @@ Board = __constant(
     border=BoardBorder,
     magnet=Magnet,
     magnet_offset=5,
-    tile_inset=TileInset,
+    ti_s1=TileInset,
+    ti_s2=TileInsertS2,
+    ti_count=Tile.count + 1,
     tile_count=Tile.count,
     # Total Board size (width & height)
     size=(
         (Tile.size * Tile.count)
-        + (GridInset.width * TileInset.count)
+        + (GridInset.width * Tile.count + 1)
         + (BoardBorder.width * 2)
     ),
 )

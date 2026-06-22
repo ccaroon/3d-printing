@@ -2,12 +2,16 @@ from solid2 import *
 
 from units import Board
 
+def __hexagon(opts):
+    piece = cylinder(r=Board.ti_s2.radius, h=Board.ti_s2.height, _fn=6)
 
-def __tile_inset(opts):
+    return piece
+
+def __star_ghoti(opts):
     # cylinder height -> star arm
-    height = Board.tile_inset.length
+    height = Board.ti_s1.length
     # cylinder radius -> star arm base height
-    base_r = Board.tile_inset.height + opts.get("ex_h", 0)
+    base_r = Board.ti_s1.height + opts.get("ex_h", 0)
 
     arm1 = cylinder(
         h=height,
@@ -46,4 +50,13 @@ def __tile_inset(opts):
 
 
 def build(opts):
-    return __tile_inset(opts)
+    style = opts.get("style", "s1")
+
+    model = None
+    match style:
+        case "s1":
+            model = __star_ghoti(opts)
+        case "s2":
+            model = __hexagon(opts)
+
+    return model
