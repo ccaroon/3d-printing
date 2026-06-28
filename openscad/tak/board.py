@@ -36,7 +36,7 @@ def __border_insets():
 def __tile_insets(style):
     opts = {
         "ex_h": Board.ti_s1.depth_offset,
-        "padding": 0.5,
+        "padding": Board.ti_s2.padding,
         "style": style,
     }
 
@@ -80,7 +80,7 @@ def __inset_test(style):
             {
                 "ex_h": Board.ti_s1.depth_offset,
                 "style": style,
-                "padding": 0.5,
+                "padding": Board.ti_s2.padding,
             }
         )
         .rotateY(180)
@@ -90,12 +90,12 @@ def __inset_test(style):
     )
 
     magnet_cutout = (
-        cylinder(d=Board.magnet.dia, h=Board.magnet.thk + 0.5)
+        cylinder(d=Board.magnet.dia, h=Board.magnet.thk + 0.25)
         .right(Board.tile.size / 2)
         .forward(Board.tile.size / 2)
     )
 
-    model = tile - borders - inset - magnet_cutout.down(0.5)
+    model = tile - borders - inset - magnet_cutout.down(0.25)
 
     return model
 
@@ -137,7 +137,7 @@ def build(opts):
                     yoffset *= -1
                 y += yoffset
 
-                magnet_cutout = cylinder(d=Board.magnet.dia, h=Board.magnet.thk + 0.5)
-                piece = piece - magnet_cutout.translate(x, y, -0.5)
+                magnet_cutout = cylinder(d=Board.magnet.dia, h=Board.magnet.thk + 0.25)
+                piece = piece - magnet_cutout.translate(x, y, -0.25)
 
     return piece

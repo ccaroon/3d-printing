@@ -32,7 +32,7 @@ def build(opts):
             y = Case.length * row
 
             # Magnet cutout
-            magnet = cylinder(d=Magnet.dia, h=Magnet.thk + 0.5)
+            magnet = cylinder(d=Magnet.dia, h=Magnet.thk + 0.25)
             magx_offset = mag_radius + Board.magnet_offset
             magx_offset *= -1 if col == 1 else 1
             mag_x = x + magx_offset

@@ -45,7 +45,7 @@ TestSet = __constant(
 # -----------------------------------------------------------------------------
 # NOTE NOTE NOTE NOTE
 # Change this to switch between Full, Mini & Test Sets
-ActiveSet = TestSet
+ActiveSet = LargeSet
 # -----------------------------------------------------------------------------
 
 # Board
@@ -62,10 +62,11 @@ TileInset = __constant(
     depth_offset=0.75,
 )
 
-TileInsertS2 = __constant(
+TileInsetS2 = __constant(
     "TileInsetS2",
     height=Tile.size * 0.055,
     radius=Tile.size * 0.20,
+    padding=0.30,
 )
 
 BoardBorder = __constant(
@@ -95,7 +96,7 @@ Board = __constant(
     magnet=Magnet,
     magnet_offset=5,
     ti_s1=TileInset,
-    ti_s2=TileInsertS2,
+    ti_s2=TileInsetS2,
     ti_count=Tile.count + 1,
     tile_count=Tile.count,
     # Total Board size (width & height)
