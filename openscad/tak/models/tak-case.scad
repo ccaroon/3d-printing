@@ -20,7 +20,7 @@ union() {
 									}
 								}
 								translate(v = [10.15, 10.15, 37.325]) {
-									cylinder(d = 10.3, h = 1.8);
+									cylinder(d = 10.3, h = 1.55);
 								}
 							}
 							translate(v = [191.95, 0.0, 0]) {
@@ -28,7 +28,7 @@ union() {
 							}
 						}
 						translate(v = [202.1, 10.15, 37.325]) {
-							cylinder(d = 10.3, h = 1.8);
+							cylinder(d = 10.3, h = 1.55);
 						}
 					}
 					translate(v = [0.0, 191.95, 0]) {
@@ -36,7 +36,7 @@ union() {
 					}
 				}
 				translate(v = [10.15, 202.1, 37.325]) {
-					cylinder(d = 10.3, h = 1.8);
+					cylinder(d = 10.3, h = 1.55);
 				}
 			}
 			translate(v = [191.95, 191.95, 0]) {
@@ -44,7 +44,7 @@ union() {
 			}
 		}
 		translate(v = [202.1, 202.1, 37.325]) {
-			cylinder(d = 10.3, h = 1.8);
+			cylinder(d = 10.3, h = 1.55);
 		}
 	}
 	translate(v = [30.875, 5.8125, 0]) {

@@ -130,18 +130,25 @@ CasePost = __constant(
     length=Magnet.dia + (Board.magnet_offset * 2),
 )
 
-Case = __constant(
-    "Case",
+CaseS1 = __constant(
+    "CaseS1",
     width=Board.size,
     length=Board.size,
     # + Board.thk to account for bottom height
     height=Stone.width + 3 + Board.thk,
     wall_thk=Board.thk,
-    post=CasePost,
     stone_cnt1=ActiveSet.stone_cnt1,
     stone_cnt2=ActiveSet.stone_cnt2,
 )
 
+case_s2_wall_thk = 2
+CaseS2 = __constant(
+    "CaseS2",
+    width=Board.size,
+    length=Board.size,
+    height=Stone.height + case_s2_wall_thk + 2,
+    wall_thk=case_s2_wall_thk,
+)
 
 PointToken = __constant(
     "PointToken",

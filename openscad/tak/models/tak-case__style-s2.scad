@@ -1,89 +1,79 @@
 $fn = 150;
 
-union() {
-	difference() {
-		union() {
-			difference() {
-				union() {
-					difference() {
-						union() {
-							difference() {
-								union() {
-									difference() {
-										cube(size = [212.25, 212.25, 38.625]);
-										translate(v = [5.625, 5.625, 5.625]) {
-											cube(size = [201.0, 201.0, 38.625]);
+difference() {
+	union() {
+		difference() {
+			union() {
+				difference() {
+					union() {
+						difference() {
+							union() {
+								difference() {
+									cube(size = [212.25, 212.25, 34.0]);
+									translate(v = [0, 0, -1]) {
+										translate(v = [0, 36.5, 0]) {
+											translate(v = [36.5, 0, 0]) {
+												cube(size = [139.25, 139.25, 36.0]);
+											}
 										}
 									}
-									translate(v = [0.0, 0.0, 0]) {
-										cube(size = [20.3, 20.3, 38.625]);
-									}
 								}
-								translate(v = [10.15, 10.15, 37.325]) {
-									cylinder(d = 10.3, h = 1.55);
+								translate(v = [0.0, 0.0, 0]) {
+									cube(size = [20.3, 20.3, 34.0]);
 								}
 							}
-							translate(v = [191.95, 0.0, 0]) {
-								cube(size = [20.3, 20.3, 38.625]);
+							translate(v = [10.15, 10.15, 32.7]) {
+								cylinder(d = 10.3, h = 1.55);
 							}
 						}
-						translate(v = [202.1, 10.15, 37.325]) {
-							cylinder(d = 10.3, h = 1.55);
+						translate(v = [191.95, 0.0, 0]) {
+							cube(size = [20.3, 20.3, 34.0]);
 						}
 					}
-					translate(v = [0.0, 191.95, 0]) {
-						cube(size = [20.3, 20.3, 38.625]);
+					translate(v = [202.1, 10.15, 32.7]) {
+						cylinder(d = 10.3, h = 1.55);
 					}
 				}
-				translate(v = [10.15, 202.1, 37.325]) {
-					cylinder(d = 10.3, h = 1.55);
+				translate(v = [0.0, 191.95, 0]) {
+					cube(size = [20.3, 20.3, 34.0]);
 				}
 			}
-			translate(v = [191.95, 191.95, 0]) {
-				cube(size = [20.3, 20.3, 38.625]);
+			translate(v = [10.15, 202.1, 32.7]) {
+				cylinder(d = 10.3, h = 1.55);
 			}
 		}
-		translate(v = [202.1, 202.1, 37.325]) {
-			cylinder(d = 10.3, h = 1.55);
-		}
-	}
-	translate(v = [30.875, 5.8125, 0]) {
-		color(alpha = 1.0, c = "white") {
-			difference() {
-				cube(size = [37.625, 200.625, 38.625]);
-				translate(v = [2.8125, 2.8125, 2.8125]) {
-					cube(size = [32.0, 195.0, 38.625]);
-				}
-			}
+		translate(v = [191.95, 191.95, 0]) {
+			cube(size = [20.3, 20.3, 34.0]);
 		}
 	}
-	translate(v = [65.6875, 59.390625, 0]) {
-		color(alpha = 1.0, c = "white") {
-			difference() {
-				cube(size = [37.625, 93.46875, 38.625]);
-				translate(v = [2.8125, 2.8125, 2.8125]) {
-					cube(size = [32.0, 87.84375, 38.625]);
-				}
+	translate(v = [202.1, 202.1, 32.7]) {
+		cylinder(d = 10.3, h = 1.55);
+	}
+	translate(v = [0, 20.3, 0]) {
+		translate(v = [0, 0, 2]) {
+			translate(v = [2, 0, 0]) {
+				cube(size = [32.5, 171.65, 33.0]);
 			}
 		}
 	}
-	translate(v = [143.75, 5.8125, 0]) {
-		color(alpha = 1.0, c = "grey") {
-			difference() {
-				cube(size = [37.625, 200.625, 38.625]);
-				translate(v = [2.8125, 2.8125, 2.8125]) {
-					cube(size = [32.0, 195.0, 38.625]);
-				}
+	translate(v = [0, 20.3, 0]) {
+		translate(v = [0, 0, 2]) {
+			translate(v = [177.75, 0, 0]) {
+				cube(size = [32.5, 171.65, 33.0]);
 			}
 		}
 	}
-	translate(v = [108.9375, 59.390625, 0]) {
-		color(alpha = 1.0, c = "grey") {
-			difference() {
-				cube(size = [37.625, 93.46875, 38.625]);
-				translate(v = [2.8125, 2.8125, 2.8125]) {
-					cube(size = [32.0, 87.84375, 38.625]);
-				}
+	translate(v = [0, 0, 2]) {
+		translate(v = [20.3, 0, 0]) {
+			translate(v = [0, 177.75, 0]) {
+				cube(size = [171.65, 32.5, 33.0]);
+			}
+		}
+	}
+	translate(v = [20.3, 0, 0]) {
+		translate(v = [0, 0, 2]) {
+			translate(v = [0, 2, 0]) {
+				cube(size = [171.65, 32.5, 33.0]);
 			}
 		}
 	}
