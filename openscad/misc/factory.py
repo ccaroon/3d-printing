@@ -1,5 +1,6 @@
 from solid2 import *
 
+import math
 import lib.units as units
 
 set_global_fn(150)
@@ -115,6 +116,73 @@ class Factory:
         cutout = cylinder(d=dia - (lip * 2), h=height)
 
         return platter - cutout.up(2)
+
+    @model
+    def tube(self, **kwargs):
+        """
+        A Tube. Pringle Can type Thing!
+
+        Hollow. Bottom. Removable Top.
+        """
+        dia = kwargs.get("dia", 10)
+        lip_size = kwargs.get("lip", 0)
+        wall = kwargs.get("wall", 2)
+        length = kwargs.get("len", 20)
+
+        bottom_dia = dia + lip_size
+        bottom = cylinder(d=bottom_dia, h=wall)
+
+        tube = cylinder(d=dia, h=length).color("red")
+        hollow = cylinder(d=dia - wall, h=length + 1)
+        tube -= hollow.down(0.5)
+
+        model = bottom + tube.up(wall)
+
+        return model
+
+    @model
+    def enigma_tube(self, **kwargs):
+        """
+        Tube for Paper Enigma...
+
+        ...printed on US Letter
+
+        http://wiki.franklinheath.co.uk/index.php/Enigma/Paper_Enigma
+        """
+        # REAL Dims
+        dia = 217 / math.pi
+        # I/O + Rotorx3  + Reflector
+        # 27  + (45 * 3) + 38 = 200
+        # Add a bit of padding
+        len = 202
+        # ------------------------
+
+        # 203mm
+        # TEST Dims
+        # dia = 15
+        len = 20
+        # ------------------------
+
+        wall = 2
+        lip = 2
+
+        tube = self.tube(
+            dia=dia,
+            len=len,
+            lip=lip,
+            wall=wall,
+        )
+
+        cap = self.tube(
+            dia=dia - wall,
+            len=len * 0.15,
+            lip=lip * 2,
+            wall=wall,
+        )
+
+        model = tube + cap.right(dia + 10)
+
+        return model
 
     @classmethod
     def list_models(cls):
