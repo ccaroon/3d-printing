@@ -7,6 +7,7 @@ dot_dot = os.path.dirname(__file__) + "/.."
 sys.path.insert(0, dot_dot)
 
 
+from . import enigma
 from . import factory
 from . import tools
 
@@ -18,4 +19,9 @@ def clean(ctx):
         ctx.run("rm -f *.stl")
 
 
-ns = Collection(clean, factory, tools)
+ns = Collection(
+    clean,
+    enigma,
+    factory,
+    tools,
+)
