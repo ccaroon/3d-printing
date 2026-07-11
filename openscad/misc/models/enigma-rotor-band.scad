@@ -1,8 +1,8 @@
 $fn = 150;
 
 difference() {
-	cylinder(d = 68, h = 45);
+	cylinder(d = 68.5, h = 45);
 	translate(v = [0, 0, -1]) {
-		cylinder(d = 66, h = 47);
+		cylinder(d = 66.5, h = 47);
 	}
 }

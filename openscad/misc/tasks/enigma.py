@@ -4,14 +4,14 @@ from invoke import task
 from .factory import Factory
 
 WALL = 1
-BAND_DIA = 68
-IO_WIDTH = 27
+BAND_DIA = 68.5
+IO_WIDTH = 27.5
 ROTOR_WIDTH = 45
 REFLECTOR_WIDTH = 38
 # I/O + Rotor x 3 + Reflector + Padding
 TUBE_LEN = IO_WIDTH + (ROTOR_WIDTH * 3) + REFLECTOR_WIDTH + 2
 # Inner dims of the bands - some padding/spacing
-TUBE_DIA = BAND_DIA - WALL - WALL - 0.5
+TUBE_DIA = BAND_DIA - WALL - WALL - 0.10
 
 
 @task
@@ -52,11 +52,12 @@ def tube(ctx):
     """
     factory = Factory()
 
+    # Tube with fixed end cap/bottom
     lip = 2
     tube_dia = TUBE_DIA
     tube_len = TUBE_LEN
     # ..FOR TESTING...
-    tube_len = 20
+    tube_len = 10
 
     tube = factory.tube(
         dia=tube_dia,
@@ -65,9 +66,15 @@ def tube(ctx):
         wall=WALL,
     )
 
+    # Removable end cap
     scale = 0.075
     cap_len = tube_len * scale
-    cap_len = 3 if cap_len < 3 else cap_len
+    if cap_len < 3:
+        cap_len = 3
+
+    if cap_len > 10:
+        cap_len = 10
+
     cap = factory.tube(
         dia=tube_dia - (WALL * 2),
         len=cap_len,
@@ -75,7 +82,9 @@ def tube(ctx):
         wall=WALL,
     )
 
+    # model = tube
     model = tube + cap.right(tube_dia + 10)
+
     __save(model, "tube")
 
 
