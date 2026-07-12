@@ -5,13 +5,13 @@ from .factory import Factory
 
 WALL = 1
 BAND_DIA = 68.5
-IO_WIDTH = 27.5
+IO_WIDTH = 28
 ROTOR_WIDTH = 45
 REFLECTOR_WIDTH = 38
 # I/O + Rotor x 3 + Reflector + Padding
 TUBE_LEN = IO_WIDTH + (ROTOR_WIDTH * 3) + REFLECTOR_WIDTH + 2
 # Inner dims of the bands - some padding/spacing
-TUBE_DIA = BAND_DIA - WALL - WALL - 0.10
+TUBE_DIA = BAND_DIA - WALL - WALL - 0.05
 
 
 @task
@@ -82,8 +82,8 @@ def tube(ctx):
         wall=WALL,
     )
 
-    # model = tube
-    model = tube + cap.right(tube_dia + 10)
+    model = tube
+    # model = tube + cap.right(tube_dia + 10)
 
     __save(model, "tube")
 
