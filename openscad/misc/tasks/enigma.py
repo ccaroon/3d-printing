@@ -56,8 +56,9 @@ def tube(ctx):
     lip = 2
     tube_dia = TUBE_DIA
     tube_len = TUBE_LEN
+    # print(f"Tube Len: {tube_len}")
     # ..FOR TESTING...
-    tube_len = 10
+    # tube_len = 10
 
     tube = factory.tube(
         dia=tube_dia,
@@ -72,8 +73,8 @@ def tube(ctx):
     if cap_len < 3:
         cap_len = 3
 
-    if cap_len > 10:
-        cap_len = 10
+    if cap_len > 15:
+        cap_len = 15
 
     cap = factory.tube(
         dia=tube_dia - (WALL * 2),
@@ -82,8 +83,8 @@ def tube(ctx):
         wall=WALL,
     )
 
-    model = tube
-    # model = tube + cap.right(tube_dia + 10)
+    # model = tube
+    model = tube + cap.right(tube_dia + 10)
 
     __save(model, "tube")
 
