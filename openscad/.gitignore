@@ -1,4 +1,6 @@
-.ruff_cache/
 __pycache__/
-*.stl
+.pytest_cache/
+.ruff_cache/
 .vscode/
+*.stl
+dist/
