@@ -1,5 +1,4 @@
 # SolidPython2 Playground
-import solid2
 from solid2 import *
 
 set_global_fn(72)

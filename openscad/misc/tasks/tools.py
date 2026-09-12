@@ -1,7 +1,7 @@
 from invoke import task
-
 from solid2 import *
-import lib.units as units
+
+from lib import units
 
 
 def square1():

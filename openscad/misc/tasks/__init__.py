@@ -7,9 +7,7 @@ dot_dot = os.path.dirname(__file__) + "/.."
 sys.path.insert(0, dot_dot)
 
 
-from . import enigma
-from . import factory
-from . import tools
+from . import enigma, factory, tools
 
 
 @task

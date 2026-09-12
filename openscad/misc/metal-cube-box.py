@@ -1,5 +1,4 @@
-from lib import boxes
-from lib import units
+from lib import boxes, units
 
 size = 1 * units.inch
 padding = 0.49 * units.mm

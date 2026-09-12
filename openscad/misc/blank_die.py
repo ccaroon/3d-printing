@@ -1,8 +1,7 @@
 #!/usr/bin/env python
-from lib import things
-from lib import units
-
 from solid2 import *
+
+from lib import things, units
 
 if __name__ == "__main__":
     set_global_fn(150)

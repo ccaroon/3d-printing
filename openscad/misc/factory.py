@@ -1,6 +1,8 @@
 from solid2 import *
 
-import lib.units as units
+from lib import units
+
+# ruff: noqa: F405
 
 set_global_fn(150)
 
@@ -61,9 +63,7 @@ class Factory:
         model = None
         if size and walls:
             outer_cube = cube([size, size, size])
-            inner_cube = cube(
-                [size - (walls * 2), size - (walls * 2), size - (walls * 2)]
-            )
+            inner_cube = cube([size - (walls * 2), size - (walls * 2), size - (walls * 2)])
 
             model = outer_cube - inner_cube.translate([walls, walls, walls])
         else:
@@ -134,6 +134,27 @@ class Factory:
         tube = outer - inner.down(0.5)
 
         model = bottom + tube.up(wall)
+
+        return model
+
+    @model
+    def nameplate(self, **kwargs):
+        width = 3 * units.inch
+        length = 1.5 * units.inch
+        thickness = 2 * units.mm
+        plate = cube(width, length, thickness)
+
+        pin_dia = 10
+        pin_cutout = cylinder(d=pin_dia, h=thickness)
+
+        pin_hole = cylinder(d=2, h=4)
+
+        x = width / 8
+        y = length / 2
+        z = thickness / 2
+        model = plate - pin_cutout.translate(x, y, z) - pin_hole.translate(x, y, -1)
+
+        model = model - pin_cutout.translate(width - x, y, z) - pin_hole.translate(width - x, y, -1)
 
         return model
 

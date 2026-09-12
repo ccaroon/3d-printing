@@ -1,5 +1,5 @@
-from solid2 import *
 from invoke import task
+from solid2 import *
 
 from .factory import Factory
 
@@ -70,11 +70,9 @@ def tube(ctx):
     # Removable end cap
     scale = 0.075
     cap_len = tube_len * scale
-    if cap_len < 3:
-        cap_len = 3
+    cap_len = max(cap_len, 3)
 
-    if cap_len > 15:
-        cap_len = 15
+    cap_len = min(cap_len, 15)
 
     cap = factory.tube(
         dia=tube_dia - (WALL * 2),
