@@ -118,9 +118,7 @@ class Factory:
 
     @model
     def tube(self, **kwargs):
-        """
-        Hollow Tube. Bottom with optional lip. No Top.
-        """
+        """Hollow Tube. Bottom with optional lip. No Top."""
         dia = kwargs.get("dia", 10)
         lip_size = kwargs.get("lip", 0)
         wall = kwargs.get("wall", 1)
@@ -139,22 +137,36 @@ class Factory:
 
     @model
     def nameplate(self, **kwargs):
-        width = 3 * units.inch
-        length = 1.5 * units.inch
-        thickness = 2 * units.mm
-        plate = cube(width, length, thickness)
+        """A Magnetic Nameplate with Back"""
 
-        pin_dia = 10
-        pin_cutout = cylinder(d=pin_dia, h=thickness)
+        # Nameplate
+        # 1/16 of an inch border
+        width = 3.0625 * units.inch
+        length = 1.5625 * units.inch
+        thickness = 1.5 * units.mm
+        nameplate = cube(width, length, thickness)
 
-        pin_hole = cylinder(d=2, h=4)
+        # Cutout for Magnet
+        mag_dia = 10.25  # with padding
+        mag_thk = 1
+        mag_cutout = cylinder(d=mag_dia, h=mag_thk * 2)
 
-        x = width / 8
+        # Nameplate Cutout
+        x = width / 6
         y = length / 2
-        z = thickness / 2
-        model = plate - pin_cutout.translate(x, y, z) - pin_hole.translate(x, y, -1)
+        z = thickness - mag_thk
+        nameplate = nameplate - mag_cutout.translate(x, y, z)
+        nameplate = nameplate - mag_cutout.translate(width - x, y, z)
 
-        model = model - pin_cutout.translate(width - x, y, z) - pin_hole.translate(width - x, y, -1)
+        # Backing
+        offset = 5
+        mag_border = 4
+        backplate = cube(width, mag_dia + mag_border, thickness)
+        y = offset + (mag_border / 2)
+        backplate = backplate - mag_cutout.translate(x, y, z)
+        backplate = backplate - mag_cutout.translate(width - x, y, z)
+
+        model = nameplate + backplate.forward(length + offset)
 
         return model
 
