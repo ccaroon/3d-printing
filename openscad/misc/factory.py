@@ -136,7 +136,7 @@ class Factory:
         return model
 
     @model
-    def nameplate(self, **kwargs):
+    def magplate(self, **kwargs):
         """A Magnetic Nameplate with Back"""
 
         # Nameplate
@@ -169,6 +169,18 @@ class Factory:
         model = nameplate + backplate.forward(length + offset)
 
         return model
+
+    @model
+    def nameplate(self, **kwargs):
+        """A Basic Nameplate"""
+
+        # 1/16 of an inch border on W & L
+        width = 3.0625 * units.inch
+        length = 1.5625 * units.inch
+        thickness = 1.0 * units.mm
+        nameplate = cube(width, length, thickness)
+
+        return nameplate
 
     @classmethod
     def list_models(cls):
