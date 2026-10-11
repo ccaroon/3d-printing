@@ -178,9 +178,27 @@ class Factory:
         width = 3.0625 * units.inch
         length = 1.5625 * units.inch
         thickness = 1.0 * units.mm
-        nameplate = cube(width, length, thickness)
+        nameplate = self.plate(width=width, length=length, thickness=thickness)
 
         return nameplate
+
+    @model
+    def plate(self, **kwargs):
+        """A Flat Plate"""
+
+        (w, w_unit) = kwargs.get("width").split("-", 1)
+        width = float(w) * units.MAP[w_unit]
+
+        (l, l_unit) = kwargs.get("length").split("-", 1)
+        length = float(l) * units.MAP[l_unit]
+
+        (t, t_unit) = kwargs.get("thickness").split("-", 1)
+        thickness = float(t) * units.MAP[t_unit]
+
+        plate = cube(width, length, thickness)
+
+        return plate
+
 
     @classmethod
     def list_models(cls):
