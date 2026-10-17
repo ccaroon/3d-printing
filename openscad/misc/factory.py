@@ -199,6 +199,23 @@ class Factory:
 
         return plate
 
+    @model
+    def ring(self, **kwargs):
+        (d, d_unit) = kwargs.get("dia").split("-", 1)
+        dia = float(d) * units.MAP[d_unit]
+
+        (w, w_unit) = kwargs.get("width").split("-", 1)
+        width = float(w) * units.MAP[w_unit]
+
+        (t, t_unit) = kwargs.get("thk").split("-", 1)
+        thk = float(t) * units.MAP[t_unit]
+
+        outer_ring = cylinder(d=dia, h=thk)
+        inner_ring = cylinder(d=dia-(width*2),h=thk+2)
+
+        ring = outer_ring - inner_ring.down(1)
+
+        return ring
 
     @classmethod
     def list_models(cls):
