@@ -106,7 +106,7 @@ class Factory:
 
     @model
     def platter(self, **kwargs):
-        """A Flat Platter"""
+        """A Flat Platter/Plate with a Lip"""
         lip = 2
         dia = float(kwargs.get("dia", 11.5 * units.cm))
         height = float(kwargs.get("height", 5 * units.mm))
@@ -185,37 +185,40 @@ class Factory:
     @model
     def plate(self, **kwargs):
         """A Flat Plate"""
+        width = units.parse_size(kwargs.get("width"))
+        length = units.parse_size(kwargs.get("length"))
+        thk = units.parse_size(kwargs.get("thk", "1mm"))
 
-        (w, w_unit) = kwargs.get("width").split("-", 1)
-        width = float(w) * units.MAP[w_unit]
-
-        (l, l_unit) = kwargs.get("length").split("-", 1)
-        length = float(l) * units.MAP[l_unit]
-
-        (t, t_unit) = kwargs.get("thickness").split("-", 1)
-        thickness = float(t) * units.MAP[t_unit]
-
-        plate = cube(width, length, thickness)
+        plate = cube(width, length, thk)
 
         return plate
 
     @model
     def ring(self, **kwargs):
-        (d, d_unit) = kwargs.get("dia").split("-", 1)
-        dia = float(d) * units.MAP[d_unit]
-
-        (w, w_unit) = kwargs.get("width").split("-", 1)
-        width = float(w) * units.MAP[w_unit]
-
-        (t, t_unit) = kwargs.get("thk").split("-", 1)
-        thk = float(t) * units.MAP[t_unit]
+        """A circular frame"""
+        dia = units.parse_size(kwargs.get("dia"))
+        border = units.parse_size(kwargs.get("border"))
+        thk = units.parse_size(kwargs.get("thk", "1mm"))
 
         outer_ring = cylinder(d=dia, h=thk)
-        inner_ring = cylinder(d=dia-(width*2),h=thk+2)
+        inner_ring = cylinder(d=dia - (border * 2), h=thk + 2)
 
         ring = outer_ring - inner_ring.down(1)
 
         return ring
+
+    @model
+    def frame(self, **kwargs):
+        """A rectangular frame"""
+        length = units.parse_size(kwargs.get("length"))
+        width = units.parse_size(kwargs.get("width"))
+        thk = units.parse_size(kwargs.get("thk", "1.0mm"))
+        border = units.parse_size(kwargs.get("border"))
+
+        outer_rect = cube(length, width, thk)
+        inner_rect = cube(length - (border * 2), width - (border * 2), thk + 2)
+
+        return outer_rect - inner_rect.right(border).forward(border).down(1)
 
     @classmethod
     def list_models(cls):
