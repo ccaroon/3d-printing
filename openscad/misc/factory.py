@@ -203,9 +203,54 @@ class Factory:
         outer_ring = cylinder(d=dia, h=thk)
         inner_ring = cylinder(d=dia - (border * 2), h=thk + 2)
 
-        ring = outer_ring - inner_ring.down(1)
+        model = outer_ring - inner_ring.down(1)
 
-        return ring
+        return model
+
+    @model
+    def clock_ring(self, **kwargs):
+        """A Ring with Markings at Major Clock Numbers"""
+        dia = units.parse_size(kwargs.get("dia"))
+        border = units.parse_size(kwargs.get("border"))
+        thk = units.parse_size(kwargs.get("thk", "1mm"))
+
+        main_ring = self.ring(**kwargs)
+
+        size = border * 1.10
+        marker = cube([size, size, thk]).left(size / 2).back(size / 2).rotate(45)
+
+        model = main_ring
+
+        # 12
+        model += marker.forward((dia / 2) - (border / 2))
+        # 3
+        model += marker.right((dia / 2) - (border / 2))
+        # 6
+        model += marker.back((dia / 2) - (border / 2))
+        # 9
+        model += marker.left((dia / 2) - (border / 2))
+
+        # 1
+        model += marker.forward((dia / 2) - (border / 2)).rotateZ(-30)
+        # 2
+        model += marker.forward((dia / 2) - (border / 2)).rotateZ(-60)
+
+        # 4
+        model += marker.right((dia / 2) - (border / 2)).rotateZ(-30)
+        # 5
+        model += marker.right((dia / 2) - (border / 2)).rotateZ(-60)
+
+        # 7
+        model += marker.back((dia / 2) - (border / 2)).rotateZ(-30)
+        # 8
+        model += marker.back((dia / 2) - (border / 2)).rotateZ(-60)
+
+        # 10
+        model += marker.left((dia / 2) - (border / 2)).rotateZ(-30)
+        # 11
+        model += marker.left((dia / 2) - (border / 2)).rotateZ(-60)
+
+        return model
 
     @model
     def frame(self, **kwargs):
