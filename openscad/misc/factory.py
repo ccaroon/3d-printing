@@ -106,7 +106,7 @@ class Factory:
 
     @model
     def platter(self, **kwargs):
-        """A Flat Platter/Plate with a Lip"""
+        """A Flat Circular Platter/Plate with a Lip"""
         lip = 2
         dia = float(kwargs.get("dia", 11.5 * units.cm))
         height = float(kwargs.get("height", 5 * units.mm))
@@ -183,8 +183,8 @@ class Factory:
         return nameplate
 
     @model
-    def plate(self, **kwargs):
-        """A Flat Plate"""
+    def rplate(self, **kwargs):
+        """A Flat Rectangular Plate"""
         width = units.parse_size(kwargs.get("width"))
         length = units.parse_size(kwargs.get("length"))
         thk = units.parse_size(kwargs.get("thk", "1mm"))
@@ -192,6 +192,16 @@ class Factory:
         plate = cube(width, length, thk)
 
         return plate
+
+    @model
+    def cplate(self, **kwargs):
+        """A Flat Circular Plate"""
+        dia = units.parse_size(kwargs.get("dia"))
+        thk = units.parse_size(kwargs.get("thk", "1mm"))
+
+        model = cylinder(d=dia, h=thk)
+
+        return model
 
     @model
     def ring(self, **kwargs):
@@ -264,6 +274,118 @@ class Factory:
         inner_rect = cube(length - (border * 2), width - (border * 2), thk + 2)
 
         return outer_rect - inner_rect.right(border).forward(border).down(1)
+
+    @model
+    def seven_segment_tmpl(self, **kwargs):
+        sg_len = units.parse_size(kwargs.get("length"))
+        sg_width = units.parse_size(kwargs.get("width"))
+        thk = units.parse_size(kwargs.get("thk", "1.0mm"))
+
+        padding = sg_width * 0.85
+        base_w = sg_len + (padding * 4)
+        base_l = (sg_len * 2) + (padding * 4)
+
+        tmpl_base = cube([base_w, base_l, thk])
+
+        sg_h1 = sg_len
+        sg_h2 = sg_len * 0.90
+        segment_half = (
+            polygon(
+                [
+                    [0, 0],
+                    [0, sg_h1],
+                    [(sg_width / 2), sg_h2],
+                    [(sg_width / 2), sg_h1 - sg_h2],
+                ]
+            )
+            .linear_extrude(height=thk + 2)
+            .translate([0, -sg_h1 / 2, 0])
+        )
+
+        segment_cutout = segment_half + segment_half.rotateZ(180).right(0.001)
+
+        model = tmpl_base
+
+        # top / center
+        model -= segment_cutout.rotateZ(-90).translate(
+            [
+                base_w / 2,
+                base_l - (sg_width / 2) - padding,
+                -1,
+            ]
+        )
+
+        # top / left
+        model -= segment_cutout.translate(
+            [
+                (sg_width / 2) + padding / 2,
+                base_l - (sg_h1 / 2) - (sg_width / 2) - padding,
+                -1,
+            ]
+        )
+
+        # top / right
+        model -= segment_cutout.translate(
+            [
+                base_w - (sg_width / 2) - padding / 2,
+                base_l - (sg_h1 / 2) - (sg_width / 2) - padding,
+                -1,
+            ]
+        )
+
+        # center / center
+        model -= segment_cutout.rotateZ(-90).translate(
+            [
+                base_w / 2,
+                (base_l / 2),
+                -1,
+            ]
+        )
+
+        # bottom / center
+        model -= segment_cutout.rotateZ(-90).translate(
+            [
+                base_w / 2,
+                (sg_width / 2) + padding,
+                -1,
+            ]
+        )
+
+        # bottom / left
+        model -= segment_cutout.translate(
+            [
+                (sg_width / 2) + padding / 2,
+                (sg_h1 / 2) + (sg_width / 2) + padding,
+                -1,
+            ]
+        )
+
+        # bottom / right
+        model -= segment_cutout.translate(
+            [
+                base_w - (sg_width / 2) - padding / 2,
+                (sg_h1 / 2) + (sg_width / 2) + padding,
+                -1,
+            ]
+        )
+
+        blk_w = base_w * 0.70
+        blk_l = base_l * 0.30
+        blackout = cube([blk_w, blk_l, 3])
+
+        # cutout some more "whitespace" so less to print
+        model -= blackout.translate(
+            [
+                (base_w / 2) - (blk_w / 2),
+                base_l / 2 - blk_l - sg_width - (padding * 2),
+                -1,
+            ]
+        )
+
+        model -= blackout.translate([(base_w / 2) - (blk_w / 2), base_l - blk_l - sg_width - (padding * 3), -1])
+
+        return model
+        # return segment_cutout
 
     @classmethod
     def list_models(cls):
