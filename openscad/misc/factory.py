@@ -205,13 +205,16 @@ class Factory:
 
     @model
     def ring(self, **kwargs):
-        """A circular frame"""
+        """A circular frame with optional # sides"""
         dia = units.parse_size(kwargs.get("dia"))
         border = units.parse_size(kwargs.get("border"))
+        sides = int(kwargs.get("sides", 0))
         thk = units.parse_size(kwargs.get("thk", "1mm"))
 
-        outer_ring = cylinder(d=dia, h=thk)
-        inner_ring = cylinder(d=dia - (border * 2), h=thk + 2)
+        sides = None if not sides else sides
+
+        outer_ring = cylinder(d=dia, h=thk, _fn=sides)
+        inner_ring = cylinder(d=dia - (border * 2), h=thk + 2, _fn=sides)
 
         model = outer_ring - inner_ring.down(1)
 
